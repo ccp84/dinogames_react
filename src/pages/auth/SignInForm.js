@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Container from "react-bootstrap/Container";
@@ -6,8 +6,10 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
 import { Alert } from "react-bootstrap";
+import { setCurrentUserContext } from "../../App";
 
 const SignInForm = () => {
+	const setCurrentUser = useContext(setCurrentUserContext);
 	const [signinData, setSigninData] = useState({
 		username: "",
 		password: "",
@@ -27,12 +29,13 @@ const SignInForm = () => {
 	const handleSubmit = async (event) => {
 		event.preventDefault();
 		try {
-			const response = await axios.post("dj-rest-auth/login/", signinData);
-			console.log(response.data);
-			navigate("/profile");
+			const { data } = await axios.post("dj-rest-auth/login/", signinData);
+			console.log(data.user);
+			setCurrentUser(data.user);
+			navigate("/");
 		} catch (err) {
 			setErrors(err.response?.data);
-			console.log(errors);
+			console.log(errors.data);
 		}
 	};
 
@@ -51,7 +54,7 @@ const SignInForm = () => {
 					/>
 				</Form.Group>
 				{errors.username?.map((message, idx) => (
-					<Alert variant="warning" key={idx}>
+					<Alert key={idx} variant="warning">
 						{message}
 					</Alert>
 				))}
