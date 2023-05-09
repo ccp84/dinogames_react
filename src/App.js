@@ -1,12 +1,35 @@
 import Container from "react-bootstrap/Container";
 import "./App.css";
+import Header from "./components/Header";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import SignUpForm from "./pages/auth/SignUpForm";
+import SignInForm from "./pages/auth/SignInForm";
+import { Profile } from "./components/Profile";
+
+const router = createBrowserRouter([
+	{
+		path: "/",
+		element: <h1>DinoGames</h1>,
+	},
+	{
+		path: "/signin",
+		element: <SignInForm />,
+	},
+	{
+		path: "/signup",
+		element: <SignUpForm />,
+	},
+	{
+		path: "/profile",
+		element: <Profile />,
+	},
+]);
 
 function App() {
 	return (
 		<Container>
-			<div>
-				<h1>DinoGames Library</h1>
-			</div>
+			<Header />
+			<RouterProvider router={router} />
 		</Container>
 	);
 }
