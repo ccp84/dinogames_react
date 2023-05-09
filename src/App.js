@@ -6,7 +6,6 @@ import Header from "./components/Header";
 function App() {
 	return (
 		<div>
-			<Header />
 			<h1>DinoGames Library</h1>
 			<h2>Login</h2>
 			<Form>
