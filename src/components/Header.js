@@ -20,7 +20,7 @@ const Header = () => {
 						<Nav.Link className="text-warning" href="#pricing">
 							Logout
 						</Nav.Link>
-						<Nav.Link className="text-warning" href="#pricing">
+						<Nav.Link className="text-warning" href="/signup">
 							Signup
 						</Nav.Link>
 					</Nav>

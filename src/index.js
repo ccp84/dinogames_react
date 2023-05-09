@@ -6,6 +6,9 @@ import reportWebVitals from "./reportWebVitals";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Form from "./components/Form";
 import Header from "./components/Header";
+import SignUpForm from "./pages/auth/SignUpForm";
+import "./api/axiosDefaults";
+import { Profile } from "./components/Profile";
 
 const router = createBrowserRouter([
 	{
@@ -15,6 +18,14 @@ const router = createBrowserRouter([
 	{
 		path: "/signin",
 		element: <Form />,
+	},
+	{
+		path: "/signup",
+		element: <SignUpForm />,
+	},
+	{
+		path: "/profile",
+		element: <Profile />,
 	},
 ]);
 
