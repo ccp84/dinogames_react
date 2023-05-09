@@ -1,7 +1,7 @@
-import React, { useContext } from "react";
-import { currentUserContext } from "../App";
+import React from "react";
+import { useCurrentUser } from "../contexts/CurrentUserContext";
 
 export const Profile = () => {
-	const currentUser = useContext(currentUserContext);
+	const currentUser = useCurrentUser();
 	return <div>Welcome {currentUser?.username}</div>;
 };

@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Container from "react-bootstrap/Container";
@@ -6,10 +6,10 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
 import { Alert } from "react-bootstrap";
-import { setCurrentUserContext } from "../../App";
+import { useSetCurrentUser } from "../../contexts/CurrentUserContext";
 
 const SignInForm = () => {
-	const setCurrentUser = useContext(setCurrentUserContext);
+	const setCurrentUser = useSetCurrentUser();
 	const [signinData, setSigninData] = useState({
 		username: "",
 		password: "",
