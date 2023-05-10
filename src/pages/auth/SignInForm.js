@@ -80,8 +80,8 @@ const SignInForm = () => {
 					<Alert key={idx} variant="warning" className="mt-3">
 						{message}
 					</Alert>
-				))}
-			</Form> */}
+				))} */}
+			</Form>
 			<p>
 				Don't have an account? Sign up <Link to="/signup">here</Link>
 			</p>
