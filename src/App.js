@@ -7,21 +7,6 @@ import SignUpForm from "./pages/auth/SignUpForm";
 import SignInForm from "./pages/auth/SignInForm";
 import { Profile } from "./components/Profile";
 
-// const router = createBrowserRouter([
-// 	{
-// 		path: "/",
-// 		element: <Profile />,
-// 	},
-// 	{
-// 		path: "/signin",
-// 		element: <SignInForm />,
-// 	},
-// 	{
-// 		path: "/signup",
-// 		element: <SignUpForm />,
-// 	},
-// ]);
-
 function App() {
 	return (
 		<Container>
