@@ -53,11 +53,11 @@ const SignInForm = () => {
 						onChange={handleChange}
 					/>
 				</Form.Group>
-				{/* {errors.username?.map((message, idx) => (
+				{errors.username?.map((message, idx) => (
 					<Alert key={idx} variant="warning">
 						{message}
 					</Alert>
-				))} */}
+				))}
 				<Form.Group className="mb-3" controlId="password">
 					<Form.Label className="d-none">Password</Form.Label>
 					<Form.Control
@@ -76,11 +76,11 @@ const SignInForm = () => {
 				<Button variant="dark" type="submit">
 					Sign In
 				</Button>
-				{/* {errors.non_field_errors?.map((message, idx) => (
+				{errors.non_field_errors?.map((message, idx) => (
 					<Alert key={idx} variant="warning" className="mt-3">
 						{message}
 					</Alert>
-				))} */}
+				))}
 			</Form>
 			<p>
 				Don't have an account? Sign up <Link to="/signup">here</Link>
