@@ -19,6 +19,31 @@ const Header = () => {
 		}
 	};
 	const currentUser = useCurrentUser();
+
+	const loggedIn = (
+		<>
+			<Nav.Link className="text-warning" onClick={SignOut}>
+				Logout
+			</Nav.Link>
+			<Container>
+				<Navbar.Text>
+					Signed in as: {currentUser?.username}
+					<img src={currentUser?.profilepic} alt="profile" height="45" />
+				</Navbar.Text>
+			</Container>
+		</>
+	);
+	const loggedOut = (
+		<>
+			<Nav.Link className="text-warning" href="signin">
+				Login
+			</Nav.Link>
+
+			<Nav.Link className="text-warning" href="/signup">
+				Signup
+			</Nav.Link>
+		</>
+	);
 	return (
 		<Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
 			<Container>
@@ -27,27 +52,7 @@ const Header = () => {
 				</Navbar.Brand>
 				<Navbar.Toggle aria-controls="responsive-navbar-nav" />
 				<Navbar.Collapse id="responsive-navbar-nav">
-					<Nav className="ml-auto">
-						<Nav.Link className="text-warning" href="signin">
-							Login
-						</Nav.Link>
-						<Nav.Link className="text-warning" onClick={SignOut}>
-							Logout
-						</Nav.Link>
-						<Nav.Link className="text-warning" href="/signup">
-							Signup
-						</Nav.Link>
-						<Container>
-							<Navbar.Text>
-								Signed in as: {currentUser?.username}
-								<img
-									src={currentUser?.profilepic}
-									alt="profile"
-									height="45"
-								/>
-							</Navbar.Text>
-						</Container>
-					</Nav>
+					<Nav className="mr-auto">{currentUser ? loggedIn : loggedOut}</Nav>
 				</Navbar.Collapse>
 			</Container>
 		</Navbar>

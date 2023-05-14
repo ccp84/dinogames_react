@@ -32,7 +32,7 @@ const SignInForm = () => {
 			const { data } = await axios.post("dj-rest-auth/login/", signinData);
 			console.log(data.user);
 			setCurrentUser(data.user);
-			navigate("/");
+			navigate("/profile");
 		} catch (err) {
 			setErrors(err.response?.data);
 			console.log(errors.data);
