@@ -52,7 +52,7 @@ const Header = () => {
 				</Navbar.Brand>
 				<Navbar.Toggle aria-controls="responsive-navbar-nav" />
 				<Navbar.Collapse id="responsive-navbar-nav">
-					<Nav className="mr-auto">{currentUser ? loggedIn : loggedOut}</Nav>
+					<Nav className="ml-auto">{currentUser ? loggedIn : loggedOut}</Nav>
 				</Navbar.Collapse>
 			</Container>
 		</Navbar>

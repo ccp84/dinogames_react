@@ -6,14 +6,19 @@ import reportWebVitals from "./reportWebVitals";
 import "./api/axiosDefaults";
 import { CurrentUserProvider } from "./contexts/CurrentUserContext";
 import { BrowserRouter } from "react-router-dom";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
+const queryClient = new QueryClient();
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
 	<React.StrictMode>
 		<BrowserRouter>
-			<CurrentUserProvider>
-				<App />
-			</CurrentUserProvider>
+			<QueryClientProvider client={queryClient}>
+				<CurrentUserProvider>
+					<App />
+				</CurrentUserProvider>
+			</QueryClientProvider>
 		</BrowserRouter>
 	</React.StrictMode>
 );

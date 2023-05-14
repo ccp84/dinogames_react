@@ -73,7 +73,7 @@ const SignInForm = () => {
 						{message}
 					</Alert>
 				))}
-				<Button variant="dark" type="submit">
+				<Button variant="info" type="submit">
 					Sign In
 				</Button>
 				{errors.non_field_errors?.map((message, idx) => (
