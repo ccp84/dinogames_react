@@ -1,3 +1,43 @@
+# React App for Dinosaur Games Library
+
+## Concept
+
+My local boardgames group meet each week with members bringing along their own games to share with the group. This can lead to sometimes a limited selection of games on offer, or not knowing which games other members have that the group would like to play. The Dinosaur Games Library app provides a solution to this by allowing members of the group to list the games that they own and are happy to share in an online library available for other members to view and search. Requests could then be made ahead of social events for particular games that the group would like to play to be brought along that week. Additional features of the app would allow admin users to advertise the group to visitors to the site and publicise social events to gain a wider membership, add important group updates to the front page as these can sometimes be missed in the Facebook group, and allow for an 'add to social' button for games to be automatically requested via the app at a particular social event.
+
+## Scope
+
+This app will provide a user interface for members to create an online account, manage their game list, view the wider group "social library" and view details of social events that they may wish to participate in. It will also give admin users the facility to highlight group announcements and details of upcoming events. Any site visitors will be able to find out information about the group before registering for membership.
+
+## Initial Wireframes
+
+| View                  |                                                                                 |
+| --------------------- | ------------------------------------------------------------------------------- |
+| Mobile - Homepage     | ![mobilehome](/Documentation/Wireframes/wireframe_mobile_home.png)              |
+| Tablet - Homepage     | ![tablethome](/Documentation/Wireframes/wireframe_tablet_home.png)              |
+| Desktop - Homepage    | ![desktophome](/Documentation/Wireframes/wireframe_desktop_home.png)            |
+| Mobile - Profilepage  | ![mobileprofile](/Documentation/Wireframes/wireframe_mobile_profile_view.png)   |
+| Tablet - Profilepage  | ![tabletprofile](/Documentation/Wireframes/wireframe_tablet_profile_view.png)   |
+| Desktop - Profilepage | ![desktopprofile](/Documentation/Wireframes/wireframe_desktop_profile_view.png) |
+| Mobile - Gamepage     | ![mobilegames](/Documentation/Wireframes/wireframe_mobile_game_detail.png)      |
+| Tablet - Gamepage     | ![tabletgames](/Documentation/Wireframes/wireframe_tablet_game_detail.png)      |
+| Desktop - Gamepage    | ![desktopgames](/Documentation/Wireframes/wireframe_desktop_game_detail.png)    |
+| Mobile - News         | ![mobilenews](/Documentation/Wireframes/wireframe_mobile_news_detail.png)       |
+| Tablet - News         | ![tabletnews](/Documentation/Wireframes/wireframe_tablet_news_detail.png)       |
+| Desktop - News        | ![desktopnews](/Documentation/Wireframes/wireframe_desktop_news_detail.png)     |
+| Mobile - Social       | ![mobilesocial](/Documentation/Wireframes/wireframe_mobile_social_detail.png)   |
+| Tablet - Social       | ![tabletsocial](/Documentation/Wireframes/wireframe_tablet_social_detail.png)   |
+| Desktop - Social      | ![desktopsocial](/Documentation/Wireframes/wireframe_desktop_social_detail.png) |
+
+### Design Considerations
+
+| Colourscheme                                                                                                      |                                                    |
+| ----------------------------------------------------------------------------------------------------------------- | -------------------------------------------------- |
+| The logo for Eight Sixes contains blue/orange/black so these are the main colours I will be using for the project | ![Eight Sixes Logo](/Documentation/eightsixes.png) |
+
+## Project Development
+
+## Milestone 1
+
 npm install -D prettier
 npm install -D eslint eslint-config-prettier
 npm install -D eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-react
