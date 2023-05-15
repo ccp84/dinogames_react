@@ -30,13 +30,17 @@ This app will provide a user interface for members to create an online account, 
 
 ### Design Considerations
 
-| Colourscheme                                                                                                      |                                                    |
-| ----------------------------------------------------------------------------------------------------------------- | -------------------------------------------------- |
+| Colourscheme |                                                    |
+| ------------ | -------------------------------------------------- |
 | The logo for Eight Sixes contains blue/orange/black so these are the main colours I will be using for the project | ![Eight Sixes Logo](/Documentation/eightsixes.png) |
 
 ## Project Development
 
-## Milestone 1
+## Milestone 1 - User Accounts
+
+| Tasks this sprint | Overview |
+| ------------------| -------- |
+| * Front end account creation form links to API endpoint and creates a user account. * Front end login form can access login end point to retrieve access token and refresh token. * Front end form clears stored credentials preventing further usage. | ![sprint1](/Documentation/sprint1.png) |
 
 npm install -D prettier
 npm install -D eslint eslint-config-prettier
