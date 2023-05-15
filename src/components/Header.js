@@ -5,15 +5,18 @@ import Navbar from "react-bootstrap/Navbar";
 import logo from "../assets/logo.webp";
 import { useCurrentUser, useSetCurrentUser } from "../contexts/CurrentUserContext";
 import axios from "axios";
-import { redirect } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Header = () => {
+
+	const navigate = useNavigate();
+
 	const setCurrentUser = useSetCurrentUser();
 	const SignOut = async () => {
 		try {
 			await axios.post("dj-rest-auth/logout/");
 			setCurrentUser(null);
-			return redirect("/signin");
+			navigate("/signin");
 		} catch (err) {
 			console.log(err);
 		}
