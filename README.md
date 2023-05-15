@@ -32,7 +32,7 @@ This app will provide a user interface for members to create an online account, 
 
 | Colourscheme |                                                    |
 | ------------ | -------------------------------------------------- |
-| The logo for Eight Sixes contains blue/orange/black so these are the main colours I will be using for the project | ![Eight Sixes Logo](/Documentation/eightsixes.png) |
+| The logo for our games group Eight Sixes contains blue/orange/black so these are the main colours I will be using for the project | ![Eight Sixes Logo](/Documentation/eightsixes.png) |
 
 ## Project Development
 
@@ -41,6 +41,84 @@ This app will provide a user interface for members to create an online account, 
 | Tasks this sprint | Overview |
 | ------------------| -------- |
 | * Front end account creation form links to API endpoint and creates a user account. * Front end login form can access login end point to retrieve access token and refresh token. * Front end form clears stored credentials preventing further usage. | ![sprint1](/Documentation/sprint1.png) |
+
+### Account Registration
+
+The form for creating a new account is accessible to all site visitors and requires no authentication. 
+Required inputs are handled by state which is initially set to empty strings, these variables are linked to the relevant form fields `value` which is monitored and updated by the `onChange` attribute.
+```javascript
+value={username}
+onChange={handleChange}
+```
+`handleChange` is a function that then takes in the event and updates the state based on the value linked to the event handler. 
+```javascript
+	const handleChange = (event) => {
+		setSignupData({
+			...signupData,
+			[event.target.name]: event.target.value,
+		});
+	};
+```
+Once the site visitor has entered the details into the form, data processing is handled by the `onSubmit` attribute and passed to `handleSubmit`.
+```javascript
+	const handleSubmit = async (event) => {
+		event.preventDefault();
+		try {
+			const response = await axios.post("dj-rest-auth/registration/", signupData);
+			console.log(response.data.user);
+			navigate("/signin");
+		} catch (err) {
+			setErrors(err.response?.data);
+			console.log(errors);
+		}
+	};
+```
+This function needs a connection to the registration API endpoint, and sends via POST the data held in state for processing. The response is either successful which triggers a `useNavigate` redirection to the Sign In page, or if errors are returned these are displayed to the visitor on the page by mapping over the returned error object. 
+```javascript
+{errors.email?.map((message, idx) => (
+	<Alert variant="warning" key={idx}>
+		{message}
+	</Alert>
+))}
+``` 
+
+## Connection to the API
+
+API requests and reponses are handled by Axios. To avoid repetition, an [instance](https://axios-http.com/docs/instance) with the base configuration was created to be used in all API calls. When connection is made to the API, Axios attaches any relevant access or refresh tokens in its request header which the endpoint uses to evaluate if access can be granted.
+The returned status code can be used to determine if the request was a success, or if an error occurred and either the data sent needs to be corrected or authentication credentials need to be supplied. 
+
+### Sign In
+
+The Sign In page is accesible to all site visitors as it is the authentication point to access further areas of the site. 
+Sign in data is held by state variables initialised to empty strings and set to the `value` attribute of the relevant form field. Changes to these variables are handled by the `onChange` attribute of the field, the `handleChange` function takes in the event and assigns the value of the variable to the state variable of the same name. Spreading the existing state data into the function preserves any changes already made. 
+```javascript
+	const handleChange = (event) => {
+		setSigninData({
+			...signinData,
+			[event.target.name]: event.target.value,
+		});
+	};
+```
+Once the log in button is pressed, the forms `onSubmit` attribute links to the `handleSubmit` function
+```
+
+
+### Logging Out
+
+### Profile Details
+
+## Credits
+
+### Documentation and additional tutorials
+* For setting up routing as I have used the latest version of React and React Router, I followed the tutorial available in the documentation [here](https://reactrouter.com/en/main/start/tutorial)
+
+### Code from other sources
+
+### Media and images
+* Default profile picture from [istock photo](https://www.istockphoto.com/vector/d20-dice-role-playing-game-icon-gm1271436830-374022511)
+* Site logo and favicon from [istock photo](https://www.istockphoto.com/vector/house-dice-icon-flat-gm1483672185-510210038)
+
+### Honourable mentions
 
 npm install -D prettier
 npm install -D eslint eslint-config-prettier
