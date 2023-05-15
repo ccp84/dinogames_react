@@ -165,6 +165,14 @@ On success, the access token is refreshed and authentication is maintained. The 
 
 ### Logging Out
 
+Logging out is a function that sits within the header component. It very simply sends an axios request to the logout endpoint. This clears both the access and refresh tokens. On success it then resets the current user context to null. I have used the latest install of dj-rest-auth in the DRF code which appears to log out bug free:
+
+|                                                | Screenshot |
+| ---------------------------------------------- | ---------- |
+| Cookies appear in request headers before logout| ![logoutbefore](/Documentation/logout-before.png) |
+| Logout request sets tokens to empty strings    | ![logoutduring](/Documentation/logout-setcookie.png) |
+| After logout, refresh fails, tokens are not present in the request header | ![logoutafter](/Documentation/logout-after.png) |
+
 ### Profile Details
 
 ## Credits
