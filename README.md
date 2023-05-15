@@ -100,8 +100,68 @@ Sign in data is held by state variables initialised to empty strings and set to 
 	};
 ```
 Once the log in button is pressed, the forms `onSubmit` attribute links to the `handleSubmit` function
+```javascript
+	const handleSubmit = async (event) => {
+		event.preventDefault();
+		try {
+			const { data } = await axios.post("dj-rest-auth/login/", signinData);
+			console.log(data.user);
+			setCurrentUser(data.user);
+			navigate("/profile");
+		} catch (err) {
+			setErrors(err.response?.data);
+			console.log(errors.data);
+		}
+	};
+```
+This function sends the collected variables to the login endpoint. If verified, the following json object is returned
+```
+{
+    "access": 
+    "refresh": 
+    "user": {
+        "id": 
+        "username":
+        "email": 
+        "firstname": 
+        "lastname":
+        "profilepic": 
+    }
+}
+```
+The tokens are stored as cookies and then used to maintain an authenticated state with the API for 24 hours or until the member logs out, whichever comes first. The user object is then set in in context as the `currentUser`. Context can be imported into any component that needs it, rather than passing these details across functions as props. 
+Errors are handled as their own state, and reported back to the site visitor by mapping through the returned object and displaying the error message.
+```javascript
+{errors.username?.map((message, idx) => (
+					<Alert key={idx} variant="warning">
+						{message}
+					</Alert>
+				))}
 ```
 
+### Current User Context
+
+The currently logged in user is held in `CurrentUserContext`. For this I have followed the instructions from the Code Institute Moments Walkthrough project as this is robust and works without error. 
+Context is used in place of maintaining the Current User details in state in each different page and having to pass those details from one page to the next via props. These variables are exported and available to import from anywhere within the app. 
+```javascript
+export const currentUserContext = createContext();
+export const setCurrentUserContext = createContext();
+
+export const useCurrentUser = () => useContext(currentUserContext);
+export const useSetCurrentUser = () => useContext(setCurrentUserContext);
+```
+The current user context also handles refreshing authentication when the access token has expired, via the refresh token. A call is made to the user endpoint with the current token, if a 401 unauthorised error is returned then [Axios Interceptors](https://axios-http.com/docs/interceptors) are used to try and refresh the authentication between the app and API. 
+```javascript
+if (err.response?.status === 401) {
+					try {
+						await axios.post("/dj-rest-auth/token/refresh/");
+					} catch (err) {
+						setCurrentUser((prevCurrentUser) => {
+							if (prevCurrentUser) {
+								console.log("redirecting");
+								navigate("/signin");
+```
+On success, the access token is refreshed and authentication is maintained. The logged in member sees no degredation of service. On failure, both the access and refresh tokens are rejected and the user is redirected to sign in. 
 
 ### Logging Out
 
