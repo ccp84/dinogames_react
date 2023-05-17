@@ -10,28 +10,28 @@ This app will provide a user interface for members to create an online account, 
 
 ## Initial Wireframes
 
-| View                  |                                                                                 |
-| --------------------- | ------------------------------------------------------------------------------- |
-| Mobile - Homepage     | ![mobilehome](/Documentation/Wireframes/wireframe_mobile_home.png)              |
-| Tablet - Homepage     | ![tablethome](/Documentation/Wireframes/wireframe_tablet_home.png)              |
-| Desktop - Homepage    | ![desktophome](/Documentation/Wireframes/wireframe_desktop_home.png)            |
-| Mobile - Profilepage  | ![mobileprofile](/Documentation/Wireframes/wireframe_mobile_profile_view.png)   |
-| Tablet - Profilepage  | ![tabletprofile](/Documentation/Wireframes/wireframe_tablet_profile_view.png)   |
-| Desktop - Profilepage | ![desktopprofile](/Documentation/Wireframes/wireframe_desktop_profile_view.png) |
-| Mobile - Gamepage     | ![mobilegames](/Documentation/Wireframes/wireframe_mobile_game_detail.png)      |
-| Tablet - Gamepage     | ![tabletgames](/Documentation/Wireframes/wireframe_tablet_game_detail.png)      |
-| Desktop - Gamepage    | ![desktopgames](/Documentation/Wireframes/wireframe_desktop_game_detail.png)    |
-| Mobile - News         | ![mobilenews](/Documentation/Wireframes/wireframe_mobile_news_detail.png)       |
-| Tablet - News         | ![tabletnews](/Documentation/Wireframes/wireframe_tablet_news_detail.png)       |
-| Desktop - News        | ![desktopnews](/Documentation/Wireframes/wireframe_desktop_news_detail.png)     |
-| Mobile - Social       | ![mobilesocial](/Documentation/Wireframes/wireframe_mobile_social_detail.png)   |
-| Tablet - Social       | ![tabletsocial](/Documentation/Wireframes/wireframe_tablet_social_detail.png)   |
-| Desktop - Social      | ![desktopsocial](/Documentation/Wireframes/wireframe_desktop_social_detail.png) |
+| View |                |
+| ---- | -------------- |
+| Mobile - Homepage| ![mobilehome](/Documentation/Wireframes/wireframe_mobile_home.png) |
+| Tablet - Homepage| ![tablethome](/Documentation/Wireframes/wireframe_tablet_home.png) |
+| Desktop - Homepage| ![desktophome](/Documentation/Wireframes/wireframe_desktop_home.png) |
+| Mobile - Profilepage| ![mobileprofile](/Documentation/Wireframes/wireframe_mobile_profile_view.png) |
+| Tablet - Profilepage| ![tabletprofile](/Documentation/Wireframes/wireframe_tablet_profile_view.png) |
+| Desktop - Profilepage| ![desktopprofile](/Documentation/Wireframes/wireframe_desktop_profile_view.png) |
+| Mobile - Gamepage| ![mobilegames](/Documentation/Wireframes/wireframe_mobile_game_detail.png) |
+| Tablet - Gamepage ![tabletgames](/Documentation/Wireframes/wireframe_tablet_game_detail.png) |
+| Desktop - Gamepage| ![desktopgames](/Documentation/Wireframes/wireframe_desktop_game_detail.png) |
+| Mobile - News| ![mobilenews](/Documentation/Wireframes/wireframe_mobile_news_detail.png) |
+| Tablet - News| ![tabletnews](/Documentation/Wireframes/wireframe_tablet_news_detail.png) |
+| Desktop - News| ![desktopnews](/Documentation/Wireframes/wireframe_desktop_news_detail.png) |
+| Mobile - Social| ![mobilesocial](/Documentation/Wireframes/wireframe_mobile_social_detail.png) |
+| Tablet - Social| ![tabletsocial](/Documentation/Wireframes/wireframe_tablet_social_detail.png) |
+| Desktop - Social| ![desktopsocial](/Documentation/Wireframes/wireframe_desktop_social_detail.png) |
 
 ### Design Considerations
 
-| Colourscheme |                                                    |
-| ------------ | -------------------------------------------------- |
+| Colourscheme |        |
+| ------------ | ------ |
 | The logo for our games group Eight Sixes contains blue/orange/black so these are the main colours I will be using for the project | ![Eight Sixes Logo](/Documentation/eightsixes.png) |
 
 ## Project Development
@@ -82,7 +82,7 @@ This function needs a connection to the registration API endpoint, and sends via
 ))}
 ``` 
 
-## Connection to the API
+### Connection to the API
 
 API requests and reponses are handled by Axios. To avoid repetition, an [instance](https://axios-http.com/docs/instance) with the base configuration was created to be used in all API calls. When connection is made to the API, Axios attaches any relevant access or refresh tokens in its request header which the endpoint uses to evaluate if access can be granted.
 The returned status code can be used to determine if the request was a success, or if an error occurred and either the data sent needs to be corrected or authentication credentials need to be supplied. 
@@ -175,6 +175,57 @@ Logging out is a function that sits within the header component. It very simply 
 
 ### Profile Details
 
+## Milestone 2 - Games Library
+
+| Tasks this sprint | Overview |
+| ------------------| -------- |
+| * Game listing form creates a new game linked to a member. * Members can see their game listings on their profile page. * Members can edit their own game listings. * Members can delete their own game listings. * Members can view the whole games library. * Members can search and filter the games library. | ![sprint2](/Documentation/sprint2.png) |
+
+### Creating a game listing
+
+To create a new game listing members must be logged in. There is a requirement of the API that on save the Game instance is linked with the User instance that created it and so an authentication header must be sent with the request data. The axios POST for this component makes use of the `axiosReq` interceptor instance to ensure that a valid access token is available before the listing is sent. 
+Required fields and data types provide validation before the submit button can be pressed, for example a letter can't be entered in the number field, and error handling is also included in the try catch block. 
+On success, the member is redirected to the detailed page for that Game instance.
+
+### Viewing owner game listings
+
+The owner list is a component within the main profile page. It accesses a filtered endpoint based on user id which is sent to the API via the authorisation header of the axios request. 
+I have used the `useQuery` library from [Tanstack](https://tanstack.com/query/latest/docs/react/reference/useQuery) for fetching this data in order to use the returned state for `isLoading` and `error` to provide feedback to the member while the component loads. This library also has built in features for refetching data either on refresh, on mount, or with set stale or cache time, instead of relying on page dependencies and additional functions.
+```javascript
+ const { isLoading, error } = useQuery({
+    queryKey: ["ownerData"],
+    queryFn: () => axiosReq.get("/games/owner/").then((res) => res.data),
+    onSuccess: (data) => setListDetails({ games: data }),
+  });
+
+  if (isLoading) return "Loading...";
+
+  if (error) return "An error has occurred: " + error.message;
+  // the success statement is implied and follows with return()
+```
+
+### Editing owned games
+
+### Deleting owned games
+
+### Viewing the games library
+
+### Filtering and searching the games library
+
+## Tools Used
+[React Bootstrap](https://react-bootstrap.netlify.app/docs/getting-started/introduction)
+[React Router](https://react-bootstrap.netlify.app/docs/getting-started/introduction)
+[Axios](https://axios-http.com/docs/intro)
+[reactQuery from Tanstack](https://tanstack.com/query/latest/docs/react/reference/useQuery)
+Prettier: `npm install -D prettier`
+eslint:
+```
+npm install -D eslint eslint-config-prettier
+npm install -D eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-react
+npm install -D eslint-plugin-react-hooks
+```
+
+
 ## Credits
 
 ### Documentation and additional tutorials
@@ -188,10 +239,8 @@ Logging out is a function that sits within the header component. It very simply 
 
 ### Honourable mentions
 
-npm install -D prettier
-npm install -D eslint eslint-config-prettier
-npm install -D eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-react
-npm install -D eslint-plugin-react-hooks
+
+
 
 # Getting Started with Create React App
 
