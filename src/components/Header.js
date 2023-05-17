@@ -30,17 +30,19 @@ const Header = () => {
       <Nav.Link className="text-warning" onClick={SignOut}>
         Logout
       </Nav.Link>
-      <Navbar.Text>
-        <Nav.Link href="/profile">
-          Signed in as: {currentUser?.username}
-          <img src={currentUser?.profilepic} alt="profile" height="45" />
-        </Nav.Link>
-      </Navbar.Text>
+      <Nav.Link className="text-warning" href="/game/create">
+        Add Game
+      </Nav.Link>
+
+      <Nav.Link href="/profile">
+        Signed in as: {currentUser?.username}
+        <img src={currentUser?.profilepic} alt="profile" height="45" />
+      </Nav.Link>
     </>
   );
   const loggedOut = (
     <>
-      <Nav.Link className="text-warning" href="signin">
+      <Nav.Link className="text-warning" href="/signin">
         Login
       </Nav.Link>
 

@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { axiosReq } from "../api/axiosDefaults";
+import { axiosReq } from "../../api/axiosDefaults";
 import Card from "react-bootstrap/Card";
 import ListGroup from "react-bootstrap/ListGroup";
-import Button from 'react-bootstrap/Button';
+import Button from "react-bootstrap/Button";
 
-const Profile = () => {
+const UserDetails = () => {
   const [profileDetails, setProfileDetails] = useState({
     username: "",
     email: "",
@@ -34,7 +34,7 @@ const Profile = () => {
 
   return (
     <>
-      <Card style={{ width: "18rem" }} border="primary">
+      <Card border="primary">
         <Card.Img variant="top" src={profilepic} />
         <Card.Body>
           <Card.Title className="text-primary">Account Details</Card.Title>
@@ -53,4 +53,4 @@ const Profile = () => {
   );
 };
 
-export default Profile;
+export default UserDetails;
