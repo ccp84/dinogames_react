@@ -4,6 +4,7 @@ import { axiosReq } from "../../api/axiosDefaults";
 import Card from "react-bootstrap/Card";
 import ListGroup from "react-bootstrap/ListGroup";
 import Button from "react-bootstrap/Button";
+import { Link } from "react-router-dom";
 
 const UserDetails = () => {
   const [profileDetails, setProfileDetails] = useState({
@@ -46,7 +47,11 @@ const UserDetails = () => {
           <ListGroup.Item>Last Name: {lastname}</ListGroup.Item>
         </ListGroup>
         <Card.Body>
-          <Button variant="info">Edit Details</Button>
+          {/* Pass userdetails to edit form as browser window state */}
+          {/* https://reactrouter.com/en/main/hooks/use-location */}
+          <Link to="/profile/edit" state={{ prop: profileDetails }}>
+            <Button variant="info">Edit Details</Button>
+          </Link>
         </Card.Body>
       </Card>
     </>

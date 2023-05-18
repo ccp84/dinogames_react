@@ -10,6 +10,7 @@ import LandingPage from "./pages/LandingPage";
 import CreateGame from "./pages/library/CreateGame";
 import OwnerEdit from "./pages/library/OwnerEdit";
 import NoMatch from "./pages/NoMatch";
+import UserEdit from "./pages/user/UserEdit";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="/profile/edit" element={<UserEdit />} />
         <Route path="/signin" element={<SignInForm />} />
         <Route path="/signup" element={<SignUpForm />} />
         <Route path="/game/create" element={<CreateGame />} />
