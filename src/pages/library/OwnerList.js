@@ -14,7 +14,7 @@ const OwnerList = () => {
 
   const { games } = listDetails;
 
-  const { isLoading, error } = useQuery({
+  const { isLoading, error, refetch } = useQuery({
     queryKey: ["ownerData"],
     queryFn: () => axiosReq.get("/games/owner/").then((res) => res.data),
     onSuccess: (data) => setListDetails({ games: data }),
@@ -44,7 +44,20 @@ const OwnerList = () => {
                     </Link>
                   </Col>
                   <Col>
-                    <Button variant="info">Delete</Button>
+                    <Button
+                      variant="info"
+                      onClick={async () => {
+                        try {
+                          await axiosReq.delete(`/games/owner/${game.id}`);
+                          // useQuery refetch will refresh the list on success
+                          refetch();
+                        } catch (err) {
+                          console.log(err);
+                        }
+                      }}
+                    >
+                      Delete
+                    </Button>
                   </Col>
                 </Row>
               </ListGroup.Item>
