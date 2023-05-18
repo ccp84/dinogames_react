@@ -5,6 +5,7 @@ import Card from "react-bootstrap/Card";
 import ListGroup from "react-bootstrap/ListGroup";
 import Button from "react-bootstrap/Button";
 import { Col, Row } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 const OwnerList = () => {
   const [listDetails, setListDetails] = useState({
@@ -36,7 +37,11 @@ const OwnerList = () => {
                 <Row>
                   <Col>{game.title}</Col>
                   <Col>
-                    <Button variant="info">Edit</Button>
+                    {/* Pass 'game' as state to child component */}
+                    {/* https://reactrouter.com/en/main/hooks/use-location */}
+                    <Link to="/game/edit" state={{ prop: game }}>
+                      <Button variant="info">Edit</Button>
+                    </Link>
                   </Col>
                   <Col>
                     <Button variant="info">Delete</Button>

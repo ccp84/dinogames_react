@@ -8,6 +8,8 @@ import SignInForm from "./pages/auth/SignInForm";
 import Profile from "./pages/Profile";
 import LandingPage from "./pages/LandingPage";
 import CreateGame from "./pages/library/CreateGame";
+import OwnerEdit from "./pages/library/OwnerEdit";
+import NoMatch from "./pages/NoMatch";
 
 function App() {
   return (
@@ -19,6 +21,8 @@ function App() {
         <Route path="/signin" element={<SignInForm />} />
         <Route path="/signup" element={<SignUpForm />} />
         <Route path="/game/create" element={<CreateGame />} />
+        <Route path="/game/edit" element={<OwnerEdit />} />
+        <Route path="*" element={<NoMatch />} />
       </Routes>
     </Container>
   );
