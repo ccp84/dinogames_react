@@ -35,11 +35,11 @@ const UserDetails = () => {
 
   return (
     <>
-      <Card border="primary">
-        <Card.Img variant="top" src={profilepic} />
+      <Card className="m-1" border="primary">
         <Card.Body>
           <Card.Title className="text-primary">Account Details</Card.Title>
         </Card.Body>
+        <Card.Img variant="top" src={profilepic} />
         <ListGroup className="list-group-flush">
           <ListGroup.Item>Username: {username}</ListGroup.Item>
           <ListGroup.Item>Email Address: {email}</ListGroup.Item>

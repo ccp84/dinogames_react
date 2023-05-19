@@ -26,7 +26,7 @@ const OwnerList = () => {
 
   return (
     <>
-      <Card border="primary">
+      <Card className="m-1" border="primary">
         <Card.Body>
           <Card.Title className="text-primary">Owned Games</Card.Title>
         </Card.Body>
