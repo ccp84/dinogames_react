@@ -1,14 +1,15 @@
 import React, { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { axiosReq } from "../../api/axiosDefaults";
-import Card from "react-bootstrap/Card";
-import ListGroup from "react-bootstrap/ListGroup";
-import { Col, Row } from "react-bootstrap";
+import LatestGames from "./LatestGames";
+import AllGames from "./AllGames";
 
-const GameList = () => {
+const GameList = (props) => {
   const [listDetails, setListDetails] = useState({
     games: [],
   });
+
+  const latest = props.list === "latest";
 
   const { games } = listDetails;
 
@@ -23,33 +24,7 @@ const GameList = () => {
   if (error) return "An error has occurred: " + error.message;
 
   return (
-    <>
-      <h1>Latest Games</h1>
-      {games.map((game, id) => {
-        return (
-          <Card border="primary" key={id}>
-            <Card.Body>
-              <Card.Title className="text-primary">{game.title}</Card.Title>
-            </Card.Body>
-            <ListGroup className="list-group-flush">
-              <ListGroup.Item>Tags: {game.tags}</ListGroup.Item>
-              <ListGroup.Item>
-                <Row>
-                  <Col>Min Players: {game.minplayers}</Col>
-                  <Col>Max Players: {game.maxplayers}</Col>
-                </Row>
-              </ListGroup.Item>
-              <ListGroup.Item>
-                Time to play: {game.playtime} minutes
-              </ListGroup.Item>
-            </ListGroup>
-            <Card.Body>
-              <Card.Title>Owner: {game.owner}</Card.Title>
-            </Card.Body>
-          </Card>
-        );
-      })}
-    </>
+    <>{latest ? <LatestGames games={games} /> : <AllGames games={games} />}</>
   );
 };
 
