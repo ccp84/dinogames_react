@@ -7,10 +7,10 @@ const Profile = () => {
   return (
     <Container className="m-2">
       <Row>
-        <Col s={12} md={6} lg={4}>
+        <Col className="m-1" s={12} md={6} lg={4}>
           <UserDetails />
         </Col>
-        <Col s={12} md={6} lg={4}>
+        <Col className="m-1" s={12} md={6} lg={4}>
           <OwnerList />
         </Col>
       </Row>

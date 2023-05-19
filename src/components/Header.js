@@ -33,6 +33,9 @@ const Header = () => {
       <Nav.Link className="text-warning" href="/game/create">
         Add Game
       </Nav.Link>
+      <Nav.Link className="text-warning" href="/game/library">
+        View Library
+      </Nav.Link>
 
       <Nav.Link href="/profile">
         Signed in as: {currentUser?.username}
