@@ -206,15 +206,66 @@ I have used the `useQuery` library from [Tanstack](https://tanstack.com/query/la
 
 ### Editing owned games
 
+Game owners are able to edit the details of their games from the list of games on their profile page. The details to be edited are passed via the [location object in React Router](https://reactrouter.com/en/main/hooks/use-location) 
+```javascript
+const location = useLocation();
+
+  const [gameData, setGameData] = useState({
+    id: location.state.prop.id,
+    title: location.state.prop.title,
+    tags: location.state.prop.tags,
+    minplayers: location.state.prop.minplayers,
+    maxplayers: location.state.prop.maxplayers,
+    playtime: location.state.prop.playtime,
+  });
+```
+These state variables pre populate the form available to edit the details of the game, and the updated values are then returned to the API along with authorisation headers via Axios, using the `axiosReq` instance to ensure a valid token is in place before data is sent. The game to be updated is matched by including the id from the location object, authorisation to edit this particular instance by the currently logged in user is handled by the authorisation token sent in the JWT header with the request.
+```javascript
+const { data } = await axiosReq.put(
+        `games/owner/${gameData.id}`,
+        gameData
+      );
+```
+
 ### Deleting owned games
 
+Game owners are able to delete games from their list, this action is handled by the delete button's `onClick` attribute:
+```javascript
+<Button
+    variant="info"
+    onClick={async () => {
+    	try {
+        	await axiosReq.delete(`/games/owner/${game.id}`);
+        	// useQuery refetch will refresh the list on success
+        	refetch();
+        } catch (err) {
+        	console.log(err);
+        }
+        }}
+    >
+    Delete
+</Button>
+```
+The axios instance uses the request interceptor to first ensure a valid access token. The game id is then used to identify which item in the Game table is being targeted. Authority to access the delete endpoint is handled by sending the JWT in the request header. 
+On success, `refetch` is called which is part of the [useQuery](https://tanstack.com/query/latest/docs/react/reference/useQuery) hook, this handles refreshing the cached query data displayed in the games list and the deleted game is no longer displayed. 
+
 ### Viewing the games library
+
+The full games library has 2 views, both of which require a member to be authenticated to access. From the homepage, the latest 5 games are displayed in the center component and from the Library page the full list of games is displayed. 
+
+The `GamesList` component handles returning data from the API, this is called using React Query accessing the `/games` endpoint. Wether the latest or full list is then displayed depends on the keyword passed in via props from the parent component, if `props.list === 'latest'` is truthy then the latest games list is displayed otherwise the full list will be shown. As seen below, the games data returned from the API is then passed to the relevant component for display. 
+```javascript
+  return (
+    <>{latest ? <LatestGames games={games} /> : <AllGames games={games} />}</>
+  );
+```
+The 
 
 ### Filtering and searching the games library
 
 ## Tools Used
 [React Bootstrap](https://react-bootstrap.netlify.app/docs/getting-started/introduction)
-[React Router](https://react-bootstrap.netlify.app/docs/getting-started/introduction)
+[React Router](https://reactrouter.com/en/main/start/tutorial)
 [Axios](https://axios-http.com/docs/intro)
 [reactQuery from Tanstack](https://tanstack.com/query/latest/docs/react/reference/useQuery)
 Prettier: `npm install -D prettier`
