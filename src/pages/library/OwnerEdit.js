@@ -34,10 +34,7 @@ const OwnerEdit = () => {
     event.preventDefault();
     try {
       // Check refresh before sending
-      const { data } = await axiosReq.put(
-        `games/owner/${gameData.id}`,
-        gameData
-      );
+      const { data } = await axiosReq.put(`games/${gameData.id}`, gameData);
       console.log(data.user);
       navigate(`/game/${data.id}`);
     } catch (err) {

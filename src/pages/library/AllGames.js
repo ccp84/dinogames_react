@@ -1,8 +1,11 @@
 import React from "react";
 import Card from "react-bootstrap/Card";
-import { Col, Row } from "react-bootstrap";
+import { Button, Col, Row } from "react-bootstrap";
+import { useCurrentUser } from "../../contexts/CurrentUserContext";
+import { Link } from "react-router-dom";
 
 const AllGames = (props) => {
+  const currentUser = useCurrentUser();
   return (
     <>
       <Row>
@@ -18,9 +21,7 @@ const AllGames = (props) => {
             <Col s={12} md={6} lg={4} key={id}>
               <Card className="m-2" border="primary">
                 <Card.Header>
-                  <Card.Title className="text-primary">
-                    {game.title} | Owner {game.owner}
-                  </Card.Title>
+                  <Card.Title className="text-primary">{game.title}</Card.Title>
                 </Card.Header>
                 <Card.Body>
                   <Row>
@@ -35,12 +36,21 @@ const AllGames = (props) => {
                     </Col>
                   </Row>
                 </Card.Body>
-                <Card.Footer>
-                  <Card.Title className="text-primary">Reviews</Card.Title>
-                </Card.Footer>
+                {currentUser ? (
+                  <Card.Footer>
+                    <Card.Title className="text-primary">
+                      <Link to="/game/edit" state={{ prop: game }}>
+                        <Button variant="info">Edit</Button>
+                      </Link>
+                      | Add Review
+                    </Card.Title>
+                  </Card.Footer>
+                ) : (
+                  ""
+                )}
               </Card>
             </Col>
-          );
+          ); 
         })}
       </Row>
     </>

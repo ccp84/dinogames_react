@@ -58,7 +58,7 @@ const CreateGame = () => {
         </Form.Group>
         {errors.title?.map((message, idx) => (
           <Alert key={idx} variant="warning">
-            {message}
+            {message} If this game already exists please review it instead
           </Alert>
         ))}
         <Form.Group className="mb-3" controlId="tags">

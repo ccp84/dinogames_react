@@ -12,6 +12,7 @@ import OwnerEdit from "./pages/library/OwnerEdit";
 import NoMatch from "./pages/NoMatch";
 import UserEdit from "./pages/user/UserEdit";
 import GameList from "./pages/library/GameList";
+import GameDetail from "./pages/library/GameDetail";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
         <Route path="/game/create" element={<CreateGame />} />
         <Route path="/game/edit" element={<OwnerEdit />} />
         <Route path="/game/library" element={<GameList list="all" />} />
+        <Route path="game/:id" element={<GameDetail />} />
         <Route path="*" element={<NoMatch />} />
       </Routes>
     </Container>

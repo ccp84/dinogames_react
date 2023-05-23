@@ -24,6 +24,7 @@ const Header = () => {
     }
   };
   const currentUser = useCurrentUser();
+  const staff = currentUser?.is_staff;
 
   const loggedIn = (
     <>
@@ -36,7 +37,13 @@ const Header = () => {
       <Nav.Link className="text-warning" href="/game/library">
         View Library
       </Nav.Link>
-
+      {staff ? (
+        <Nav.Link className="text-warning" href="#">
+          Admin
+        </Nav.Link>
+      ) : (
+        ""
+      )}
       <Nav.Link href="/profile">
         Signed in as: {currentUser?.username}
         <img src={currentUser?.profilepic} alt="profile" height="45" />
@@ -45,10 +52,12 @@ const Header = () => {
   );
   const loggedOut = (
     <>
+      <Nav.Link className="text-warning" href="/game/library">
+        View Library
+      </Nav.Link>
       <Nav.Link className="text-warning" href="/signin">
         Login
       </Nav.Link>
-
       <Nav.Link className="text-warning" href="/signup">
         Signup
       </Nav.Link>

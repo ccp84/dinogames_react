@@ -14,7 +14,7 @@ const OwnerList = () => {
 
   const { games } = listDetails;
 
-  const { isLoading, error, refetch } = useQuery({
+  const { isLoading, error } = useQuery({
     queryKey: ["ownerData"],
     queryFn: () => axiosReq.get("/games/owner/").then((res) => res.data),
     onSuccess: (data) => setListDetails({ games: data }),
@@ -44,7 +44,7 @@ const OwnerList = () => {
                     </Link>
                   </Col>
                   <Col>
-                    <Button
+                    {/* <Button
                       variant="info"
                       onClick={async () => {
                         try {
@@ -57,7 +57,7 @@ const OwnerList = () => {
                       }}
                     >
                       Delete
-                    </Button>
+                    </Button> */}
                   </Col>
                 </Row>
               </ListGroup.Item>

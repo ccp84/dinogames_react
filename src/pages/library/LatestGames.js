@@ -11,10 +11,12 @@ const LatestGames = (props) => {
             <Card.Body>
               <Card.Title className="text-primary">{game.title}</Card.Title>
               <Row>
-                <Col className="m-1">Min Players: {game.minplayers}</Col>
-                <Col className="m-1">Max Players: {game.maxplayers}</Col>
-              </Row>
-              <Row>
+                <Col className="m-1">
+                  <Row>
+                    <Col>Min Players: {game.minplayers}</Col>
+                    <Col>Max Players: {game.maxplayers}</Col>
+                  </Row>
+                </Col>
                 <Col className="m-1">Tags: {game.tags}</Col>
                 <Col className="m-1">Time to play: {game.playtime} minutes</Col>
               </Row>
