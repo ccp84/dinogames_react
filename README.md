@@ -2,7 +2,8 @@
 
 ## Concept
 
-My local boardgames group meet each week with members bringing along their own games to share with the group. This can lead to sometimes a limited selection of games on offer, or not knowing which games other members have that the group would like to play. The Dinosaur Games Library app provides a solution to this by allowing members of the group to list the games that they own and are happy to share in an online library available for other members to view and search. Requests could then be made ahead of social events for particular games that the group would like to play to be brought along that week. Additional features of the app would allow admin users to advertise the group to visitors to the site and publicise social events to gain a wider membership, add important group updates to the front page as these can sometimes be missed in the Facebook group, and allow for an 'add to social' button for games to be automatically requested via the app at a particular social event.
+As a boardgame enthusiast, it can be hard to decide which game to try next. The Dinosaur Games Library will be a resource for the tabletop games community to add games that they have played and enjoyed to share their views with other gamers. Registered members will be able to post new games that they have found with details and reviews, visitors to the site will be able to view the library to find recommendations for games that they might enjoy playing. Administrators of the site will be able to delete any games from the listings that become out of print or are found to be duplicates.
+In addition to the games listings, announcements could also be made by the admin team detailing social events for gaming meet ups and news for the tabletop gaming community. 
 
 ## Scope
 
@@ -126,6 +127,7 @@ This function sends the collected variables to the login endpoint. If verified, 
         "firstname": 
         "lastname":
         "profilepic": 
+		"is_staff":
     }
 }
 ```
@@ -179,34 +181,32 @@ Logging out is a function that sits within the header component. It very simply 
 
 | Tasks this sprint | Overview |
 | ------------------| -------- |
-| * Game listing form creates a new game linked to a member. * Members can see their game listings on their profile page. * Members can edit their own game listings. * Members can delete their own game listings. * Members can view the whole games library. * Members can search and filter the games library. | ![sprint2](/Documentation/sprint2.png) |
+| * Game listing form creates a new game. * Members can make edits to the games library. * Admin users can delete games from the library. * Visitors can view the whole games library. * Visitors can search and filter the games library. | ![sprint2](/Documentation/sprint2.png) |
+
+### Viewing the games library
+
+The full games library has 2 views which can be viewed by all visitors to the site. From the homepage, the latest 5 games are displayed in the center component and from the Library page the full list of games is displayed. 
+
+The `GamesList` component handles returning data from the API, this is called using React Query accessing the `/games` endpoint. Wether the latest or full list is then displayed depends on the keyword passed in via props from the parent component, if `props.list === 'latest'` is truthy then the latest games list is displayed otherwise the full list will be shown. As seen below, the games data returned from the API is then passed to the relevant component for display. 
+```javascript
+  return (
+    <>{latest ? <LatestGames games={games} /> : <AllGames games={games} />}</>
+  );
+```
+
+### Game details page
+
+
 
 ### Creating a game listing
 
-To create a new game listing members must be logged in. There is a requirement of the API that on save the Game instance is linked with the User instance that created it and so an authentication header must be sent with the request data. The axios POST for this component makes use of the `axiosReq` interceptor instance to ensure that a valid access token is available before the listing is sent. 
-Required fields and data types provide validation before the submit button can be pressed, for example a letter can't be entered in the number field, and error handling is also included in the try catch block. 
+To create a new game listing members must be logged in, this is handled by tokens in the authentication header. The axios POST for this component makes use of the `axiosReq` interceptor instance to ensure that a valid access token is available before the listing is sent. 
+Required fields and data types in the html form provide validation before the submit button can be pressed, for example a letter can't be entered in the number field, and error handling is also included in the try catch block. 
 On success, the member is redirected to the detailed page for that Game instance.
 
-### Viewing owner game listings
+### Editing games
 
-The owner list is a component within the main profile page. It accesses a filtered endpoint based on user id which is sent to the API via the authorisation header of the axios request. 
-I have used the `useQuery` library from [Tanstack](https://tanstack.com/query/latest/docs/react/reference/useQuery) for fetching this data in order to use the returned state for `isLoading` and `error` to provide feedback to the member while the component loads. This library also has built in features for refetching data either on refresh, on mount, or with set stale or cache time, instead of relying on page dependencies and additional functions.
-```javascript
- const { isLoading, error } = useQuery({
-    queryKey: ["ownerData"],
-    queryFn: () => axiosReq.get("/games/owner/").then((res) => res.data),
-    onSuccess: (data) => setListDetails({ games: data }),
-  });
-
-  if (isLoading) return "Loading...";
-
-  if (error) return "An error has occurred: " + error.message;
-  // the success statement is implied and follows with return()
-```
-
-### Editing owned games
-
-Game owners are able to edit the details of their games from the list of games on their profile page. The details to be edited are passed via the [location object in React Router](https://reactrouter.com/en/main/hooks/use-location) 
+Community members are able to help maintain the library by making edits to the game listings from the game details page. The details to be edited are passed via the [location object in React Router](https://reactrouter.com/en/main/hooks/use-location) 
 ```javascript
 const location = useLocation();
 
@@ -227,7 +227,7 @@ const { data } = await axiosReq.put(
       );
 ```
 
-### Deleting owned games
+### Deleting games as an administrator
 
 Game owners are able to delete games from their list, this action is handled by the delete button's `onClick` attribute:
 ```javascript
@@ -248,18 +248,6 @@ Game owners are able to delete games from their list, this action is handled by 
 ```
 The axios instance uses the request interceptor to first ensure a valid access token. The game id is then used to identify which item in the Game table is being targeted. Authority to access the delete endpoint is handled by sending the JWT in the request header. 
 On success, `refetch` is called which is part of the [useQuery](https://tanstack.com/query/latest/docs/react/reference/useQuery) hook, this handles refreshing the cached query data displayed in the games list and the deleted game is no longer displayed. 
-
-### Viewing the games library
-
-The full games library has 2 views, both of which require a member to be authenticated to access. From the homepage, the latest 5 games are displayed in the center component and from the Library page the full list of games is displayed. 
-
-The `GamesList` component handles returning data from the API, this is called using React Query accessing the `/games` endpoint. Wether the latest or full list is then displayed depends on the keyword passed in via props from the parent component, if `props.list === 'latest'` is truthy then the latest games list is displayed otherwise the full list will be shown. As seen below, the games data returned from the API is then passed to the relevant component for display. 
-```javascript
-  return (
-    <>{latest ? <LatestGames games={games} /> : <AllGames games={games} />}</>
-  );
-```
-The 
 
 ### Filtering and searching the games library
 
