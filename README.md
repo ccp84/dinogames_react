@@ -20,7 +20,7 @@ This app will provide a user interface for members to create an online account, 
 | Tablet - Profilepage| ![tabletprofile](/Documentation/Wireframes/wireframe_tablet_profile_view.png) |
 | Desktop - Profilepage| ![desktopprofile](/Documentation/Wireframes/wireframe_desktop_profile_view.png) |
 | Mobile - Gamepage| ![mobilegames](/Documentation/Wireframes/wireframe_mobile_game_detail.png) |
-| Tablet - Gamepage ![tabletgames](/Documentation/Wireframes/wireframe_tablet_game_detail.png) |
+| Tablet - Gamepage| ![tabletgames](/Documentation/Wireframes/wireframe_tablet_game_detail.png) |
 | Desktop - Gamepage| ![desktopgames](/Documentation/Wireframes/wireframe_desktop_game_detail.png) |
 | Mobile - News| ![mobilenews](/Documentation/Wireframes/wireframe_mobile_news_detail.png) |
 | Tablet - News| ![tabletnews](/Documentation/Wireframes/wireframe_tablet_news_detail.png) |
