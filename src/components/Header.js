@@ -9,6 +9,7 @@ import {
 } from "../contexts/CurrentUserContext";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { Button } from "react-bootstrap";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -28,9 +29,6 @@ const Header = () => {
 
   const loggedIn = (
     <>
-      <Nav.Link className="text-warning" onClick={SignOut}>
-        Logout
-      </Nav.Link>
       <Nav.Link className="text-warning" href="/game/create">
         Add Game
       </Nav.Link>
@@ -38,12 +36,15 @@ const Header = () => {
         View Library
       </Nav.Link>
       {staff ? (
-        <Nav.Link className="text-warning" href="#">
+        <Nav.Link className="text-warning" href="/admin">
           Admin
         </Nav.Link>
       ) : (
         ""
       )}
+      <Nav.Link onClick={SignOut}>
+        <Button variant="outline-warning">Logout</Button>
+      </Nav.Link>
       <Nav.Link href="/profile">
         Signed in as: {currentUser?.username}
         <img src={currentUser?.profilepic} alt="profile" height="45" />
@@ -53,13 +54,13 @@ const Header = () => {
   const loggedOut = (
     <>
       <Nav.Link className="text-warning" href="/game/library">
-        View Library
+        <Button variant="warning">View Library</Button>
       </Nav.Link>
-      <Nav.Link className="text-warning" href="/signin">
-        Login
+      <Nav.Link href="/signin">
+        <Button variant="outline-warning">Login</Button>
       </Nav.Link>
-      <Nav.Link className="text-warning" href="/signup">
-        Signup
+      <Nav.Link href="/signup">
+        <Button variant="outline-warning">Signup</Button>
       </Nav.Link>
     </>
   );

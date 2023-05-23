@@ -4,18 +4,19 @@ import { axiosReq } from "../../api/axiosDefaults";
 import LatestGames from "./LatestGames";
 import AllGames from "./AllGames";
 
-const GameList = (props) => {
+const GameList = ({ list, filter }) => {
   const [listDetails, setListDetails] = useState({
     games: [],
   });
 
-  const latest = props.list === "latest";
+  const latest = list === "latest";
+  const search = filter ? filter : "";
 
   const { games } = listDetails;
 
   const { isLoading, error } = useQuery({
-    queryKey: ["libraryData"],
-    queryFn: () => axiosReq.get("/games/").then((res) => res.data),
+    queryKey: ["libraryData", filter],
+    queryFn: () => axiosReq.get(`/games/${search}`).then((res) => res.data),
     onSuccess: (data) => setListDetails({ games: data }),
   });
 

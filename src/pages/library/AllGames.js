@@ -8,51 +8,64 @@ const AllGames = (props) => {
   const currentUser = useCurrentUser();
   return (
     <>
-      <Row>
-        <Col>
-          <Card className="m-2" border="primary">
-            Search and Filter
-          </Card>
-        </Col>
-      </Row>
-      <Row>
-        {props.games.map((game, id) => {
-          return (
-            <Col s={12} md={6} lg={4} key={id}>
-              <Card className="m-2" border="primary">
-                <Card.Header>
-                  <Card.Title className="text-primary">{game.title}</Card.Title>
-                </Card.Header>
-                <Card.Body>
-                  <Row>
-                    <Col>
-                      <Row>Min Players: {game.minplayers}</Row>
-                      <Row>Max Players: {game.maxplayers}</Row>
-                      <Row>Time to play:</Row>
-                      <Row>{game.playtime} minutes</Row>
-                    </Col>
-                    <Col>
-                      <Row>Tags: {game.tags}</Row>
-                    </Col>
-                  </Row>
-                </Card.Body>
-                {currentUser ? (
-                  <Card.Footer>
-                    <Card.Title className="text-primary">
-                      <Link to="/game/edit" state={{ prop: game }}>
-                        <Button variant="info">Edit</Button>
-                      </Link>
-                      | Add Review
-                    </Card.Title>
-                  </Card.Footer>
-                ) : (
-                  ""
-                )}
-              </Card>
-            </Col>
-          ); 
-        })}
-      </Row>
+      {!props.games.length ? (
+        <Row>
+          <Col s={12} md={6} lg={4}>
+            <Card className="m-2" border="primary">
+              <Card.Body>No games found. Why not add one</Card.Body>
+            </Card>
+          </Col>
+        </Row>
+      ) : (
+        <>
+          <Row>
+            {props.games.map((game, id) => {
+              return (
+                <Col s={12} md={6} lg={4} key={id}>
+                  <Card className="m-2" border="primary">
+                    <Link to={`/game/${game.id}`}>
+                      <Card.Header>
+                        <Card.Title className="text-primary">
+                          {game.title}
+                        </Card.Title>
+                      </Card.Header>
+                    </Link>
+                    <Card.Body>
+                      <Row>
+                        <Col>
+                          <Row>Min Players: {game.minplayers}</Row>
+                          <Row>Max Players: {game.maxplayers}</Row>
+                          <Row>Time to play:</Row>
+                          <Row>{game.playtime} minutes</Row>
+                        </Col>
+                        <Col>
+                          <Row>Tags: {game.tags}</Row>
+                        </Col>
+                      </Row>
+                    </Card.Body>
+                    {currentUser ? (
+                      <Card.Footer>
+                        <Card.Title className="text-primary">
+                          <Link to="/game/edit" state={{ prop: game }}>
+                            <Button className="m-2" variant="info">
+                              Edit
+                            </Button>
+                          </Link>
+                          <Button className="m-2" variant="info">
+                            Add Review
+                          </Button>
+                        </Card.Title>
+                      </Card.Footer>
+                    ) : (
+                      ""
+                    )}
+                  </Card>
+                </Col>
+              );
+            })}
+          </Row>
+        </>
+      )}
     </>
   );
 };

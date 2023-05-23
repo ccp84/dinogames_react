@@ -25,6 +25,7 @@ const GameDetail = () => {
     <>
       <h1>{game.title}</h1>
       {currentUser ? "Edit" : ""}
+      {currentUser?.is_staff ? "Delete" : ""}
     </>
   );
 };

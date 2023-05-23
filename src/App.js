@@ -11,8 +11,9 @@ import CreateGame from "./pages/library/CreateGame";
 import OwnerEdit from "./pages/library/OwnerEdit";
 import NoMatch from "./pages/NoMatch";
 import UserEdit from "./pages/user/UserEdit";
-import GameList from "./pages/library/GameList";
 import GameDetail from "./pages/library/GameDetail";
+import OwnerList from "./pages/library/OwnerList";
+import Library from "./pages/library/Library";
 
 function App() {
   return (
@@ -26,8 +27,9 @@ function App() {
         <Route path="/signup" element={<SignUpForm />} />
         <Route path="/game/create" element={<CreateGame />} />
         <Route path="/game/edit" element={<OwnerEdit />} />
-        <Route path="/game/library" element={<GameList list="all" />} />
+        <Route path="/game/library" element={<Library />} />
         <Route path="game/:id" element={<GameDetail />} />
+        <Route path="/admin" element={<OwnerList />} />
         <Route path="*" element={<NoMatch />} />
       </Routes>
     </Container>

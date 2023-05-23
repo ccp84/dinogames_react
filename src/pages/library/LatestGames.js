@@ -1,24 +1,24 @@
 import React from "react";
 import Card from "react-bootstrap/Card";
-import { Col, Row } from "react-bootstrap";
+import { Button, Col, Row } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 const LatestGames = (props) => {
   return (
     <>
       {props.games.slice(0, 5).map((game, id) => {
         return (
-          <Card border="primary" key={id}>
+          <Card className="m-1" border="primary" key={id}>
             <Card.Body>
-              <Card.Title className="text-primary">{game.title}</Card.Title>
               <Row>
-                <Col className="m-1">
-                  <Row>
-                    <Col>Min Players: {game.minplayers}</Col>
-                    <Col>Max Players: {game.maxplayers}</Col>
-                  </Row>
+                <Col>
+                  <Card.Title className="text-primary">{game.title}</Card.Title>
                 </Col>
-                <Col className="m-1">Tags: {game.tags}</Col>
-                <Col className="m-1">Time to play: {game.playtime} minutes</Col>
+                <Col>
+                  <Link to={`/game/${game.id}`}>
+                    <Button variant="info">More Details</Button>
+                  </Link>
+                </Col>
               </Row>
             </Card.Body>
           </Card>
