@@ -1,6 +1,6 @@
 import React from "react";
 import UserDetails from "./user/UserDetails";
-import { Card, Col, Row } from "react-bootstrap";
+import { Card, Col, ListGroup, Row } from "react-bootstrap";
 
 const Profile = () => {
   return (
@@ -13,6 +13,9 @@ const Profile = () => {
           <Card.Body>
             <Card.Title className="text-primary">My Reviews</Card.Title>
           </Card.Body>
+          <ListGroup className="list-group-flush">
+            <ListGroup.Item>Review Preview</ListGroup.Item>
+          </ListGroup>
         </Card>
       </Col>
       <Col s={12} md={6} lg={4}></Col>

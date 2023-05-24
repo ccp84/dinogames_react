@@ -1,6 +1,15 @@
 import Container from "react-bootstrap/Container";
 import "./App.css";
 import "./api/axiosDefaults";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import {
+  faHatWizard,
+  faPuzzlePiece,
+  faDice,
+  faChess,
+  faBookSkull,
+  faUserSlash,
+} from "@fortawesome/free-solid-svg-icons";
 import Header from "./components/Header";
 import { Route, Routes } from "react-router-dom";
 import SignUpForm from "./pages/auth/SignUpForm";
@@ -14,6 +23,15 @@ import UserEdit from "./pages/user/UserEdit";
 import GameDetail from "./pages/library/GameDetail";
 import OwnerList from "./pages/library/OwnerList";
 import Library from "./pages/library/Library";
+
+library.add(
+  faHatWizard,
+  faPuzzlePiece,
+  faDice,
+  faChess,
+  faBookSkull,
+  faUserSlash
+);
 
 function App() {
   return (

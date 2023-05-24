@@ -5,6 +5,7 @@ import Card from "react-bootstrap/Card";
 import ListGroup from "react-bootstrap/ListGroup";
 import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const UserDetails = () => {
   const [profileDetails, setProfileDetails] = useState({
@@ -12,9 +13,10 @@ const UserDetails = () => {
     email: "",
     firstname: "",
     lastname: "",
+    profileicon: "",
   });
 
-  const { username, email, firstname, lastname, profilepic } = profileDetails;
+  const { username, email, firstname, lastname, profileicon } = profileDetails;
 
   const { isLoading, error } = useQuery({
     queryKey: ["profileData"],
@@ -25,7 +27,7 @@ const UserDetails = () => {
         email: data.email,
         firstname: data.firstname,
         lastname: data.lastname,
-        profilepic: data.profilepic,
+        profileicon: data.profileicon,
       }),
   });
 
@@ -37,9 +39,14 @@ const UserDetails = () => {
     <>
       <Card className="m-1" border="primary">
         <Card.Body>
-          <Card.Title className="text-primary">Account Details</Card.Title>
+          <Card.Title className="text-primary">
+            Account Details
+            <FontAwesomeIcon
+              className="text-primary m-1"
+              icon={`fa-solid fa-${profileicon}`}
+            />
+          </Card.Title>
         </Card.Body>
-        <Card.Img variant="top" src={profilepic} />
         <ListGroup className="list-group-flush">
           <ListGroup.Item>Username: {username}</ListGroup.Item>
           <ListGroup.Item>Email Address: {email}</ListGroup.Item>

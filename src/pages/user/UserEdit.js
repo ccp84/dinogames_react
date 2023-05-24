@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
 import { Alert, Button, Form } from "react-bootstrap";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const UserEdit = () => {
   const location = useLocation();
@@ -12,9 +13,10 @@ const UserEdit = () => {
     email: location.state.prop.email,
     firstname: location.state.prop.firstname,
     lastname: location.state.prop.lastname,
+    profileicon: location.state.prop.profileicon,
   });
 
-  const { username, email, firstname, lastname } = profileDetails;
+  const { username, email, firstname, lastname, profileicon } = profileDetails;
 
   const handleChange = (event) => {
     setProfileDetails({
@@ -91,7 +93,38 @@ const UserEdit = () => {
             {message}
           </Alert>
         ))}
-
+        <Form.Group className="mb-3" controlId="profileicon">
+          <Form.Label>Profile Icon</Form.Label>
+          <Form.Select
+            required
+            aria-label="Select Profile Icon"
+            name="profileicon"
+            value={profileicon}
+            onChange={handleChange}
+          >
+            {/* These should match choices in User model */}
+            <option value="puzzle-piece">
+              <FontAwesomeIcon icon="fa-solid fa-puzzle-piece" /> Puzzle Piece
+            </option>
+            <option value="dice">
+              <FontAwesomeIcon icon="fa-solid fa-dice" /> Dice
+            </option>
+            <option value="chess">
+              <FontAwesomeIcon icon="fa-solid fa-chess" /> Chess
+            </option>
+            <option value="hat-wizard">
+              <FontAwesomeIcon icon="fa-solid fa-hat-wizard" /> Wizard Hat
+            </option>
+            <option value="book-skull">
+              <FontAwesomeIcon icon="fa-solid fa-book-skull" /> Pirate
+            </option>
+          </Form.Select>
+        </Form.Group>
+        {errors.profileicon?.map((message, idx) => (
+          <Alert key={idx} variant="warning">
+            {message}
+          </Alert>
+        ))}
         <Button className="m-2" variant="info" type="submit">
           Edit Profile
         </Button>

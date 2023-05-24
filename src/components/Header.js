@@ -10,6 +10,7 @@ import {
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { Button } from "react-bootstrap";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -29,15 +30,15 @@ const Header = () => {
 
   const loggedIn = (
     <>
-      <Nav.Link className="text-warning" href="/game/create">
-        Add Game
+      <Nav.Link href="/game/create">
+        <Button variant="warning">Add Game</Button>
       </Nav.Link>
-      <Nav.Link className="text-warning" href="/game/library">
-        View Library
+      <Nav.Link href="/game/library">
+        <Button variant="warning">View Library</Button>
       </Nav.Link>
       {staff ? (
-        <Nav.Link className="text-warning" href="/admin">
-          Admin
+        <Nav.Link href="/admin">
+          <Button variant="outline-warning">Admin</Button>
         </Nav.Link>
       ) : (
         ""
@@ -47,7 +48,10 @@ const Header = () => {
       </Nav.Link>
       <Nav.Link href="/profile">
         Signed in as: {currentUser?.username}
-        <img src={currentUser?.profilepic} alt="profile" height="45" />
+        <FontAwesomeIcon
+          className="text-warning m-1"
+          icon={`fa-solid fa-${currentUser?.profileicon}`}
+        />
       </Nav.Link>
     </>
   );
@@ -62,6 +66,12 @@ const Header = () => {
       <Nav.Link href="/signup">
         <Button variant="outline-warning">Signup</Button>
       </Nav.Link>
+      <Navbar.Text>
+        <FontAwesomeIcon
+          className="text-warning m-2"
+          icon={`fa-solid fa-user-slash`}
+        />
+      </Navbar.Text>
     </>
   );
   return (
