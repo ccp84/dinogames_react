@@ -28,11 +28,13 @@ const Library = () => {
           onChange={(event) => setSort(event.target.value)}
         >
           <option>Sort By</option>
-          <option value="title">Title</option>
-          <option value="-id">Newest</option>
+          <option value="title">A - Z</option>
+          <option value="-title">Z - A</option>
           <option value="-maxplayers">Max Players</option>
           <option value="minplayers">Min Players</option>
-          <option value="playtime">Time to play</option>
+          <option value="playtime">Time to play - shortest</option>
+          <option value="-playtime">Time to play - longest</option>
+          <option value="-id">Newest</option>
         </Form.Select>
       </Form>
       <GameList list="all" filter={`?ordering=${sort}&search=${query}`} />

@@ -48,7 +48,7 @@ const OwnerList = () => {
                     </Col>
                     <Col>
                       <Button
-                        variant="info"
+                        variant="danger"
                         onClick={async () => {
                           try {
                             await axiosReq.delete(`/games/edit/${game.id}`);

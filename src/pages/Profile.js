@@ -14,7 +14,7 @@ const Profile = () => {
             <Card.Title className="text-primary">My Reviews</Card.Title>
           </Card.Body>
           <ListGroup className="list-group-flush">
-            <ListGroup.Item>Review Preview</ListGroup.Item>
+            <ListGroup.Item>Feature coming soon</ListGroup.Item>
           </ListGroup>
         </Card>
       </Col>
