@@ -16,9 +16,10 @@ const CreateGame = () => {
     minplayers: 1,
     maxplayers: 4,
     playtime: 0,
+    overview: "",
   });
 
-  const { title, tags, minplayers, maxplayers, playtime } = gameData;
+  const { title, tags, minplayers, maxplayers, playtime, overview } = gameData;
 
   const handleChange = (event) => {
     setGameData({
@@ -31,7 +32,7 @@ const CreateGame = () => {
     event.preventDefault();
     try {
       // Check refresh before sending
-      const { data } = await axiosReq.post("games/", gameData);
+      const { data } = await axiosReq.post("games/create", gameData);
       console.log(data.user);
       navigate(`/game/${data.id}`);
     } catch (err) {
@@ -132,6 +133,21 @@ const CreateGame = () => {
               </Form.Select>
             </Form.Group>
             {errors.playtime?.map((message, idx) => (
+              <Alert key={idx} variant="warning">
+                {message}
+              </Alert>
+            ))}
+            <Form.Group className="mb-3" controlId="overview">
+              <Form.Label>Game Overview</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Overview"
+                name="overview"
+                value={overview}
+                onChange={handleChange}
+              />
+            </Form.Group>
+            {errors.overview?.map((message, idx) => (
               <Alert key={idx} variant="warning">
                 {message}
               </Alert>

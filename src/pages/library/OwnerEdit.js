@@ -18,12 +18,13 @@ const OwnerEdit = () => {
     minplayers: location.state.prop.minplayers,
     maxplayers: location.state.prop.maxplayers,
     playtime: location.state.prop.playtime,
+    overview: location.state.prop.overview,
   });
 
   const navigate = useNavigate();
   const [errors, setErrors] = useState({});
 
-  const { title, tags, minplayers, maxplayers, playtime } = gameData;
+  const { title, tags, minplayers, maxplayers, playtime, overview } = gameData;
 
   const handleChange = (event) => {
     setGameData({
@@ -36,7 +37,10 @@ const OwnerEdit = () => {
     event.preventDefault();
     try {
       // Check refresh before sending
-      const { data } = await axiosReq.put(`games/${gameData.id}`, gameData);
+      const { data } = await axiosReq.put(
+        `games/edit/${gameData.id}`,
+        gameData
+      );
       console.log(data.user);
       navigate(`/game/${data.id}`);
     } catch (err) {
@@ -135,6 +139,21 @@ const OwnerEdit = () => {
             </Form.Select>
           </Form.Group>
           {errors.playtime?.map((message, idx) => (
+            <Alert key={idx} variant="warning">
+              {message}
+            </Alert>
+          ))}
+          <Form.Group className="mb-3" controlId="overview">
+            <Form.Label>Overview</Form.Label>
+            <Form.Control
+              type="text"
+              placeholder="Overview"
+              name="overview"
+              value={overview}
+              onChange={handleChange}
+            />
+          </Form.Group>
+          {errors.overview?.map((message, idx) => (
             <Alert key={idx} variant="warning">
               {message}
             </Alert>

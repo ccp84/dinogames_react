@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import React, { useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import {
@@ -15,6 +15,7 @@ const GameDetail = () => {
   const [gameDetails, setGameDetails] = useState({ game: "" });
   const { id } = useParams();
   const currentUser = useCurrentUser();
+  const navigate = useNavigate();
 
   const { game } = gameDetails;
 
@@ -54,7 +55,7 @@ const GameDetail = () => {
         </Card.Body>
         <Card.Body>
           <Card.Title className="text-primary">Game Overview</Card.Title>
-          <Card.Text></Card.Text>
+          <Card.Text>{game.overview}</Card.Text>
         </Card.Body>
         <Card.Body>
           <ListGroup>
@@ -81,7 +82,18 @@ const GameDetail = () => {
                       Edit
                     </Button>
                   </Link>
-                  <Button className="m-1" variant="danger">
+                  <Button
+                    className="m-1"
+                    variant="danger"
+                    onClick={async () => {
+                      try {
+                        await axiosReq.delete(`/games/edit/${game.id}`);
+                        navigate("/game/library");
+                      } catch (err) {
+                        console.log(err);
+                      }
+                    }}
+                  >
                     Delete
                   </Button>
                 </>
