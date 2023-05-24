@@ -30,16 +30,18 @@ const Header = () => {
 
   const loggedIn = (
     <>
-      <Nav.Link href="/game/create">
-        <Button variant="warning">Add Game</Button>
-      </Nav.Link>
       <Nav.Link href="/game/library">
         <Button variant="warning">View Library</Button>
       </Nav.Link>
       {staff ? (
-        <Nav.Link href="/admin">
-          <Button variant="outline-warning">Admin</Button>
-        </Nav.Link>
+        <>
+          <Nav.Link href="/game/create">
+            <Button variant="outline-warning">Add Game</Button>
+          </Nav.Link>
+          <Nav.Link href="/admin">
+            <Button variant="outline-warning">Admin</Button>
+          </Nav.Link>
+        </>
       ) : (
         ""
       )}

@@ -67,11 +67,6 @@ const GameDetail = () => {
             <Card.Footer>
               {currentUser ? (
                 <>
-                  <Link to="/game/edit" state={{ prop: game }}>
-                    <Button className="m-1" variant="info">
-                      Edit
-                    </Button>
-                  </Link>
                   <Button className="m-1" variant="info">
                     Review
                   </Button>
@@ -81,6 +76,11 @@ const GameDetail = () => {
               )}
               {currentUser?.is_staff ? (
                 <>
+                  <Link to="/game/edit" state={{ prop: game }}>
+                    <Button className="m-1" variant="info">
+                      Edit
+                    </Button>
+                  </Link>
                   <Button className="m-1" variant="danger">
                     Delete
                   </Button>
