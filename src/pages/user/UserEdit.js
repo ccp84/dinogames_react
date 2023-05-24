@@ -31,6 +31,7 @@ const UserEdit = () => {
       // Check refresh before sending
       const { data } = await axiosReq.put("dj-rest-auth/user/", profileDetails);
       console.log(data.user);
+
       navigate(`/profile`);
     } catch (err) {
       console.log(errors.data);

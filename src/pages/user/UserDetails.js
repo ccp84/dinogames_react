@@ -19,7 +19,7 @@ const UserDetails = () => {
   const { username, email, firstname, lastname, profileicon } = profileDetails;
 
   const { isLoading, error } = useQuery({
-    queryKey: ["profileData"],
+    queryKey: ["profileData", profileDetails],
     queryFn: () => axiosReq.get("dj-rest-auth/user/").then((res) => res.data),
     onSuccess: (data) =>
       setProfileDetails({
