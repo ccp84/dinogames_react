@@ -2,12 +2,11 @@
 
 ## Concept
 
-As a boardgame enthusiast, it can be hard to decide which game to try next. The Dinosaur Games Library will be a resource for the tabletop games community to add games that they have played and enjoyed to share their views with other gamers. Registered members will be able to post new games that they have found with details and reviews, visitors to the site will be able to view the library to find recommendations for games that they might enjoy playing. Administrators of the site will be able to delete any games from the listings that become out of print or are found to be duplicates.
-In addition to the games listings, announcements could also be made by the admin team detailing social events for gaming meet ups and news for the tabletop gaming community. 
+The Dinosaur Games Library operates to provide social events where members can come along and play library games with other members. The online library portal provides staff the ability to maintain an up to date list of the games available to be played at social nights, and keep members informed of the latest news and events for the group. Members are able to view and search the library, and review the games they have played providing a resource for other members and site visitors to look up new games they might want to play. All members and site visitors can also see the latest admin announcements for social events and news items about the library. 
 
 ## Scope
 
-This app will provide a user interface for members to create an online account, manage their game list, view the wider group "social library" and view details of social events that they may wish to participate in. It will also give admin users the facility to highlight group announcements and details of upcoming events. Any site visitors will be able to find out information about the group before registering for membership.
+This app will provide a user interface for members to create an online account, view the available library and view details of social events that they may wish to participate in. It will also give admin users the facility to maintain stock details, highlight group announcements and details of upcoming events. Any site visitors will be able to find out information about the group before registering for membership.
 
 ## Initial Wireframes
 
@@ -33,7 +32,7 @@ This app will provide a user interface for members to create an online account, 
 
 | Colourscheme |        |
 | ------------ | ------ |
-| The logo for our games group Eight Sixes contains blue/orange/black so these are the main colours I will be using for the project | ![Eight Sixes Logo](/Documentation/eightsixes.png) |
+| The logo for my local games group Eight Sixes contains blue/orange/black so these are the main colours I will be using for the project | ![Eight Sixes Logo](/Documentation/eightsixes.png) |
 
 ## Project Development
 
@@ -177,6 +176,8 @@ Logging out is a function that sits within the header component. It very simply 
 
 ### Profile Details
 
+profile icons - https://fontawesome.com/docs/web/use-with/react/add-icons#add-icons-globally
+
 ## Milestone 2 - Games Library
 
 | Tasks this sprint | Overview |
@@ -250,6 +251,14 @@ The axios instance uses the request interceptor to first ensure a valid access t
 On success, `refetch` is called which is part of the [useQuery](https://tanstack.com/query/latest/docs/react/reference/useQuery) hook, this handles refreshing the cached query data displayed in the games list and the deleted game is no longer displayed. 
 
 ### Filtering and searching the games library
+
+https://tanstack.com/query/latest/docs/react/guides/query-keys
+
+## Milestone 3 - Player Reviews
+
+| Tasks this sprint | Overview |
+| ------------------| -------- |
+| * Library members can create reviews for games. * Review owners can edit and delete their reviews. * Members can see a list of reviews they have written. * All visitors can read reviews for any game in the library | ![sprint3](/Documentation/sprint3.png) |
 
 ## Tools Used
 [React Bootstrap](https://react-bootstrap.netlify.app/docs/getting-started/introduction)

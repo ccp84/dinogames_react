@@ -12,7 +12,9 @@ const AllGames = (props) => {
         <Row>
           <Col s={12} md={6} lg={4}>
             <Card className="m-2" border="primary">
-              <Card.Body>No games found. Why not add one</Card.Body>
+              <Card.Body>
+                No games matching that search. Requests feature coming soon
+              </Card.Body>
             </Card>
           </Col>
         </Row>
@@ -62,7 +64,9 @@ const AllGames = (props) => {
                         </Card.Title>
                       </Card.Footer>
                     ) : (
-                      ""
+                      <Button className="m-2" variant="info">
+                        Sign in to review
+                      </Button>
                     )}
                   </Card>
                 </Col>
