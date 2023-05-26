@@ -38,7 +38,7 @@ const AllGames = (props) => {
                           <Row>Min Players: {game.minplayers}</Row>
                           <Row>Max Players: {game.maxplayers}</Row>
                           <Row>Time to play:</Row>
-                          <Row>{game.playtime} minutes</Row>
+                          <Row>{game.get_playtime_display} minutes</Row>
                         </Col>
                         <Col>
                           <Row>Tags: {game.tags}</Row>
@@ -64,9 +64,11 @@ const AllGames = (props) => {
                         </Card.Title>
                       </Card.Footer>
                     ) : (
-                      <Button className="m-2" variant="info">
-                        Sign in to review
-                      </Button>
+                      <Link to="/signin">
+                        <Button className="m-2" variant="info">
+                          Sign in to review
+                        </Button>
+                      </Link>
                     )}
                   </Card>
                 </Col>

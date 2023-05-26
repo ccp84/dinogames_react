@@ -1,8 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 import UserDetails from "./user/UserDetails";
-import { Card, Col, ListGroup, Row } from "react-bootstrap";
+import { Card, Col, Row } from "react-bootstrap";
+import ReviewList from "./reviews/ReviewList";
+import { useQuery } from "@tanstack/react-query";
+import { axiosReq } from "../api/axiosDefaults";
 
 const Profile = () => {
+  const [reviews, setReviews] = useState({
+    allReviews: [],
+  });
+  const { allReviews } = reviews;
+  const { isLoading, error } = useQuery({
+    queryKey: ["reviewData"],
+    queryFn: () => axiosReq.get(`/reviews/author`).then((res) => res.data),
+    onSuccess: (data) => setReviews({ allReviews: data }),
+  });
+
+  if (isLoading) return "Loading...";
+
+  if (error) return "An error has occurred: " + error.message;
   return (
     <Row>
       <Col s={12} md={6} lg={4}>
@@ -13,9 +29,7 @@ const Profile = () => {
           <Card.Body>
             <Card.Title className="text-primary">My Reviews</Card.Title>
           </Card.Body>
-          <ListGroup className="list-group-flush">
-            <ListGroup.Item>Feature coming soon</ListGroup.Item>
-          </ListGroup>
+          <ReviewList reviews={allReviews} />
         </Card>
       </Col>
       <Col s={12} md={6} lg={4}></Col>
