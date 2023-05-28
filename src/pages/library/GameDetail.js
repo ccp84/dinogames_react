@@ -3,14 +3,24 @@ import React, { useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
-import { Button, Card, CardGroup } from "react-bootstrap";
+import {
+  Alert,
+  Button,
+  Card,
+  CardGroup,
+  Dropdown,
+  DropdownButton,
+  Stack,
+} from "react-bootstrap";
 import ReviewList from "../reviews/ReviewList";
+import CreateReview from "../reviews/CreateReview";
 
 const GameDetail = () => {
   const [gameDetails, setGameDetails] = useState({ game: "" });
   const [reviews, setReviews] = useState({
     allReviews: [],
   });
+  const [show, setShow] = useState(false);
   const { id } = useParams();
   const currentUser = useCurrentUser();
   const navigate = useNavigate();
@@ -26,7 +36,7 @@ const GameDetail = () => {
         onSuccess: (data) => setGameDetails({ game: data }),
       },
       {
-        queryKey: ["reviewData"],
+        queryKey: ["reviewData", reviews],
         queryFn: () =>
           axiosReq.get(`/reviews/?author=&game=${id}`).then((res) => res.data),
         onSuccess: (data) => setReviews({ allReviews: data }),
@@ -71,8 +81,12 @@ const GameDetail = () => {
             Reviews
             <>
               {currentUser ? (
-                <Button className="m-2" variant="info">
-                  Add Review
+                <Button
+                  className="m-2"
+                  variant="info"
+                  onClick={() => setShow(!show)}
+                >
+                  {show ? "Close" : "Add Review"}
                 </Button>
               ) : (
                 <Link to="/signin">
@@ -83,6 +97,9 @@ const GameDetail = () => {
               )}
             </>
           </Card.Title>
+          <Alert show={show} variant="outline-info">
+            <CreateReview />
+          </Alert>
           <ReviewList reviews={allReviews} />
         </Card.Body>
         {currentUser ? (
@@ -90,25 +107,31 @@ const GameDetail = () => {
             <Card.Footer>
               {currentUser?.is_staff ? (
                 <>
-                  <Link to="/game/edit" state={{ prop: game }}>
-                    <Button className="m-1" variant="info">
-                      Edit
-                    </Button>
-                  </Link>
-                  <Button
-                    className="m-1"
-                    variant="danger"
-                    onClick={async () => {
-                      try {
-                        await axiosReq.delete(`/games/edit/${game.id}`);
-                        navigate("/game/library");
-                      } catch (err) {
-                        console.log(err);
-                      }
-                    }}
-                  >
-                    Delete
-                  </Button>
+                  <Stack direction="horizontal" gap={3}>
+                    <Link to="/game/edit" state={{ prop: game }}>
+                      <Button className="m-1" variant="info">
+                        Edit
+                      </Button>
+                    </Link>
+                    <DropdownButton
+                      id="dropdown-basic-button"
+                      title="Delete"
+                      variant="danger"
+                    >
+                      <Dropdown.Item
+                        onClick={async () => {
+                          try {
+                            await axiosReq.delete(`/games/edit/${game.id}`);
+                            navigate("/game/library");
+                          } catch (err) {
+                            console.log(err);
+                          }
+                        }}
+                      >
+                        Confirm Delete
+                      </Dropdown.Item>
+                    </DropdownButton>
+                  </Stack>
                 </>
               ) : (
                 ""
