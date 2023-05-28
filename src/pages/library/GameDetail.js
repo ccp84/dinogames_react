@@ -36,7 +36,7 @@ const GameDetail = () => {
         onSuccess: (data) => setGameDetails({ game: data }),
       },
       {
-        queryKey: ["reviewData", reviews],
+        queryKey: ["reviewData", show],
         queryFn: () =>
           axiosReq.get(`/reviews/?author=&game=${id}`).then((res) => res.data),
         onSuccess: (data) => setReviews({ allReviews: data }),
@@ -98,7 +98,7 @@ const GameDetail = () => {
             </>
           </Card.Title>
           <Alert show={show} variant="outline-info">
-            <CreateReview />
+            <CreateReview id={game.id} />
           </Alert>
           <ReviewList reviews={allReviews} />
         </Card.Body>

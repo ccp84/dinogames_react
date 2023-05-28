@@ -1,17 +1,24 @@
 import { useMutation } from "@tanstack/react-query";
-import React from "react";
+import React, { useState } from "react";
 import { Alert, Button, Form } from "react-bootstrap";
 import { axiosReq } from "../../api/axiosDefaults";
 
-const CreateReview = () => {
+const CreateReview = (props) => {
+  const [review, setReview] = useState({
+    content: "",
+    game: props.id,
+  });
+  const { content } = review;
+
   const mutation = useMutation({
-    mutationFn: (formData) => {
-      return axiosReq.post("reviews/", formData);
+    mutationFn: (review) => {
+      return axiosReq.post("reviews/", review);
     },
   });
-  const onSubmit = (event) => {
-    event.preventDefault();
-    mutation.mutate(new FormData(event.target));
+
+  const onCreate = (e) => {
+    e.preventDefault();
+    mutation.mutate(review);
   };
 
   return (
@@ -33,7 +40,7 @@ const CreateReview = () => {
           </>
         )}
       </div>
-      <Form onSubmit={onSubmit}>
+      <Form onSubmit={onCreate}>
         <Form.Group className="mb-3" controlId="content">
           <Form.Label>Write a new review</Form.Label>
           <Form.Control
@@ -41,9 +48,16 @@ const CreateReview = () => {
             rows={3}
             placeholder="Add new review"
             name="content"
+            value={content}
+            onChange={(e) => {
+              setReview({
+                ...review,
+                [e.target.name]: e.target.value,
+              });
+            }}
           />
         </Form.Group>
-        <Button type="submit" variant="info">
+        <Button variant="info" type="submit">
           Submit
         </Button>
       </Form>

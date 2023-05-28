@@ -33,10 +33,8 @@ const CreateGame = () => {
     try {
       // Check refresh before sending
       const { data } = await axiosReq.post("games/create", gameData);
-      console.log(data.user);
       navigate(`/game/${data.id}`);
     } catch (err) {
-      console.log(errors.data);
       //   Only log errors if response is not authentication error
       if (err.response?.status !== 401) {
         setErrors(err.response?.data);
