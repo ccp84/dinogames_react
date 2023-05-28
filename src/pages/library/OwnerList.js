@@ -4,7 +4,7 @@ import { axiosReq } from "../../api/axiosDefaults";
 import Card from "react-bootstrap/Card";
 import ListGroup from "react-bootstrap/ListGroup";
 import Button from "react-bootstrap/Button";
-import { Col, Row } from "react-bootstrap";
+import { Col, Dropdown, DropdownButton, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 
@@ -47,20 +47,25 @@ const OwnerList = () => {
                       </Link>
                     </Col>
                     <Col>
-                      <Button
+                      <DropdownButton
+                        id="dropdown-basic-button"
+                        title="Delete"
                         variant="danger"
-                        onClick={async () => {
-                          try {
-                            await axiosReq.delete(`/games/edit/${game.id}`);
-                            // useQuery refetch will refresh the list on success
-                            refetch();
-                          } catch (err) {
-                            console.log(err);
-                          }
-                        }}
                       >
-                        Delete
-                      </Button>
+                        <Dropdown.Item
+                          onClick={async () => {
+                            try {
+                              await axiosReq.delete(`/games/edit/${game.id}`);
+                              // useQuery refetch will refresh the list on success
+                              refetch();
+                            } catch (err) {
+                              console.log(err);
+                            }
+                          }}
+                        >
+                          Confirm Delete
+                        </Dropdown.Item>
+                      </DropdownButton>
                     </Col>
                   </Row>
                 </ListGroup.Item>

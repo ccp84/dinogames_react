@@ -69,7 +69,8 @@ const CreateGame = () => {
             <Form.Group className="mb-3" controlId="tags">
               <Form.Label>Game Categories</Form.Label>
               <Form.Control
-                type="text"
+                as="textarea"
+                rows={1}
                 placeholder="Categories"
                 name="tags"
                 value={tags}
@@ -140,7 +141,8 @@ const CreateGame = () => {
             <Form.Group className="mb-3" controlId="overview">
               <Form.Label>Game Overview</Form.Label>
               <Form.Control
-                type="text"
+                as="textarea"
+                rows={3}
                 placeholder="Overview"
                 name="overview"
                 value={overview}

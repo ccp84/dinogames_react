@@ -260,6 +260,14 @@ https://tanstack.com/query/latest/docs/react/guides/query-keys
 | ------------------| -------- |
 | * Library members can create reviews for games. * Review owners can edit and delete their reviews. * Members can see a list of reviews they have written. * All visitors can read reviews for any game in the library | ![sprint3](/Documentation/sprint3.png) |
 
+### Viewing reviews for a game
+
+### Creating a review as a member
+
+### Viewing reviews for a member
+
+### Editing and deleting reviews
+
 ## Tools Used
 [React Bootstrap](https://react-bootstrap.netlify.app/docs/getting-started/introduction)
 [React Router](https://reactrouter.com/en/main/start/tutorial)
