@@ -13,7 +13,7 @@ const AllGames = (props) => {
           <Col s={12} md={6} lg={4}>
             <Card className="m-2" border="primary">
               <Card.Body>
-                No games matching that search. Requests feature coming soon
+                No games found. Requests feature coming soon
               </Card.Body>
             </Card>
           </Col>

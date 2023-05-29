@@ -7,6 +7,7 @@ import {
   ListGroup,
   ListGroupItem,
   Stack,
+  Toast,
 } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { axiosReq } from "../../api/axiosDefaults";
@@ -54,8 +55,11 @@ const ReviewList = (props) => {
                                 queryClient.invalidateQueries({
                                   queryKey: ["reviewData"],
                                 });
+                                <Toast>Review Deleted</Toast>;
                               } catch (err) {
-                                <Alert>{err.message}</Alert>;
+                                <Alert variant="warning">
+                                  "Review not deleted"
+                                </Alert>;
                               }
                             }}
                           >

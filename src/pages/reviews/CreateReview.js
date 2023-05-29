@@ -1,4 +1,4 @@
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import React, { useState } from "react";
 import { Alert, Button, Form } from "react-bootstrap";
 import { axiosReq } from "../../api/axiosDefaults";
@@ -10,6 +10,8 @@ const CreateReview = (props) => {
   });
   const { content } = review;
 
+  const queryClient = useQueryClient();
+
   const mutation = useMutation({
     mutationFn: (review) => {
       return axiosReq.post("reviews/", review);
@@ -19,6 +21,10 @@ const CreateReview = (props) => {
   const onCreate = (e) => {
     e.preventDefault();
     mutation.mutate(review);
+    // Invalidate query and refetch data
+    queryClient.invalidateQueries({
+      queryKey: ["reviewData"],
+    });
   };
 
   return (
