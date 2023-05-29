@@ -24,7 +24,7 @@ const Profile = () => {
       <Col s={12} md={6} lg={4}>
         <UserDetails />
       </Col>
-      <Col s={12} md={6} lg={4}>
+      <Col s={12} md={6} lg={8}>
         <Card className="m-1" border="primary">
           <Card.Body>
             <Card.Title className="text-primary">My Reviews</Card.Title>

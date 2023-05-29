@@ -53,7 +53,38 @@ const GameDetail = () => {
       <Card className="m-2" border="primary">
         <Card.Header>
           <Card.Title className="text-primary">
-            <h1>{game.title}</h1>
+            <h1>
+              {game.title}{" "}
+              {currentUser?.is_staff ? (
+                <>
+                  <Stack direction="horizontal" gap={3}>
+                    <Link to="/game/edit" state={{ prop: game }}>
+                      <Button className="m-1" variant="info">
+                        Edit
+                      </Button>
+                    </Link>
+                    <DropdownButton
+                      id="dropdown-basic-button"
+                      title="Delete"
+                      variant="danger"
+                    >
+                      <Dropdown.Item
+                        onClick={async () => {
+                          try {
+                            await axiosReq.delete(`/games/edit/${game.id}`);
+                            navigate("/game/library");
+                          } catch (err) {
+                            console.log(err);
+                          }
+                        }}
+                      >
+                        Confirm Delete
+                      </Dropdown.Item>
+                    </DropdownButton>
+                  </Stack>
+                </>
+              ) : null}
+            </h1>
           </Card.Title>
         </Card.Header>
         <Card.Body>
@@ -104,39 +135,7 @@ const GameDetail = () => {
         </Card.Body>
         {currentUser ? (
           <>
-            <Card.Footer>
-              {currentUser?.is_staff ? (
-                <>
-                  <Stack direction="horizontal" gap={3}>
-                    <Link to="/game/edit" state={{ prop: game }}>
-                      <Button className="m-1" variant="info">
-                        Edit
-                      </Button>
-                    </Link>
-                    <DropdownButton
-                      id="dropdown-basic-button"
-                      title="Delete"
-                      variant="danger"
-                    >
-                      <Dropdown.Item
-                        onClick={async () => {
-                          try {
-                            await axiosReq.delete(`/games/edit/${game.id}`);
-                            navigate("/game/library");
-                          } catch (err) {
-                            console.log(err);
-                          }
-                        }}
-                      >
-                        Confirm Delete
-                      </Dropdown.Item>
-                    </DropdownButton>
-                  </Stack>
-                </>
-              ) : (
-                ""
-              )}
-            </Card.Footer>
+            <Card.Footer></Card.Footer>
           </>
         ) : (
           ""

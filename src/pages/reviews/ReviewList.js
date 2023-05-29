@@ -2,6 +2,7 @@ import React from "react";
 import {
   Alert,
   Button,
+  Card,
   Dropdown,
   DropdownButton,
   ListGroup,
@@ -30,46 +31,54 @@ const ReviewList = (props) => {
             {props.reviews.map((review) => {
               return (
                 <ListGroupItem key={review.id}>
-                  <p>{review.content}</p>
-                  <p>
-                    Updated on: {review.lastupdated} by : {review.author}
-                    <FontAwesomeIcon
-                      className="text-primary m-1"
-                      icon={`fa-solid fa-${review.profileicon}`}
-                    />
-                  </p>
-                  {/* If author give edit and delete options */}
-                  {review.is_author ? (
-                    <>
-                      <Stack direction="horizontal" gap={3}>
-                        <DropdownButton
-                          id="dropdown-basic-button"
-                          title="Delete"
-                          variant="danger"
-                        >
-                          <Dropdown.Item
-                            onClick={async () => {
-                              try {
-                                await axiosReq.delete(`/reviews/${review.id}`);
-                                // Invalidate query and refetch data
-                                queryClient.invalidateQueries({
-                                  queryKey: ["reviewData"],
-                                });
-                                <Toast>Review Deleted</Toast>;
-                              } catch (err) {
-                                <Alert variant="warning">
-                                  "Review not deleted"
-                                </Alert>;
-                              }
-                            }}
+                  <Card.Body>{review.content}</Card.Body>
+                  <Card.Footer>
+                    {/* If author give edit and delete options */}
+                    {review.is_author ? (
+                      <>
+                        <Stack direction="horizontal" gap={3}>
+                          <DropdownButton
+                            id="dropdown-basic-button"
+                            title="Delete"
+                            variant="danger"
                           >
-                            Confirm Delete
-                          </Dropdown.Item>
-                        </DropdownButton>
-                        <Button variant="info">Edit</Button>
+                            <Dropdown.Item
+                              onClick={async () => {
+                                try {
+                                  await axiosReq.delete(
+                                    `/reviews/${review.id}`
+                                  );
+                                  // Invalidate query and refetch data
+                                  queryClient.invalidateQueries({
+                                    queryKey: ["reviewData"],
+                                  });
+                                  <Toast>Review Deleted</Toast>;
+                                } catch (err) {
+                                  <Alert variant="warning">
+                                    "Review not deleted"
+                                  </Alert>;
+                                }
+                              }}
+                            >
+                              Confirm Delete
+                            </Dropdown.Item>
+                          </DropdownButton>
+                          <Button variant="info">Edit</Button>
+                        </Stack>
+                      </>
+                    ) : (
+                      <Stack direction="horizontal" gap={3}>
+                        <>
+                          {review.author}
+                          <FontAwesomeIcon
+                            className="text-primary m-1"
+                            icon={`fa-solid fa-${review.profileicon}`}
+                          />
+                        </>
+                        <>{review.lastupdated}</>
                       </Stack>
-                    </>
-                  ) : null}
+                    )}
+                  </Card.Footer>
                 </ListGroupItem>
               );
             })}

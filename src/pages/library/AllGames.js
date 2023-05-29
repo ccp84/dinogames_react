@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import Card from "react-bootstrap/Card";
-import { Button, Col, Row } from "react-bootstrap";
+import { Alert, Button, Col, Row } from "react-bootstrap";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { Link } from "react-router-dom";
+import CreateReview from "../reviews/CreateReview";
 
 const AllGames = (props) => {
   const currentUser = useCurrentUser();
+  const [show, setShow] = useState(false);
   return (
     <>
       {!props.games.length ? (
@@ -29,6 +31,15 @@ const AllGames = (props) => {
                       <Card.Header>
                         <Card.Title className="text-primary">
                           {game.title}
+                          {currentUser?.is_staff ? (
+                            <Link to="/game/edit" state={{ prop: game }}>
+                              <Button className="m-2" variant="info">
+                                Edit
+                              </Button>
+                            </Link>
+                          ) : (
+                            ""
+                          )}
                         </Card.Title>
                       </Card.Header>
                     </Link>
@@ -48,28 +59,27 @@ const AllGames = (props) => {
                     {currentUser ? (
                       <Card.Footer>
                         <Card.Title className="text-primary">
-                          <Button className="m-2" variant="info">
-                            Add Review
+                          <Button
+                            className="m-2"
+                            variant="info"
+                            onClick={() => setShow(!show)}
+                          >
+                            {show ? "Close" : "Add Review"}
                           </Button>
-
-                          {currentUser?.is_staff ? (
-                            <Link to="/game/edit" state={{ prop: game }}>
-                              <Button className="m-2" variant="info">
-                                Edit
-                              </Button>
-                            </Link>
-                          ) : (
-                            ""
-                          )}
                         </Card.Title>
                       </Card.Footer>
                     ) : (
-                      <Link to="/signin">
-                        <Button className="m-2" variant="info">
-                          Sign in to review
-                        </Button>
-                      </Link>
+                      <Card.Footer>
+                        <Link to="/signin">
+                          <Button className="m-2" variant="info">
+                            Sign in to review
+                          </Button>
+                        </Link>
+                      </Card.Footer>
                     )}
+                    <Alert show={show} variant="outline-info">
+                      <CreateReview id={game.id} />
+                    </Alert>
                   </Card>
                 </Col>
               );
