@@ -13,18 +13,17 @@ const CreateReview = (props) => {
   const queryClient = useQueryClient();
 
   const mutation = useMutation({
-    mutationFn: (review) => {
-      return axiosReq.post("reviews/", review);
+    mutationFn: async (review) => {
+      return await axiosReq.post("reviews/", review);
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["reviewData"] });
     },
   });
 
   const onCreate = (e) => {
     e.preventDefault();
     mutation.mutate(review);
-    // Invalidate query and refetch data
-    queryClient.invalidateQueries({
-      queryKey: ["reviewData"],
-    });
   };
 
   return (
