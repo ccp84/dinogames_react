@@ -1,13 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 import Card from "react-bootstrap/Card";
-import { Alert, Button, Col, Row } from "react-bootstrap";
+import { Button, Col, Row } from "react-bootstrap";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { Link } from "react-router-dom";
-import CreateReview from "../reviews/CreateReview";
 
 const AllGames = (props) => {
   const currentUser = useCurrentUser();
-  const [show, setShow] = useState(false);
+
   return (
     <>
       {!props.games.length ? (
@@ -59,12 +58,8 @@ const AllGames = (props) => {
                     {currentUser ? (
                       <Card.Footer>
                         <Card.Title className="text-primary">
-                          <Button
-                            className="m-2"
-                            variant="info"
-                            onClick={() => setShow(!show)}
-                          >
-                            {show ? "Close" : "Add Review"}
+                          <Button className="m-2" variant="info">
+                            Ratings coming soon
                           </Button>
                         </Card.Title>
                       </Card.Footer>
@@ -72,14 +67,11 @@ const AllGames = (props) => {
                       <Card.Footer>
                         <Link to="/signin">
                           <Button className="m-2" variant="info">
-                            Sign in to review
+                            Sign in to rate
                           </Button>
                         </Link>
                       </Card.Footer>
                     )}
-                    <Alert show={show} variant="outline-info">
-                      <CreateReview id={game.id} />
-                    </Alert>
                   </Card>
                 </Col>
               );
