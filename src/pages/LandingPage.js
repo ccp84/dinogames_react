@@ -1,6 +1,7 @@
 import React from "react";
 import GameList from "./library/GameList";
 import { Card, Col, Row } from "react-bootstrap";
+import LatestNews from "./news/LatestNews";
 
 const LandingPage = () => {
   return (
@@ -22,14 +23,7 @@ const LandingPage = () => {
         <Col s={12} md={12} lg={4}>
           <h2>News</h2>
           <>
-            <Card className="m-1" border="primary">
-              <Card.Header className="text-primary">
-                <Card.Title className="text-primary">News Title</Card.Title>
-              </Card.Header>
-              <Card.Body>
-                <Card.Text>News items coming soon</Card.Text>
-              </Card.Body>
-            </Card>
+            <LatestNews />
           </>
         </Col>
         <Col s={12} md={6} lg={4}>
