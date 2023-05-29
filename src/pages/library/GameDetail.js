@@ -128,18 +128,11 @@ const GameDetail = () => {
               )}
             </>
           </Card.Title>
-          <Alert show={show} variant="outline-info">
+          <Alert show={show} variant="primary">
             <CreateReview id={game.id} />
           </Alert>
           <ReviewList reviews={allReviews} />
         </Card.Body>
-        {currentUser ? (
-          <>
-            <Card.Footer></Card.Footer>
-          </>
-        ) : (
-          ""
-        )}
       </Card>
     </>
   );

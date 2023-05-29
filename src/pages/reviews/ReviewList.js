@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Alert,
   Button,
@@ -8,13 +8,14 @@ import {
   ListGroup,
   ListGroupItem,
   Stack,
-  Toast,
 } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { axiosReq } from "../../api/axiosDefaults";
 import { useQueryClient } from "@tanstack/react-query";
+import EditReview from "./EditReview";
 
 const ReviewList = (props) => {
+  const [show, setShow] = useState(false);
   const queryClient = useQueryClient();
   return (
     <>
@@ -37,6 +38,7 @@ const ReviewList = (props) => {
                     {review.is_author ? (
                       <>
                         <Stack direction="horizontal" gap={3}>
+                          <>Review of {review.game_title}</>
                           <DropdownButton
                             id="dropdown-basic-button"
                             title="Delete"
@@ -52,18 +54,21 @@ const ReviewList = (props) => {
                                   queryClient.invalidateQueries({
                                     queryKey: ["reviewData"],
                                   });
-                                  <Toast>Review Deleted</Toast>;
                                 } catch (err) {
-                                  <Alert variant="warning">
-                                    "Review not deleted"
-                                  </Alert>;
+                                  console.log(err);
                                 }
                               }}
                             >
                               Confirm Delete
                             </Dropdown.Item>
                           </DropdownButton>
-                          <Button variant="info">Edit</Button>
+                          <Button
+                            className="m-2"
+                            variant="info"
+                            onClick={() => setShow(!show)}
+                          >
+                            {show ? "Close" : "Edit"}
+                          </Button>
                         </Stack>
                       </>
                     ) : (
@@ -79,6 +84,9 @@ const ReviewList = (props) => {
                       </Stack>
                     )}
                   </Card.Footer>
+                  <Alert show={show} variant="primary">
+                    <EditReview id={review.id} content={review.content} />
+                  </Alert>
                 </ListGroupItem>
               );
             })}
