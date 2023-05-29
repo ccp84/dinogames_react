@@ -1,13 +1,23 @@
 import React from "react";
-import { useCurrentUser } from "../contexts/CurrentUserContext";
 import GameList from "./library/GameList";
 import { Card, Col, Row } from "react-bootstrap";
 
 const LandingPage = () => {
-  const currentUser = useCurrentUser();
   return (
     <>
-      <h1>Welcome {currentUser?.firstname}</h1>
+      <Card className="m-1" border="primary">
+        <Card.Header className="text-primary">
+          <Card.Title className="text-primary">
+            <h1>Welcome to the Dinosaur Tabletop Games Library</h1>
+          </Card.Title>
+        </Card.Header>
+        <Card.Body>
+          <Card.Text>
+            Please use the library search features to find your next favourite
+            game. We hope to see you at an event soon.
+          </Card.Text>
+        </Card.Body>
+      </Card>
       <Row>
         <Col s={12} md={12} lg={4}>
           <h2>News</h2>
@@ -17,7 +27,7 @@ const LandingPage = () => {
                 <Card.Title className="text-primary">News Title</Card.Title>
               </Card.Header>
               <Card.Body>
-                <Card.Text>News Text</Card.Text>
+                <Card.Text>News items coming soon</Card.Text>
               </Card.Body>
             </Card>
           </>
@@ -38,7 +48,7 @@ const LandingPage = () => {
                 </Card.Title>
               </Card.Header>
               <Card.Body>
-                <Card.Text>Game</Card.Text>
+                <Card.Text>Game requests coming soon</Card.Text>
               </Card.Body>
             </Card>
           </>
