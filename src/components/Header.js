@@ -35,9 +35,6 @@ const Header = () => {
       </Nav.Link>
       {staff ? (
         <>
-          <Nav.Link href="/game/create">
-            <Button variant="outline-warning">Add Game</Button>
-          </Nav.Link>
           <Nav.Link href="/admin">
             <Button variant="outline-warning">Admin</Button>
           </Nav.Link>

@@ -30,7 +30,7 @@ const LatestNews = () => {
           </ListGroupItem>
         ) : (
           <>
-            {news.map((item, id) => {
+            {news.slice(0, 5).map((item, id) => {
               return (
                 <ListGroupItem key={id}>
                   <Card.Header className="text-primary">
@@ -38,9 +38,7 @@ const LatestNews = () => {
                       {item.title}
                     </Card.Title>
                   </Card.Header>
-                  <Card.Body>
-                    <Card.Text>{item.content}</Card.Text>
-                  </Card.Body>
+                  <Card.Text>{item.content}</Card.Text>
                 </ListGroupItem>
               );
             })}

@@ -21,7 +21,7 @@ const LandingPage = () => {
       </Card>
       <Row>
         <Col s={12} md={12} lg={4}>
-          <h2>News</h2>
+          <h2>Latest News</h2>
           <>
             <LatestNews />
           </>

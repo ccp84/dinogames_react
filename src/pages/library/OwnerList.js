@@ -4,7 +4,14 @@ import { axiosReq } from "../../api/axiosDefaults";
 import Card from "react-bootstrap/Card";
 import ListGroup from "react-bootstrap/ListGroup";
 import Button from "react-bootstrap/Button";
-import { Col, Dropdown, DropdownButton, Row } from "react-bootstrap";
+import {
+  Col,
+  Dropdown,
+  DropdownButton,
+  Nav,
+  Row,
+  Stack,
+} from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 
@@ -31,7 +38,12 @@ const OwnerList = () => {
       {currentUser?.is_staff ? (
         <Card className="m-1" border="primary">
           <Card.Body>
-            <Card.Title className="text-primary">Games Admin</Card.Title>
+            <Stack direction="horizontal" gap={3}>
+              <Card.Title className="text-primary">Games Admin</Card.Title>
+              <Nav.Link href="/game/create">
+                <Button variant="outline-primary">Add Game</Button>
+              </Nav.Link>
+            </Stack>
           </Card.Body>
           <ListGroup className="list-group-flush">
             {games.map((game, id) => {

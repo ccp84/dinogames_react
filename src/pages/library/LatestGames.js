@@ -23,9 +23,11 @@ const LatestGames = (props) => {
               {props.games.slice(0, 5).map((game, id) => {
                 return (
                   <ListGroupItem key={id}>
-                    <Card.Title>
-                      <Link to={`/game/${game.id}`}>{game.title}</Link>
-                    </Card.Title>
+                    <Link to={`/game/${game.id}`}>
+                      <Card.Header>
+                        <Card.Title>{game.title}</Card.Title>
+                      </Card.Header>
+                    </Link>
                   </ListGroupItem>
                 );
               })}
