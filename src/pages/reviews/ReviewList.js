@@ -32,8 +32,8 @@ const ReviewList = (props) => {
             {props.reviews.map((review) => {
               return (
                 <ListGroupItem key={review.id}>
-                  <Card.Body>{review.content}</Card.Body>
-                  <Card.Footer>
+                  <Card.Body>
+                    {review.content}{" "}
                     {/* If author give edit and delete options */}
                     {review.is_author ? (
                       <>
@@ -70,23 +70,24 @@ const ReviewList = (props) => {
                             {show ? "Close" : "Edit"}
                           </Button>
                         </Stack>
+                        <Alert show={show} variant="primary">
+                          <EditReview id={review.id} content={review.content} />
+                        </Alert>
                       </>
-                    ) : (
-                      <Stack direction="horizontal" gap={3}>
-                        <>
-                          {review.author}
-                          <FontAwesomeIcon
-                            className="text-primary m-1"
-                            icon={`fa-solid fa-${review.profileicon}`}
-                          />
-                        </>
-                        <>{review.lastupdated}</>
-                      </Stack>
-                    )}
+                    ) : null}
+                  </Card.Body>
+                  <Card.Footer>
+                    <Stack direction="horizontal" gap={3}>
+                      <>
+                        {review.author}
+                        <FontAwesomeIcon
+                          className="text-primary m-1"
+                          icon={`fa-solid fa-${review.profileicon}`}
+                        />
+                      </>
+                      <>{review.lastupdated}</>
+                    </Stack>
                   </Card.Footer>
-                  <Alert show={show} variant="primary">
-                    <EditReview id={review.id} content={review.content} />
-                  </Alert>
                 </ListGroupItem>
               );
             })}
