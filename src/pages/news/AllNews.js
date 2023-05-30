@@ -28,26 +28,30 @@ const AllNews = () => {
         </Card>
       ) : (
         <>
-          <Row>
-            {news.map((item, id) => {
-              return (
-                <Col s={12} md={6} lg={4} key={id}>
-                  <Card className="m-1" border="primary" key={id}>
+          {news.map((item, id) => {
+            return (
+              <Card className="m-1" border="primary" key={id}>
+                <Row>
+                  <Col sm={12} md={12}>
                     <Card.Header className="text-primary">
                       <Card.Title className="text-primary">
                         {item.title}
                       </Card.Title>
                     </Card.Header>
+                  </Col>
+                  <Col sm={12} md={6}>
                     <Card.Body>
                       <Card.Text>{item.content}</Card.Text>
                     </Card.Body>
-                    <Card.Footer>
+                  </Col>
+                  <Col sm={12} md={6}>
+                    <Card.Body>
                       <ListGroup>
                         <ListGroupItem>
                           Updated on: {item.lastupdated}
                         </ListGroupItem>
                         <ListGroupItem>
-                          Written by: {item.author}{" "}
+                          Written by: {item.author}
                           <FontAwesomeIcon
                             className="text-primary m-1"
                             icon={`fa-solid fa-${item.profileicon}`}
@@ -57,12 +61,12 @@ const AllNews = () => {
                           Category: {item.category_title}
                         </ListGroupItem>
                       </ListGroup>
-                    </Card.Footer>
-                  </Card>
-                </Col>
-              );
-            })}
-          </Row>
+                    </Card.Body>
+                  </Col>
+                </Row>
+              </Card>
+            );
+          })}
         </>
       )}
     </>
