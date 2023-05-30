@@ -23,6 +23,7 @@ import UserEdit from "./pages/user/UserEdit";
 import GameDetail from "./pages/library/GameDetail";
 import OwnerList from "./pages/library/OwnerList";
 import Library from "./pages/library/Library";
+import AllNews from "./pages/news/AllNews";
 
 library.add(
   faHatWizard,
@@ -48,6 +49,7 @@ function App() {
         <Route path="/game/library" element={<Library />} />
         <Route path="game/:id" element={<GameDetail />} />
         <Route path="/admin" element={<OwnerList />} />
+        <Route path="/news" element={<AllNews />} />
         <Route path="*" element={<NoMatch />} />
       </Routes>
     </Container>

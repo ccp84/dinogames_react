@@ -31,7 +31,10 @@ const Header = () => {
   const loggedIn = (
     <>
       <Nav.Link href="/game/library">
-        <Button variant="warning">View Library</Button>
+        <Button variant="warning">Library</Button>
+      </Nav.Link>
+      <Nav.Link href="/news">
+        <Button variant="warning">News</Button>
       </Nav.Link>
       {staff ? (
         <>
