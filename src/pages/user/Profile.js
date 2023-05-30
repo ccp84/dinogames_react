@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import UserDetails from "./user/UserDetails";
+import UserDetails from "./UserDetails";
 import { Card, Col, Row } from "react-bootstrap";
-import ReviewList from "./reviews/ReviewList";
+import ReviewList from "../reviews/ReviewList";
 import { useQuery } from "@tanstack/react-query";
-import { axiosReq } from "../api/axiosDefaults";
+import { axiosReq } from "../../api/axiosDefaults";
 
 const Profile = () => {
   const [reviews, setReviews] = useState({

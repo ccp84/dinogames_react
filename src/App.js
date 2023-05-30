@@ -14,16 +14,16 @@ import Header from "./components/Header";
 import { Route, Routes } from "react-router-dom";
 import SignUpForm from "./pages/auth/SignUpForm";
 import SignInForm from "./pages/auth/SignInForm";
-import Profile from "./pages/Profile";
+import Profile from "./pages/user/Profile";
 import LandingPage from "./pages/LandingPage";
 import CreateGame from "./pages/library/CreateGame";
 import OwnerEdit from "./pages/library/OwnerEdit";
 import NoMatch from "./pages/NoMatch";
 import UserEdit from "./pages/user/UserEdit";
 import GameDetail from "./pages/library/GameDetail";
-import OwnerList from "./pages/library/OwnerList";
 import Library from "./pages/library/Library";
 import AllNews from "./pages/news/AllNews";
+import Admin from "./pages/user/Admin";
 
 library.add(
   faHatWizard,
@@ -48,7 +48,7 @@ function App() {
         <Route path="/game/edit" element={<OwnerEdit />} />
         <Route path="/game/library" element={<Library />} />
         <Route path="game/:id" element={<GameDetail />} />
-        <Route path="/admin" element={<OwnerList />} />
+        <Route path="/admin" element={<Admin />} />
         <Route path="/news" element={<AllNews />} />
         <Route path="*" element={<NoMatch />} />
       </Routes>
