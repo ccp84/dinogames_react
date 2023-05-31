@@ -30,15 +30,6 @@ const AllGames = (props) => {
                       <Card.Header>
                         <Card.Title className="text-primary">
                           {game.title}
-                          {currentUser?.is_staff ? (
-                            <Link to="/game/edit" state={{ prop: game }}>
-                              <Button className="m-2" variant="info">
-                                Edit
-                              </Button>
-                            </Link>
-                          ) : (
-                            ""
-                          )}
                         </Card.Title>
                       </Card.Header>
                     </Link>

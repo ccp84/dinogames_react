@@ -1,6 +1,13 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import React, { useState } from "react";
-import { Alert, Button, Form } from "react-bootstrap";
+import {
+  Alert,
+  Button,
+  Dropdown,
+  DropdownButton,
+  Form,
+  Stack,
+} from "react-bootstrap";
 import { axiosReq } from "../../api/axiosDefaults";
 
 const EditReview = (props) => {
@@ -46,7 +53,7 @@ const EditReview = (props) => {
       </div>
       <Form onSubmit={onCreate}>
         <Form.Group className="mb-3" controlId="content">
-          <Form.Label>Edit review</Form.Label>
+          <Form.Label className="d-none">Edit review</Form.Label>
           <Form.Control
             as="textarea"
             rows={3}
@@ -61,9 +68,32 @@ const EditReview = (props) => {
             }}
           />
         </Form.Group>
-        <Button variant="info" type="submit">
-          Submit
-        </Button>
+        <Stack direction="horizontal" gap={3}>
+          <Button variant="info" type="submit">
+            Submit
+          </Button>
+          <DropdownButton
+            id="dropdown-basic-button"
+            title="Delete"
+            variant="danger"
+          >
+            <Dropdown.Item
+              onClick={async () => {
+                try {
+                  await axiosReq.delete(`/reviews/${props.id}`);
+                  // Invalidate query and refetch data
+                  queryClient.invalidateQueries({
+                    queryKey: ["reviewData"],
+                  });
+                } catch (err) {
+                  console.log(err);
+                }
+              }}
+            >
+              Confirm Delete
+            </Dropdown.Item>
+          </DropdownButton>
+        </Stack>
       </Form>
     </>
   );
