@@ -25,7 +25,7 @@ const ReviewList = (props) => {
       ) : (
         <>
           <Button className="m-2" variant="info" onClick={() => setShow(!show)}>
-            {show ? "Close" : "Edit My Reviews"}
+            {show ? "Close Editor" : "Edit My Reviews"}
           </Button>
           <ListGroup>
             {props.reviews.map((review) => {

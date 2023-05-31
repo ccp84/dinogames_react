@@ -18,6 +18,7 @@ const CreateReview = (props) => {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["reviewData"] });
+      setReview({ content: "" });
     },
   });
 
