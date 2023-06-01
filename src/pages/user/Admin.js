@@ -5,16 +5,17 @@ import Card from "react-bootstrap/Card";
 import ListGroup from "react-bootstrap/ListGroup";
 import Button from "react-bootstrap/Button";
 import {
+  Alert,
   Col,
   Dropdown,
   DropdownButton,
-  Nav,
   Row,
   Stack,
 } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import NewsAdmin from "../news/NewsAdmin";
+import CreateGame from "../library/CreateGame";
 
 // Change sending state to edit to use params in the edit file so that these can be put into their own components with useQuery and useMutate
 
@@ -22,6 +23,7 @@ const Admin = () => {
   const [listDetails, setListDetails] = useState({
     games: [],
   });
+  const [show, setShow] = useState(false);
   const currentUser = useCurrentUser();
 
   const { games } = listDetails;
@@ -48,11 +50,17 @@ const Admin = () => {
               <Card.Body>
                 <Stack direction="horizontal" gap={3}>
                   <Card.Title className="text-primary">Games Admin</Card.Title>
-                  <Nav.Link href="/game/create">
-                    <Button variant="outline-primary">Add Game</Button>
-                  </Nav.Link>
+                  <Button
+                    variant="outline-primary"
+                    onClick={() => setShow(!show)}
+                  >
+                    {show ? "Close Editor" : "Add Game"}
+                  </Button>
                 </Stack>
               </Card.Body>
+              <Alert show={show}>
+                <CreateGame />
+              </Alert>
               <ListGroup className="list-group-flush">
                 {games.map((game, id) => {
                   return (

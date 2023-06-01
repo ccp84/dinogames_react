@@ -16,7 +16,6 @@ import SignUpForm from "./pages/auth/SignUpForm";
 import SignInForm from "./pages/auth/SignInForm";
 import Profile from "./pages/user/Profile";
 import LandingPage from "./pages/LandingPage";
-import CreateGame from "./pages/library/CreateGame";
 import OwnerEdit from "./pages/library/OwnerEdit";
 import NoMatch from "./pages/NoMatch";
 import UserEdit from "./pages/user/UserEdit";
@@ -44,7 +43,6 @@ function App() {
         <Route path="/profile/edit" element={<UserEdit />} />
         <Route path="/signin" element={<SignInForm />} />
         <Route path="/signup" element={<SignUpForm />} />
-        <Route path="/game/create" element={<CreateGame />} />
         <Route path="/game/edit" element={<OwnerEdit />} />
         <Route path="/game/library" element={<Library />} />
         <Route path="game/:id" element={<GameDetail />} />

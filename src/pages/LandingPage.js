@@ -9,7 +9,7 @@ const LandingPage = () => {
       <Card className="m-1" border="primary">
         <Card.Header className="text-primary">
           <Card.Title className="text-primary">
-            <h1>Welcome to the Dinosaur Tabletop Games Library</h1>
+            <h1>Welcome to the Dinosaur Games Library</h1>
           </Card.Title>
         </Card.Header>
         <Card.Body>
@@ -33,16 +33,15 @@ const LandingPage = () => {
           </>
         </Col>
         <Col s={12} md={6} lg={4}>
-          <h2>Latest Requests</h2>
+          <h2>About</h2>
           <>
             <Card className="m-1" border="primary">
-              <Card.Header className="text-primary">
-                <Card.Title className="text-primary">
-                  Requested Games
-                </Card.Title>
-              </Card.Header>
               <Card.Body>
-                <Card.Text>Game requests coming soon</Card.Text>
+                <Card.Text>
+                  Welcome to the Dinosaur Games Library. A resource for all
+                  types of tabletop games. Please use the library search
+                  features to find a game to play.
+                </Card.Text>
               </Card.Body>
             </Card>
           </>

@@ -46,7 +46,6 @@ const CreateGame = () => {
     <>
       {currentUser?.is_staff ? (
         <>
-          <h1>List a new game</h1>
           <Form onSubmit={handleSubmit}>
             <Form.Group className="mb-3" controlId="title">
               <Form.Label>Game Title</Form.Label>

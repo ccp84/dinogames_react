@@ -1,32 +1,36 @@
 import React, { useState } from "react";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { axiosReq } from "../../api/axiosDefaults";
 import Card from "react-bootstrap/Card";
 import ListGroup from "react-bootstrap/ListGroup";
 import Button from "react-bootstrap/Button";
 import {
+  Alert,
   Col,
   Dropdown,
   DropdownButton,
-  Nav,
   Row,
   Stack,
 } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
+import CreateNews from "./CreateNews";
 
 const NewsAdmin = () => {
   const [listDetails, setListDetails] = useState({
     news: [],
   });
+  const [show, setShow] = useState(false);
   const currentUser = useCurrentUser();
+
+  const queryClient = useQueryClient();
 
   const { news } = listDetails;
 
   const { isLoading, error, refetch } = useQuery({
     queryKey: ["newsAdminlist"],
     queryFn: async () =>
-      await axiosReq.get("/announcement").then((res) => res.data),
+      await axiosReq.get("/announcement/admin").then((res) => res.data),
     onSuccess: (data) => setListDetails({ news: data }),
   });
 
@@ -41,11 +45,14 @@ const NewsAdmin = () => {
           <Card.Body>
             <Stack direction="horizontal" gap={3}>
               <Card.Title className="text-primary">News Admin</Card.Title>
-              <Nav.Link href="#">
-                <Button variant="outline-primary">New Announcement</Button>
-              </Nav.Link>
+              <Button variant="outline-primary" onClick={() => setShow(!show)}>
+                {show ? "Close Editor" : "Post Announcement"}
+              </Button>
             </Stack>
           </Card.Body>
+          <Alert show={show}>
+            <CreateNews />
+          </Alert>
           <ListGroup className="list-group-flush">
             {news.map((item, id) => {
               return (
@@ -69,7 +76,11 @@ const NewsAdmin = () => {
                               await axiosReq.delete(
                                 `/announcement/admin/${item.id}`
                               );
-                              // useQuery refetch will refresh the list on success
+                              // Invalidate main query and refetch data
+                              queryClient.invalidateQueries({
+                                queryKey: ["newsData"],
+                              });
+                              // refetch admin list
                               refetch();
                             } catch (err) {
                               console.log(err);
