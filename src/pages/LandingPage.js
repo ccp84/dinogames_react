@@ -20,19 +20,20 @@ const LandingPage = () => {
         </Card.Body>
       </Card>
       <Row>
-        <Col s={12} md={12} lg={4}>
+        <Col s={12} md={6}>
           <h2>Latest News</h2>
           <>
             <LatestNews />
           </>
         </Col>
-        <Col s={12} md={6} lg={4}>
+        <Col s={12} md={6}>
+          <Row><Col>
           <h2>Latest Games</h2>
           <>
             <GameList list="latest" filter="?ordering=-id" />
           </>
-        </Col>
-        <Col s={12} md={6} lg={4}>
+        </Col></Row>
+          <Row><Col>
           <h2>About</h2>
           <>
             <Card className="m-1" border="primary">
@@ -45,6 +46,8 @@ const LandingPage = () => {
               </Card.Body>
             </Card>
           </>
+        </Col></Row>
+          
         </Col>
       </Row>
     </>

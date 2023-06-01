@@ -14,6 +14,7 @@ const EditReview = (props) => {
   const [review, setReview] = useState({
     content: props.content,
   });
+  const [show, setShow] = useState(false);
   const { content } = review;
 
   const queryClient = useQueryClient();
@@ -34,6 +35,10 @@ const EditReview = (props) => {
 
   return (
     <>
+      {props.content}
+      <Button className="m-2" variant="info" onClick={() => setShow(!show)}>
+        {show ? "Close Editor" : "Edit Review"}
+      </Button>
       <div>
         {mutation.isLoading ? (
           <Alert variant="info">'Updating review...'</Alert>
@@ -51,50 +56,53 @@ const EditReview = (props) => {
           </>
         )}
       </div>
-      <Form onSubmit={onCreate}>
-        <Form.Group className="mb-3" controlId="content">
-          <Form.Label className="d-none">Edit review</Form.Label>
-          <Form.Control
-            as="textarea"
-            rows={3}
-            placeholder="Edit review"
-            name="content"
-            value={content}
-            onChange={(e) => {
-              setReview({
-                ...review,
-                [e.target.name]: e.target.value,
-              });
-            }}
-          />
-        </Form.Group>
-        <Stack direction="horizontal" gap={3}>
-          <Button variant="info" type="submit">
-            Submit
-          </Button>
-          <DropdownButton
-            id="dropdown-basic-button"
-            title="Delete"
-            variant="danger"
-          >
-            <Dropdown.Item
-              onClick={async () => {
-                try {
-                  await axiosReq.delete(`/reviews/${props.id}`);
-                  // Invalidate query and refetch data
-                  queryClient.invalidateQueries({
-                    queryKey: ["reviewData"],
-                  });
-                } catch (err) {
-                  console.log(err);
-                }
+      <Alert variant="primary" show={show}>
+        Edit your review of {props.game_title}
+        <Form onSubmit={onCreate}>
+          <Form.Group className="mb-3" controlId="content">
+            <Form.Label className="d-none">Edit review</Form.Label>
+            <Form.Control
+              as="textarea"
+              rows={3}
+              placeholder="Edit review"
+              name="content"
+              value={content}
+              onChange={(e) => {
+                setReview({
+                  ...review,
+                  [e.target.name]: e.target.value,
+                });
               }}
+            />
+          </Form.Group>
+          <Stack direction="horizontal" gap={3}>
+            <Button variant="info" type="submit">
+              Submit
+            </Button>
+            <DropdownButton
+              id="dropdown-basic-button"
+              title="Delete"
+              variant="danger"
             >
-              Confirm Delete
-            </Dropdown.Item>
-          </DropdownButton>
-        </Stack>
-      </Form>
+              <Dropdown.Item
+                onClick={async () => {
+                  try {
+                    await axiosReq.delete(`/reviews/${props.id}`);
+                    // Invalidate query and refetch data
+                    queryClient.invalidateQueries({
+                      queryKey: ["reviewData"],
+                    });
+                  } catch (err) {
+                    console.log(err);
+                  }
+                }}
+              >
+                Confirm Delete
+              </Dropdown.Item>
+            </DropdownButton>
+          </Stack>
+        </Form>
+      </Alert>
     </>
   );
 };

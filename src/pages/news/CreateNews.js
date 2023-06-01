@@ -7,7 +7,7 @@ const CreateNews = () => {
   const [announcement, setAnnouncement] = useState({
     title: "",
     content: "",
-    category: 1,
+    category: "",
   });
   const { title, content, category } = announcement;
 
@@ -20,7 +20,7 @@ const CreateNews = () => {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["newsData"] });
       queryClient.invalidateQueries({ queryKey: ["newsAdminlist"] });
-      setAnnouncement({ title: "", content: "", category: 1 });
+      setAnnouncement({ title: "", content: "", category: "" });
     },
   });
 
@@ -86,7 +86,7 @@ const CreateNews = () => {
           <Form.Select
             required
             aria-label="Select announcement category"
-            name="cateogry"
+            name="category"
             value={category}
             onChange={(e) => {
               setAnnouncement({
@@ -95,8 +95,8 @@ const CreateNews = () => {
               });
             }}
           >
-            <option value="1">News</option>
-            <option value="2">Events</option>
+            <option value={1}>News</option>
+            <option value={2}>Events</option>
           </Form.Select>
         </Form.Group>
         <Button variant="info" type="submit">

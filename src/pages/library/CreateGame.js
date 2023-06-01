@@ -154,9 +154,6 @@ const CreateGame = () => {
             <Button className="m-2" variant="info" type="submit">
               Add Game
             </Button>
-            <Button className="m-2" variant="info" onClick={() => navigate(-1)}>
-              Cancel
-            </Button>
             {errors.non_field_errors?.map((message, idx) => (
               <Alert key={idx} variant="warning" className="mt-3">
                 {message}

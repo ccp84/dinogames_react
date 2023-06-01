@@ -1,5 +1,5 @@
 import React from "react";
-import { Alert, Card, ListGroup, ListGroupItem, Stack } from "react-bootstrap";
+import { Card, ListGroup, ListGroupItem, Stack } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import EditReview from "./EditReview";
 
@@ -23,10 +23,11 @@ const ReviewList = (props) => {
                     {/* If author give edit and delete options */}
                     {review.is_author ? (
                       <>
-                        <Alert variant="primary">
-                          <>Edit your review of {review.game_title}</>
-                          <EditReview id={review.id} content={review.content} />
-                        </Alert>
+                        <EditReview
+                          id={review.id}
+                          content={review.content}
+                          game_title={review.game_title}
+                        />
                       </>
                     ) : (
                       <>{review.content}</>

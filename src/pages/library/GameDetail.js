@@ -4,7 +4,6 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import {
-  Alert,
   Button,
   Card,
   CardGroup,
@@ -20,7 +19,6 @@ const GameDetail = () => {
   const [reviews, setReviews] = useState({
     allReviews: [],
   });
-  const [show, setShow] = useState(false);
   const { id } = useParams();
   const currentUser = useCurrentUser();
   const navigate = useNavigate();
@@ -112,20 +110,7 @@ const GameDetail = () => {
             Reviews
             <>
               {currentUser ? (
-                <>
-                  <Button
-                    className="m-2"
-                    variant="info"
-                    onClick={() => setShow(!show)}
-                  >
-                    {show ? "Close" : "Add Review"}
-                  </Button>
-                  <Link to="/profile">
-                    <Button className="m-2" variant="info">
-                      Edit my Reviews
-                    </Button>
-                  </Link>
-                </>
+                <CreateReview id={game.id} />
               ) : (
                 <Link to="/signin">
                   <Button className="m-2" variant="info">
@@ -135,9 +120,6 @@ const GameDetail = () => {
               )}
             </>
           </Card.Title>
-          <Alert show={show} variant="primary">
-            <CreateReview id={game.id} />
-          </Alert>
           <ReviewList reviews={allReviews} />
         </Card.Body>
       </Card>

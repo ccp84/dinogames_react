@@ -5,9 +5,10 @@ import { axiosReq } from "../../api/axiosDefaults";
 
 const CreateReview = (props) => {
   const [review, setReview] = useState({
-    content: "",
     game: props.id,
+    content: "",
   });
+  const [show, setShow] = useState(false);
   const { content } = review;
 
   const queryClient = useQueryClient();
@@ -18,7 +19,7 @@ const CreateReview = (props) => {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["reviewData"] });
-      setReview({ content: "" });
+      setReview({ game: props.id, content: "" });
     },
   });
 
@@ -29,6 +30,9 @@ const CreateReview = (props) => {
 
   return (
     <>
+      <Button className="m-2" variant="info" onClick={() => setShow(!show)}>
+        {show ? "Close Editor" : "Add Review"}
+      </Button>
       <div>
         {mutation.isLoading ? (
           <Alert variant="info">'Adding review...'</Alert>
@@ -46,27 +50,29 @@ const CreateReview = (props) => {
           </>
         )}
       </div>
-      <Form onSubmit={onCreate}>
-        <Form.Group className="mb-3" controlId="content">
-          <Form.Label>Write a new review</Form.Label>
-          <Form.Control
-            as="textarea"
-            rows={3}
-            placeholder="Add new review"
-            name="content"
-            value={content}
-            onChange={(e) => {
-              setReview({
-                ...review,
-                [e.target.name]: e.target.value,
-              });
-            }}
-          />
-        </Form.Group>
-        <Button variant="info" type="submit">
-          Submit
-        </Button>
-      </Form>
+      <Alert variant="primary" show={show}>
+        <Form onSubmit={onCreate}>
+          <Form.Group className="mb-3" controlId="content">
+            <Form.Label>Write a new review</Form.Label>
+            <Form.Control
+              as="textarea"
+              rows={3}
+              placeholder="Add new review"
+              name="content"
+              value={content}
+              onChange={(e) => {
+                setReview({
+                  game: props.id,
+                  content: e.target.value,
+                });
+              }}
+            />
+          </Form.Group>
+          <Button variant="info" type="submit" onClick={() => setShow(!show)}>
+            Submit
+          </Button>
+        </Form>
+      </Alert>
     </>
   );
 };
