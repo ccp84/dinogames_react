@@ -1,18 +1,9 @@
-import React, { useState } from "react";
-import {
-  Alert,
-  Button,
-  Card,
-  ListGroup,
-  ListGroupItem,
-  Stack,
-} from "react-bootstrap";
+import React from "react";
+import { Alert, Card, ListGroup, ListGroupItem, Stack } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import EditReview from "./EditReview";
 
 const ReviewList = (props) => {
-  const [show, setShow] = useState(false);
-
   return (
     <>
       {/* If list is empty */}
@@ -24,14 +15,23 @@ const ReviewList = (props) => {
         </ListGroup>
       ) : (
         <>
-          <Button className="m-2" variant="info" onClick={() => setShow(!show)}>
-            {show ? "Close Editor" : "Edit My Reviews"}
-          </Button>
           <ListGroup>
             {props.reviews.map((review) => {
               return (
                 <ListGroupItem key={review.id}>
-                  <Card.Body>{review.content}</Card.Body>
+                  <Card.Body>
+                    {/* If author give edit and delete options */}
+                    {review.is_author ? (
+                      <>
+                        <Alert variant="primary">
+                          <>Edit your review of {review.game_title}</>
+                          <EditReview id={review.id} content={review.content} />
+                        </Alert>
+                      </>
+                    ) : (
+                      <>{review.content}</>
+                    )}
+                  </Card.Body>
                   <Card.Footer>
                     <Stack direction="horizontal" gap={3}>
                       <>
@@ -43,15 +43,6 @@ const ReviewList = (props) => {
                       </>
                       <>{review.lastupdated}</>
                     </Stack>
-                    {/* If author give edit and delete options */}
-                    {review.is_author ? (
-                      <>
-                        <Alert show={show} variant="primary">
-                          <>Edit your review of {review.game_title}</>
-                          <EditReview id={review.id} content={review.content} />
-                        </Alert>
-                      </>
-                    ) : null}
                   </Card.Footer>
                 </ListGroupItem>
               );

@@ -62,6 +62,9 @@ const Header = () => {
       <Nav.Link className="text-warning" href="/game/library">
         <Button variant="warning">View Library</Button>
       </Nav.Link>
+      <Nav.Link href="/news">
+        <Button variant="warning">News</Button>
+      </Nav.Link>
       <Nav.Link href="/signin">
         <Button variant="outline-warning">Login</Button>
       </Nav.Link>

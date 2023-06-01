@@ -112,13 +112,20 @@ const GameDetail = () => {
             Reviews
             <>
               {currentUser ? (
-                <Button
-                  className="m-2"
-                  variant="info"
-                  onClick={() => setShow(!show)}
-                >
-                  {show ? "Close" : "Add Review"}
-                </Button>
+                <>
+                  <Button
+                    className="m-2"
+                    variant="info"
+                    onClick={() => setShow(!show)}
+                  >
+                    {show ? "Close" : "Add Review"}
+                  </Button>
+                  <Link to="/profile">
+                    <Button className="m-2" variant="info">
+                      Edit my Reviews
+                    </Button>
+                  </Link>
+                </>
               ) : (
                 <Link to="/signin">
                   <Button className="m-2" variant="info">
