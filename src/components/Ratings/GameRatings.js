@@ -25,7 +25,7 @@ const GameRatings = ({ thumbsup, thumbsdown, ratingid, ratingvalue }) => {
                       </Badge>
                       <FontAwesomeIcon
                         className="text-secondary m-1"
-                        icon={`fa-solid fa-thumbs-down`}
+                        icon={`fa-regular fa-thumbs-down`}
                       />
                       <Badge pill bg="danger">
                         {thumbsdown}
@@ -39,7 +39,7 @@ const GameRatings = ({ thumbsup, thumbsdown, ratingid, ratingvalue }) => {
                     <Stack direction="horizontal" gap={3}>
                       <FontAwesomeIcon
                         className="text-secondary m-1"
-                        icon={`fa-solid fa-thumbs-up`}
+                        icon={`fa-regular fa-thumbs-up`}
                       />
                       <Badge pill bg="success">
                         {thumbsup}
@@ -62,14 +62,14 @@ const GameRatings = ({ thumbsup, thumbsdown, ratingid, ratingvalue }) => {
                 <Stack direction="horizontal" gap={3}>
                   <FontAwesomeIcon
                     className="text-secondary m-1"
-                    icon={`fa-solid fa-thumbs-up`}
+                    icon={`fa-regular fa-thumbs-up`}
                   />
                   <Badge pill bg="success">
                     {thumbsup}
                   </Badge>
                   <FontAwesomeIcon
                     className="text-secondary m-1"
-                    icon={`fa-solid fa-thumbs-down`}
+                    icon={`fa-regular fa-thumbs-down`}
                   />
                   <Badge pill bg="danger">
                     {thumbsdown}
@@ -88,14 +88,14 @@ const GameRatings = ({ thumbsup, thumbsdown, ratingid, ratingvalue }) => {
               </Button>
               <FontAwesomeIcon
                 className="text-secondary m-1"
-                icon={`fa-solid fa-thumbs-up`}
+                icon={`fa-regular fa-thumbs-up`}
               />
               <Badge pill bg="success">
                 {thumbsup}
               </Badge>
               <FontAwesomeIcon
                 className="text-secondary m-1"
-                icon={`fa-solid fa-thumbs-down`}
+                icon={`fa-regular fa-thumbs-down`}
               />
               <Badge pill bg="danger">
                 {thumbsdown}

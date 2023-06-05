@@ -9,9 +9,10 @@ import {
   faChess,
   faBookSkull,
   faUserSlash,
-  faThumbsUp,
-  faThumbsDown,
+  faThumbsUp as faThumbsUpSolid,
+  faThumbsDown as faThumbsDownSolid,
 } from "@fortawesome/free-solid-svg-icons";
+import { faThumbsUp, faThumbsDown } from "@fortawesome/free-regular-svg-icons";
 import Header from "./components/Header";
 import { Route, Routes } from "react-router-dom";
 import SignUpForm from "./pages/auth/SignUpForm";
@@ -33,6 +34,8 @@ library.add(
   faChess,
   faBookSkull,
   faUserSlash,
+  faThumbsUpSolid,
+  faThumbsDownSolid,
   faThumbsUp,
   faThumbsDown
 );
