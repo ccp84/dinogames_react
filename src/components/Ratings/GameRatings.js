@@ -4,15 +4,15 @@ import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { Badge, Button, Card, Stack } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-const GameRatings = (props) => {
+const GameRatings = ({ thumbsup, thumbsdown, ratingid, ratingvalue }) => {
   const currentUser = useCurrentUser();
   return (
     <>
       {currentUser ? (
         <>
-          {props.ratingid ? (
+          {ratingid ? (
             <>
-              {props.ratingvalue ? (
+              {ratingvalue ? (
                 <Card.Footer>
                   <Card.Title className="text-primary">
                     <Stack direction="horizontal" gap={3}>
@@ -21,14 +21,14 @@ const GameRatings = (props) => {
                         icon={`fa-solid fa-thumbs-up`}
                       />
                       <Badge pill bg="success">
-                        {props.thumbsup}
+                        {thumbsup}
                       </Badge>
                       <FontAwesomeIcon
                         className="text-secondary m-1"
                         icon={`fa-solid fa-thumbs-down`}
                       />
                       <Badge pill bg="danger">
-                        {props.thumbsdown}
+                        {thumbsdown}
                       </Badge>
                     </Stack>
                   </Card.Title>
@@ -42,14 +42,14 @@ const GameRatings = (props) => {
                         icon={`fa-solid fa-thumbs-up`}
                       />
                       <Badge pill bg="success">
-                        {props.thumbsup}
+                        {thumbsup}
                       </Badge>
                       <FontAwesomeIcon
                         className="text-danger m-1"
                         icon={`fa-solid fa-thumbs-down`}
                       />
                       <Badge pill bg="danger">
-                        {props.thumbsdown}
+                        {thumbsdown}
                       </Badge>
                     </Stack>
                   </Card.Title>
@@ -65,14 +65,14 @@ const GameRatings = (props) => {
                     icon={`fa-solid fa-thumbs-up`}
                   />
                   <Badge pill bg="success">
-                    {props.thumbsup}
+                    {thumbsup}
                   </Badge>
                   <FontAwesomeIcon
                     className="text-secondary m-1"
                     icon={`fa-solid fa-thumbs-down`}
                   />
                   <Badge pill bg="danger">
-                    {props.thumbsdown}
+                    {thumbsdown}
                   </Badge>
                 </Stack>
               </Card.Title>
@@ -91,14 +91,14 @@ const GameRatings = (props) => {
                 icon={`fa-solid fa-thumbs-up`}
               />
               <Badge pill bg="success">
-                {props.thumbsup}
+                {thumbsup}
               </Badge>
               <FontAwesomeIcon
                 className="text-secondary m-1"
                 icon={`fa-solid fa-thumbs-down`}
               />
               <Badge pill bg="danger">
-                {props.thumbsdown}
+                {thumbsdown}
               </Badge>
             </Link>
           </Stack>
