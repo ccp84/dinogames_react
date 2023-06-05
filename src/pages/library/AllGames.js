@@ -20,9 +20,9 @@ const AllGames = (props) => {
       ) : (
         <>
           <Row>
-            {props.games.map((game, id) => {
+            {props.games.map((game) => {
               return (
-                <Col s={12} md={6} lg={4} key={id}>
+                <Col s={12} md={6} lg={4} key={game.id}>
                   <Card className="m-2" border="primary">
                     <Link to={`/game/${game.id}`}>
                       <Card.Header>
@@ -49,6 +49,7 @@ const AllGames = (props) => {
                       thumbsdown={game.thumbsdown}
                       ratingid={game.rating_id}
                       ratingvalue={game.rating_value}
+                      gameid={game.id}
                     />
                   </Card>
                 </Col>
