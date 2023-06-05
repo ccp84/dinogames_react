@@ -9,6 +9,8 @@ import {
   faChess,
   faBookSkull,
   faUserSlash,
+  faThumbsUp,
+  faThumbsDown,
 } from "@fortawesome/free-solid-svg-icons";
 import Header from "./components/Header";
 import { Route, Routes } from "react-router-dom";
@@ -30,7 +32,9 @@ library.add(
   faDice,
   faChess,
   faBookSkull,
-  faUserSlash
+  faUserSlash,
+  faThumbsUp,
+  faThumbsDown
 );
 
 function App() {

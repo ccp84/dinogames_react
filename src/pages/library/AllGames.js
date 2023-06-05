@@ -1,8 +1,9 @@
 import React from "react";
 import Card from "react-bootstrap/Card";
-import { Button, Col, Row } from "react-bootstrap";
+import { Badge, Button, Col, Row, Stack } from "react-bootstrap";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const AllGames = (props) => {
   const currentUser = useCurrentUser();
@@ -49,18 +50,47 @@ const AllGames = (props) => {
                     {currentUser ? (
                       <Card.Footer>
                         <Card.Title className="text-primary">
-                          <Button className="m-2" variant="info">
-                            Ratings coming soon
-                          </Button>
+                          <Stack direction="horizontal" gap={3}>
+                            <FontAwesomeIcon
+                              className="text-secondary m-1"
+                              icon={`fa-solid fa-thumbs-up`}
+                            />
+                            <Badge pill bg="success">
+                              {game.thumbsup}
+                            </Badge>
+                            <FontAwesomeIcon
+                              className="text-secondary m-1"
+                              icon={`fa-solid fa-thumbs-down`}
+                            />
+                            <Badge pill bg="danger">
+                              {game.thumbsdown}
+                            </Badge>
+                          </Stack>
                         </Card.Title>
                       </Card.Footer>
                     ) : (
                       <Card.Footer>
-                        <Link to="/signin">
-                          <Button className="m-2" variant="info">
-                            Sign in to rate
-                          </Button>
-                        </Link>
+                        <Stack direction="horizontal" gap={3}>
+                          <Link to="/signin">
+                            <Button className="m-2" variant="info">
+                              Sign in to rate
+                            </Button>
+                            <FontAwesomeIcon
+                              className="text-secondary m-1"
+                              icon={`fa-solid fa-thumbs-up`}
+                            />
+                            <Badge pill bg="success">
+                              {game.thumbsup}
+                            </Badge>
+                            <FontAwesomeIcon
+                              className="text-secondary m-1"
+                              icon={`fa-solid fa-thumbs-down`}
+                            />
+                            <Badge pill bg="danger">
+                              {game.thumbsdown}
+                            </Badge>
+                          </Link>
+                        </Stack>
                       </Card.Footer>
                     )}
                   </Card>
