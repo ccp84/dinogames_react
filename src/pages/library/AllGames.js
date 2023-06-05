@@ -1,13 +1,10 @@
 import React from "react";
 import Card from "react-bootstrap/Card";
-import { Badge, Button, Col, Row, Stack } from "react-bootstrap";
-import { useCurrentUser } from "../../contexts/CurrentUserContext";
+import { Col, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import GameRatings from "../../components/Ratings/GameRatings";
 
 const AllGames = (props) => {
-  const currentUser = useCurrentUser();
-
   return (
     <>
       {!props.games.length ? (
@@ -47,52 +44,12 @@ const AllGames = (props) => {
                         </Col>
                       </Row>
                     </Card.Body>
-                    {currentUser ? (
-                      <Card.Footer>
-                        <Card.Title className="text-primary">
-                          <Stack direction="horizontal" gap={3}>
-                            <FontAwesomeIcon
-                              className="text-secondary m-1"
-                              icon={`fa-solid fa-thumbs-up`}
-                            />
-                            <Badge pill bg="success">
-                              {game.thumbsup}
-                            </Badge>
-                            <FontAwesomeIcon
-                              className="text-secondary m-1"
-                              icon={`fa-solid fa-thumbs-down`}
-                            />
-                            <Badge pill bg="danger">
-                              {game.thumbsdown}
-                            </Badge>
-                          </Stack>
-                        </Card.Title>
-                      </Card.Footer>
-                    ) : (
-                      <Card.Footer>
-                        <Stack direction="horizontal" gap={3}>
-                          <Link to="/signin">
-                            <Button className="m-2" variant="info">
-                              Sign in to rate
-                            </Button>
-                            <FontAwesomeIcon
-                              className="text-secondary m-1"
-                              icon={`fa-solid fa-thumbs-up`}
-                            />
-                            <Badge pill bg="success">
-                              {game.thumbsup}
-                            </Badge>
-                            <FontAwesomeIcon
-                              className="text-secondary m-1"
-                              icon={`fa-solid fa-thumbs-down`}
-                            />
-                            <Badge pill bg="danger">
-                              {game.thumbsdown}
-                            </Badge>
-                          </Link>
-                        </Stack>
-                      </Card.Footer>
-                    )}
+                    <GameRatings
+                      thumbsup={game.thumbsup}
+                      thumbsdown={game.thumbsdown}
+                      ratingid={game.rating_id}
+                      ratingvalue={game.rating_value}
+                    />
                   </Card>
                 </Col>
               );
