@@ -1,7 +1,7 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
-import { Alert, Badge, Button, Card, Stack, Toast } from "react-bootstrap";
+import { Badge, Button, Card, Stack, Toast } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
 import { useQueryClient } from "@tanstack/react-query";
@@ -37,6 +37,19 @@ const GameRatings = ({
                       <FontAwesomeIcon
                         className="text-secondary m-1"
                         icon={`fa-regular fa-thumbs-down`}
+                        onClick={async () => {
+                          try {
+                            await axiosReq.put(
+                              `/ratings/${ratingid}`,
+                              `{"game": ${gameid}, "rating": false}`
+                            );
+                            queryClient.invalidateQueries({
+                              queryKey: ["libraryData"],
+                            });
+                          } catch (err) {
+                            <Toast>{err}</Toast>;
+                          }
+                        }}
                       />
                       <Badge pill bg="danger">
                         {thumbsdown}
@@ -52,6 +65,19 @@ const GameRatings = ({
                       <FontAwesomeIcon
                         className="text-secondary m-1"
                         icon={`fa-regular fa-thumbs-up`}
+                        onClick={async () => {
+                          try {
+                            await axiosReq.put(
+                              `/ratings/${ratingid}`,
+                              `{"game": ${gameid}, "rating": true}`
+                            );
+                            queryClient.invalidateQueries({
+                              queryKey: ["libraryData"],
+                            });
+                          } catch (err) {
+                            <Toast>{err}</Toast>;
+                          }
+                        }}
                       />
 
                       <Badge pill bg="success">
