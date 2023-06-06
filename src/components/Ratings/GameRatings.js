@@ -30,6 +30,16 @@ const GameRatings = ({
                       <FontAwesomeIcon
                         className="text-success m-1"
                         icon={`fa-solid fa-thumbs-up`}
+                        onClick={async () => {
+                          try {
+                            await axiosReq.delete(`/ratings/${ratingid}`);
+                            queryClient.invalidateQueries({
+                              queryKey: ["libraryData"],
+                            });
+                          } catch (err) {
+                            <Toast>{err}</Toast>;
+                          }
+                        }}
                       />
                       <Badge pill bg="success">
                         {thumbsup}
@@ -86,6 +96,16 @@ const GameRatings = ({
                       <FontAwesomeIcon
                         className="text-danger m-1"
                         icon={`fa-solid fa-thumbs-down`}
+                        onClick={async () => {
+                          try {
+                            await axiosReq.delete(`/ratings/${ratingid}`);
+                            queryClient.invalidateQueries({
+                              queryKey: ["libraryData"],
+                            });
+                          } catch (err) {
+                            <Toast>{err}</Toast>;
+                          }
+                        }}
                       />
                       <Badge pill bg="danger">
                         {thumbsdown}
