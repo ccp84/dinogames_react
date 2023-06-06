@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import React, { useState } from "react";
-import { Card, ListGroup, ListGroupItem } from "react-bootstrap";
+import { Card, ListGroup, ListGroupItem, Spinner } from "react-bootstrap";
 import { axiosReq } from "../../api/axiosDefaults";
 
 const LatestNews = () => {
@@ -16,7 +16,14 @@ const LatestNews = () => {
     onSuccess: (data) => setListDetails({ news: data }),
   });
 
-  if (isLoading) return "Loading...";
+  if (isLoading)
+    return (
+      <>
+        "Loading..."
+        <Spinner animation="grow" variant="primary" size="sm" />
+        <Spinner animation="grow" variant="primary" />
+      </>
+    );
 
   if (error) return "An error has occurred: " + error.message;
   return (

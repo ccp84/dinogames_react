@@ -1,7 +1,7 @@
 import React from "react";
 import { Card, ListGroup, ListGroupItem, Stack } from "react-bootstrap";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import EditReview from "./EditReview";
+import SolidIcon from "../../components/icons/SolidIcon";
 
 const ReviewList = (props) => {
   return (
@@ -37,9 +37,9 @@ const ReviewList = (props) => {
                     <Stack direction="horizontal" gap={3}>
                       <>
                         {review.author}
-                        <FontAwesomeIcon
+                        <SolidIcon
                           className="text-primary m-1"
-                          icon={`fa-solid fa-${review.profileicon}`}
+                          iconName={review.profileicon}
                         />
                       </>
                       <>{review.lastupdated}</>

@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import React, { useState } from "react";
 import { Card, Col, ListGroup, ListGroupItem, Row } from "react-bootstrap";
 import { axiosReq } from "../../api/axiosDefaults";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import SolidIcon from "../../components/icons/SolidIcon";
 
 const AllNews = () => {
   const [listDetails, setListDetails] = useState({
@@ -52,9 +52,9 @@ const AllNews = () => {
                         </ListGroupItem>
                         <ListGroupItem>
                           Written by: {item.author}
-                          <FontAwesomeIcon
+                          <SolidIcon
                             className="text-primary m-1"
-                            icon={`fa-solid fa-${item.profileicon}`}
+                            iconName={item.profileicon}
                           />
                         </ListGroupItem>
                         <ListGroupItem>

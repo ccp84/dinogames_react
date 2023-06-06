@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
 import { Alert, Button, Form } from "react-bootstrap";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import SolidIcon from "../../components/icons/SolidIcon";
 
 const UserEdit = () => {
   const location = useLocation();
@@ -105,19 +105,19 @@ const UserEdit = () => {
           >
             {/* These should match choices in User model */}
             <option value="puzzle-piece">
-              <FontAwesomeIcon icon="fa-solid fa-puzzle-piece" /> Puzzle Piece
+              <SolidIcon iconName="puzzle-piece" /> Puzzle Piece
             </option>
             <option value="dice">
-              <FontAwesomeIcon icon="fa-solid fa-dice" /> Dice
+              <SolidIcon iconName="dice" /> Dice
             </option>
             <option value="chess">
-              <FontAwesomeIcon icon="fa-solid fa-chess" /> Chess
+              <SolidIcon iconName="chess" /> Chess
             </option>
             <option value="hat-wizard">
-              <FontAwesomeIcon icon="fa-solid fa-hat-wizard" /> Wizard Hat
+              <SolidIcon iconName="hat-wizard" /> Wizard Hat
             </option>
             <option value="book-skull">
-              <FontAwesomeIcon icon="fa-solid fa-book-skull" /> Pirate
+              <SolidIcon iconName="book-skull" /> Pirate
             </option>
           </Form.Select>
         </Form.Group>

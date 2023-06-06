@@ -1,9 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
 import React, { useState } from "react";
-import { Card, ListGroup, ListGroupItem } from "react-bootstrap";
+import { Card, ListGroup, ListGroupItem, Spinner } from "react-bootstrap";
 import { axiosReq } from "../../api/axiosDefaults";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import SolidIcon from "../../components/icons/SolidIcon"
 import { Link } from "react-router-dom";
 
 const UserRatings = () => {
@@ -20,7 +20,14 @@ const UserRatings = () => {
         .then((res) => res.data),
     onSuccess: (data) => setRatings({ myGames: data }),
   });
-  if (isLoading) return "Loading...";
+  if (isLoading)
+    return (
+      <>
+        "Loading..."
+        <Spinner animation="grow" variant="primary" size="sm" />
+        <Spinner animation="grow" variant="primary" />
+      </>
+    );
 
   if (error) return "An error has occurred: " + error.message;
   return (
@@ -30,10 +37,7 @@ const UserRatings = () => {
           <Card.Title className="text-primary">
             Games I like
             <>
-              <FontAwesomeIcon
-                className="text-success m-1"
-                icon={`fa-solid fa-thumbs-up`}
-              />
+              <SolidIcon className="text-success m-1" iconName="thumbs-up" />
             </>
           </Card.Title>
         </Card.Body>

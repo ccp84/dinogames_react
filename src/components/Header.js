@@ -10,7 +10,7 @@ import {
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { Button } from "react-bootstrap";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import SolidIcon from "./icons/SolidIcon";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -50,9 +50,9 @@ const Header = () => {
       </Nav.Link>
       <Nav.Link href="/profile">
         Signed in as: {currentUser?.username}
-        <FontAwesomeIcon
+        <SolidIcon
           className="text-warning m-1"
-          icon={`fa-solid fa-${currentUser?.profileicon}`}
+          iconName={currentUser?.profileicon}
         />
       </Nav.Link>
     </>
@@ -72,10 +72,7 @@ const Header = () => {
         <Button variant="outline-warning">Signup</Button>
       </Nav.Link>
       <Navbar.Text>
-        <FontAwesomeIcon
-          className="text-warning m-2"
-          icon={`fa-solid fa-user-slash`}
-        />
+        <SolidIcon className="text-warning m-2" iconName="user-slash" />
       </Navbar.Text>
     </>
   );

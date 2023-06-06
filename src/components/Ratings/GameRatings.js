@@ -1,10 +1,11 @@
 import React from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { Badge, Button, Card, Stack, Toast } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
 import { useQueryClient } from "@tanstack/react-query";
+import SolidIcon from "../icons/SolidIcon";
+import RegularIcon from "../icons/RegularIcon";
 
 const GameRatings = ({
   thumbsup,
@@ -27,9 +28,7 @@ const GameRatings = ({
                 <Card.Footer>
                   <Card.Title className="text-primary">
                     <Stack direction="horizontal" gap={3}>
-                      <FontAwesomeIcon
-                        className="text-success m-1"
-                        icon={`fa-solid fa-thumbs-up`}
+                      <Link
                         onClick={async () => {
                           try {
                             await axiosReq.delete(`/ratings/${ratingid}`);
@@ -37,16 +36,19 @@ const GameRatings = ({
                               queryKey: ["libraryData"],
                             });
                           } catch (err) {
-                            <Toast>{err}</Toast>;
+                            // fix error handling;
                           }
                         }}
-                      />
+                      >
+                        <SolidIcon
+                          iconName="thumbs-up"
+                          className="text-success m-1"
+                        />
+                      </Link>
                       <Badge pill bg="success">
                         {thumbsup}
                       </Badge>
-                      <FontAwesomeIcon
-                        className="text-secondary m-1"
-                        icon={`fa-regular fa-thumbs-down`}
+                      <Link
                         onClick={async () => {
                           try {
                             await axiosReq.put(
@@ -60,7 +62,12 @@ const GameRatings = ({
                             <Toast>{err}</Toast>;
                           }
                         }}
-                      />
+                      >
+                        <RegularIcon
+                          className="text-secondary m-1"
+                          iconName="thumbs-down"
+                        />
+                      </Link>
                       <Badge pill bg="danger">
                         {thumbsdown}
                       </Badge>
@@ -72,9 +79,7 @@ const GameRatings = ({
                 <Card.Footer>
                   <Card.Title className="text-primary">
                     <Stack direction="horizontal" gap={3}>
-                      <FontAwesomeIcon
-                        className="text-secondary m-1"
-                        icon={`fa-regular fa-thumbs-up`}
+                      <Link
                         onClick={async () => {
                           try {
                             await axiosReq.put(
@@ -88,14 +93,17 @@ const GameRatings = ({
                             <Toast>{err}</Toast>;
                           }
                         }}
-                      />
+                      >
+                        <RegularIcon
+                          className="text-secondary m-1"
+                          iconName="thumbs-up"
+                        />
+                      </Link>
 
                       <Badge pill bg="success">
                         {thumbsup}
                       </Badge>
-                      <FontAwesomeIcon
-                        className="text-danger m-1"
-                        icon={`fa-solid fa-thumbs-down`}
+                      <Link
                         onClick={async () => {
                           try {
                             await axiosReq.delete(`/ratings/${ratingid}`);
@@ -106,7 +114,12 @@ const GameRatings = ({
                             <Toast>{err}</Toast>;
                           }
                         }}
-                      />
+                      >
+                        <SolidIcon
+                          className="text-danger m-1"
+                          iconName="thumbs-down"
+                        />
+                      </Link>
                       <Badge pill bg="danger">
                         {thumbsdown}
                       </Badge>
@@ -120,9 +133,7 @@ const GameRatings = ({
             <Card.Footer>
               <Card.Title className="text-primary">
                 <Stack direction="horizontal" gap={3}>
-                  <FontAwesomeIcon
-                    className="text-secondary m-1"
-                    icon={`fa-regular fa-thumbs-up`}
+                  <Link
                     onClick={async () => {
                       try {
                         await axiosReq.post(
@@ -139,13 +150,16 @@ const GameRatings = ({
                         <Toast>{err}</Toast>;
                       }
                     }}
-                  />
+                  >
+                    <RegularIcon
+                      className="text-secondary m-1"
+                      iconName="thumbs-up"
+                    />
+                  </Link>
                   <Badge pill bg="success">
                     {thumbsup}
                   </Badge>
-                  <FontAwesomeIcon
-                    className="text-secondary m-1"
-                    icon={`fa-regular fa-thumbs-down`}
+                  <Link
                     onClick={async () => {
                       try {
                         await axiosReq.post(
@@ -162,7 +176,12 @@ const GameRatings = ({
                         <Toast>{err}</Toast>;
                       }
                     }}
-                  />
+                  >
+                    <RegularIcon
+                      className="text-secondary m-1"
+                      iconName="thumbs-down"
+                    />
+                  </Link>
                   <Badge pill bg="danger">
                     {thumbsdown}
                   </Badge>
@@ -179,16 +198,16 @@ const GameRatings = ({
               <Button className="m-2" variant="info">
                 Sign in to rate
               </Button>
-              <FontAwesomeIcon
+              <RegularIcon
                 className="text-secondary m-1"
-                icon={`fa-regular fa-thumbs-up`}
+                iconName="thumbs-up"
               />
               <Badge pill bg="success">
                 {thumbsup}
               </Badge>
-              <FontAwesomeIcon
+              <RegularIcon
                 className="text-secondary m-1"
-                icon={`fa-regular fa-thumbs-down`}
+                iconName="thumbs-down"
               />
               <Badge pill bg="danger">
                 {thumbsdown}
