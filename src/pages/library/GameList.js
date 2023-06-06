@@ -3,6 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import { axiosReq } from "../../api/axiosDefaults";
 import LatestGames from "./LatestGames";
 import AllGames from "./AllGames";
+import Loading from "../../components/Loading";
 
 const GameList = ({ list, filter }) => {
   const [listDetails, setListDetails] = useState({
@@ -20,7 +21,7 @@ const GameList = ({ list, filter }) => {
     onSuccess: (data) => setListDetails({ games: data }),
   });
 
-  if (isLoading) return "Loading...";
+  if (isLoading) return <Loading />;
 
   if (error) return "An error has occurred: " + error.message;
 

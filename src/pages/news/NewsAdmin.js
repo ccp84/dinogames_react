@@ -1,17 +1,19 @@
 import React, { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { axiosReq } from "../../api/axiosDefaults";
-import Card from "react-bootstrap/Card";
 import ListGroup from "react-bootstrap/ListGroup";
-import { ListGroupItem } from "react-bootstrap";
+import { Alert, Button, ListGroupItem, Stack } from "react-bootstrap";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import CreateNews from "./CreateNews";
 import EditNews from "./EditNews";
+import Loading from "../../components/Loading";
+import HeaderContainer from "../../components/Layout/HeaderContainer";
 
 const NewsAdmin = () => {
   const [listDetails, setListDetails] = useState({
     news: [],
   });
+  const [show, setShow] = useState(false);
 
   const currentUser = useCurrentUser();
 
@@ -24,35 +26,50 @@ const NewsAdmin = () => {
     onSuccess: (data) => setListDetails({ news: data }),
   });
 
-  if (isLoading) return "Loading...";
+  if (isLoading) return <Loading />;
 
   if (error) return "An error has occurred: " + error.message;
 
   return (
     <>
       {currentUser?.is_staff ? (
-        <Card className="m-1" border="primary">
-          <Card.Body>
-            <Card.Title className="text-primary">News Admin</Card.Title>
-
-            <CreateNews />
-          </Card.Body>
-
-          <ListGroup className="list-group-flush">
-            {news.map((item) => {
-              return (
-                <ListGroupItem key={item.id}>
-                  <EditNews
-                    id={item.id}
-                    title={item.title}
-                    content={item.content}
-                    category={item.category}
-                  />
-                </ListGroupItem>
-              );
-            })}
-          </ListGroup>
-        </Card>
+        // Admin user logged in ? display page
+        <HeaderContainer
+          titleContent={
+            <>
+              <Stack direction="horizontal" gap={3}>
+                <>News Admin</>
+                <Button
+                  variant="outline-primary"
+                  onClick={() => setShow(!show)}
+                >
+                  {show ? "Close Editor" : "New Announcement"}
+                </Button>
+              </Stack>
+              <Alert variant="primary" show={show}>
+                <CreateNews />
+              </Alert>
+            </>
+          }
+          bodyContent={
+            <>
+              <ListGroup className="list-group-flush">
+                {news.map((item) => {
+                  return (
+                    <ListGroupItem key={item.id}>
+                      <EditNews
+                        id={item.id}
+                        title={item.title}
+                        content={item.content}
+                        category={item.category}
+                      />
+                    </ListGroupItem>
+                  );
+                })}
+              </ListGroup>
+            </>
+          }
+        />
       ) : (
         "You must be an administrator to access this page"
       )}

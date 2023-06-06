@@ -1,7 +1,11 @@
 import React from "react";
 import { Card } from "react-bootstrap";
 
-const HeaderFooterContainer = ({ titleContent, bodyContent }) => {
+const HeaderFooterContainer = ({
+  titleContent,
+  bodyContent,
+  footerContent,
+}) => {
   return (
     <>
       <Card className="m-1" border="primary">
@@ -11,6 +15,7 @@ const HeaderFooterContainer = ({ titleContent, bodyContent }) => {
         <Card.Body>
           <Card.Text>{bodyContent}</Card.Text>
         </Card.Body>
+        <Card.Footer>{footerContent}</Card.Footer>
       </Card>
     </>
   );

@@ -5,6 +5,7 @@ import { axiosReq } from "../../api/axiosDefaults";
 import { useNavigate } from "react-router-dom";
 import { Alert } from "react-bootstrap";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
+import PageContainer from "../../components/Layout/PageContainer";
 
 const CreateGame = () => {
   const navigate = useNavigate();
@@ -45,6 +46,7 @@ const CreateGame = () => {
   return (
     <>
       {currentUser?.is_staff ? (
+        // admin user logged in - display page content
         <>
           <Form onSubmit={handleSubmit}>
             <Form.Group className="mb-3" controlId="title">
@@ -162,7 +164,10 @@ const CreateGame = () => {
           </Form>
         </>
       ) : (
-        "You must be an administrator to add game listings"
+        // User is not admin staff - display warning message
+        <PageContainer
+          bodyContent={<>You must be an administrator to add game listings </>}
+        />
       )}
     </>
   );

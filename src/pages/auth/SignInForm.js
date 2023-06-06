@@ -7,86 +7,97 @@ import { useState } from "react";
 import axios from "axios";
 import { Alert } from "react-bootstrap";
 import { useSetCurrentUser } from "../../contexts/CurrentUserContext";
+import HeaderFooterContainer from "../../components/Layout/HeaderFooterContainer";
 
 const SignInForm = () => {
-	const setCurrentUser = useSetCurrentUser();
-	const [signinData, setSigninData] = useState({
-		username: "",
-		password: "",
-	});
-	const { username, password } = signinData;
+  const setCurrentUser = useSetCurrentUser();
+  const [signinData, setSigninData] = useState({
+    username: "",
+    password: "",
+  });
+  const { username, password } = signinData;
 
-	const [errors, setErrors] = useState({});
-	const navigate = useNavigate();
+  const [errors, setErrors] = useState({});
+  const navigate = useNavigate();
 
-	const handleChange = (event) => {
-		setSigninData({
-			...signinData,
-			[event.target.name]: event.target.value,
-		});
-	};
+  const handleChange = (event) => {
+    setSigninData({
+      ...signinData,
+      [event.target.name]: event.target.value,
+    });
+  };
 
-	const handleSubmit = async (event) => {
-		event.preventDefault();
-		try {
-			const { data } = await axios.post("dj-rest-auth/login/", signinData);
-			console.log(data.user);
-			setCurrentUser(data.user);
-			navigate("/profile");
-		} catch (err) {
-			setErrors(err.response?.data);
-			console.log(errors.data);
-		}
-	};
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      const { data } = await axios.post("dj-rest-auth/login/", signinData);
+      setCurrentUser(data.user);
+      navigate("/profile");
+    } catch (err) {
+      setErrors(err.response?.data);
+    }
+  };
 
-	return (
-		<Container>
-			<h1 className="text-primary">Sign In</h1>
-			<Form onSubmit={handleSubmit}>
-				<Form.Group className="mb-3" controlId="username">
-					<Form.Label className="d-none">Username</Form.Label>
-					<Form.Control
-						type="text"
-						placeholder="Username"
-						name="username"
-						value={username}
-						onChange={handleChange}
-					/>
-				</Form.Group>
-				{errors.username?.map((message, idx) => (
-					<Alert key={idx} variant="warning">
-						{message}
-					</Alert>
-				))}
-				<Form.Group className="mb-3" controlId="password">
-					<Form.Label className="d-none">Password</Form.Label>
-					<Form.Control
-						type="password"
-						placeholder="Password"
-						name="password"
-						value={password}
-						onChange={handleChange}
-					/>
-				</Form.Group>
-				{errors.password?.map((message, idx) => (
-					<Alert variant="warning" key={idx}>
-						{message}
-					</Alert>
-				))}
-				<Button variant="info" type="submit">
-					Sign In
-				</Button>
-				{errors.non_field_errors?.map((message, idx) => (
-					<Alert key={idx} variant="warning" className="mt-3">
-						{message}
-					</Alert>
-				))}
-			</Form>
-			<p>
-				Don't have an account? Sign up <Link to="/signup">here</Link>
-			</p>
-		</Container>
-	);
+  return (
+    <Container>
+      <HeaderFooterContainer
+        titleContent={
+          <>
+            <h1 className="text-primary">Sign In</h1>
+          </>
+        }
+        bodyContent={
+          <>
+            <Form onSubmit={handleSubmit}>
+              <Form.Group className="mb-3" controlId="username">
+                <Form.Label className="d-none">Username</Form.Label>
+                <Form.Control
+                  type="text"
+                  placeholder="Username"
+                  name="username"
+                  value={username}
+                  onChange={handleChange}
+                />
+              </Form.Group>
+              {errors.username?.map((message, idx) => (
+                <Alert key={idx} variant="warning">
+                  {message}
+                </Alert>
+              ))}
+              <Form.Group className="mb-3" controlId="password">
+                <Form.Label className="d-none">Password</Form.Label>
+                <Form.Control
+                  type="password"
+                  placeholder="Password"
+                  name="password"
+                  value={password}
+                  onChange={handleChange}
+                />
+              </Form.Group>
+              {errors.password?.map((message, idx) => (
+                <Alert variant="warning" key={idx}>
+                  {message}
+                </Alert>
+              ))}
+              <Button variant="info" type="submit">
+                Sign In
+              </Button>
+              {errors.non_field_errors?.map((message, idx) => (
+                <Alert key={idx} variant="warning" className="mt-3">
+                  {message}
+                </Alert>
+              ))}
+            </Form>
+          </>
+        }
+        footerContent={
+          <>
+            Don't have an account? Sign up <Link to="/signup">here</Link>
+          </>
+        }
+      />
+    </Container>
+  );
 };
 
 export default SignInForm;

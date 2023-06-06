@@ -2,17 +2,19 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import React, { useState } from "react";
 import { Alert, Button, Form } from "react-bootstrap";
 import { axiosReq } from "../../api/axiosDefaults";
+import { useNavigate } from "react-router-dom";
 
 const CreateNews = () => {
   const [announcement, setAnnouncement] = useState({
     title: "",
     content: "",
-    category: "",
+    category: 1,
   });
-  const [show, setShow] = useState(false);
+
   const { title, content, category } = announcement;
 
   const queryClient = useQueryClient();
+  const navigate = useNavigate();
 
   const mutation = useMutation({
     mutationFn: async (announcement) => {
@@ -21,7 +23,7 @@ const CreateNews = () => {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["newsData"] });
       queryClient.invalidateQueries({ queryKey: ["newsAdminlist"] });
-      setAnnouncement({ title: "", content: "", category: "" });
+      navigate("/news");
     },
   });
 
@@ -32,9 +34,6 @@ const CreateNews = () => {
 
   return (
     <>
-      <Button variant="outline-primary" onClick={() => setShow(!show)}>
-        {show ? "Close Editor" : "New Announcement"}
-      </Button>
       <div>
         {mutation.isLoading ? (
           <Alert variant="info">'Posting announcement...'</Alert>
@@ -52,64 +51,62 @@ const CreateNews = () => {
           </>
         )}
       </div>
-
-      <Alert variant="primary" show={show}>
-        <Form onSubmit={onCreate}>
-          <Form.Group className="mb-3" controlId="content">
-            <Form.Label>Post new announcement</Form.Label>
-            <Form.Control
-              required
-              type="text"
-              placeholder="Title"
-              name="title"
-              value={title}
-              onChange={(e) => {
-                setAnnouncement({
-                  ...announcement,
-                  [e.target.name]: e.target.value,
-                });
-              }}
-            />
-          </Form.Group>
-          <Form.Group className="mb-3" controlId="title">
-            <Form.Label className="d-none">Announcement content</Form.Label>
-            <Form.Control
-              as="textarea"
-              rows={3}
-              placeholder="Content"
-              name="content"
-              value={content}
-              onChange={(e) => {
-                setAnnouncement({
-                  ...announcement,
-                  [e.target.name]: e.target.value,
-                });
-              }}
-            />
-          </Form.Group>
-          <Form.Group className="mb-3" controlId="category">
-            <Form.Label className="d-none">Announcement category</Form.Label>
-            <Form.Select
-              required
-              aria-label="Select announcement category"
-              name="category"
-              value={category}
-              onChange={(e) => {
-                setAnnouncement({
-                  ...announcement,
-                  [e.target.name]: e.target.value,
-                });
-              }}
-            >
-              <option value={1}>News</option>
-              <option value={2}>Events</option>
-            </Form.Select>
-          </Form.Group>
-          <Button variant="info" type="submit" onClick={() => setShow(!show)}>
-            Submit
-          </Button>
-        </Form>
-      </Alert>
+      <Form onSubmit={onCreate}>
+        <Form.Group className="mb-3" controlId="content">
+          <Form.Label>Post new announcement</Form.Label>
+          <Form.Control
+            required
+            type="text"
+            placeholder="Title"
+            name="title"
+            value={title}
+            onChange={(e) => {
+              setAnnouncement({
+                ...announcement,
+                [e.target.name]: e.target.value,
+              });
+            }}
+          />
+        </Form.Group>
+        <Form.Group className="mb-3" controlId="title">
+          <Form.Label className="d-none">Announcement content</Form.Label>
+          <Form.Control
+            required
+            as="textarea"
+            rows={3}
+            placeholder="Content"
+            name="content"
+            value={content}
+            onChange={(e) => {
+              setAnnouncement({
+                ...announcement,
+                [e.target.name]: e.target.value,
+              });
+            }}
+          />
+        </Form.Group>
+        <Form.Group className="mb-3" controlId="category">
+          <Form.Label className="d-none">Announcement category</Form.Label>
+          <Form.Select
+            required
+            aria-label="Select announcement category"
+            name="category"
+            value={category}
+            onChange={(e) => {
+              setAnnouncement({
+                ...announcement,
+                [e.target.name]: e.target.value,
+              });
+            }}
+          >
+            <option value={1}>News</option>
+            <option value={2}>Events</option>
+          </Form.Select>
+        </Form.Group>
+        <Button variant="info" type="submit">
+          Submit
+        </Button>
+      </Form>
     </>
   );
 };
