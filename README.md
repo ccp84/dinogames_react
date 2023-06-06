@@ -268,6 +268,19 @@ https://tanstack.com/query/latest/docs/react/guides/query-keys
 
 ### Editing and deleting reviews
 
+## Milestone 4 - Admin Announcements
+
+| Tasks this sprint | Overview |
+| ------------------| -------- |
+| *  | ![sprint4](/Documentation/sprint4.png) |
+
+
+## Milestone 5 - Member Ratings
+
+| Tasks this sprint | Overview |
+| ------------------| -------- |
+| * | ![sprint5](/Documentation/sprint5.png) |
+
 ## Tools Used
 [React Bootstrap](https://react-bootstrap.netlify.app/docs/getting-started/introduction)
 [React Router](https://reactrouter.com/en/main/start/tutorial)
