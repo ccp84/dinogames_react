@@ -6,7 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
 import { Alert } from "react-bootstrap";
-import HeaderFooterContainer from "../../components/Layout/HeaderFooterContainer"
+import HeaderFooterContainer from "../../components/Layout/HeaderFooterContainer";
 
 const SignUpForm = () => {
   const [signupData, setSignupData] = useState({
@@ -33,15 +33,10 @@ const SignUpForm = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await axios.post(
-        "dj-rest-auth/registration/",
-        signupData
-      );
-      console.log(response.data.user);
+      await axios.post("dj-rest-auth/registration/", signupData);
       navigate("/signin");
     } catch (err) {
       setErrors(err.response?.data);
-      console.log(errors);
     }
   };
 
