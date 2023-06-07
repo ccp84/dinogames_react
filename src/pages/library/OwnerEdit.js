@@ -43,7 +43,6 @@ const OwnerEdit = () => {
         `games/edit/${gameData.id}`,
         gameData
       );
-      console.log(data.user);
       navigate(`/game/${data.id}`);
     } catch (err) {
       //   Only log errors if response is not authentication error
