@@ -3,11 +3,11 @@ import { Card, ListGroup, ListGroupItem, Stack } from "react-bootstrap";
 import EditReview from "./EditReview";
 import SolidIcon from "../../components/icons/SolidIcon";
 
-const ReviewList = (props) => {
+const ReviewList = ({ reviews }) => {
   return (
     <>
       {/* If list is empty */}
-      {!props.reviews.length ? (
+      {!reviews.length ? (
         <ListGroup>
           <ListGroupItem>
             No reviews yet. Why not write the first one.
@@ -16,7 +16,7 @@ const ReviewList = (props) => {
       ) : (
         <>
           <ListGroup>
-            {props.reviews.map((review) => {
+            {reviews.map((review) => {
               return (
                 <ListGroupItem key={review.id}>
                   <Card.Body>

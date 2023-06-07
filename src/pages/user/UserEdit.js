@@ -1,22 +1,19 @@
 import React, { useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
 import { Alert, Button, Form } from "react-bootstrap";
 import SolidIcon from "../../components/icons/SolidIcon";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
-const UserEdit = () => {
-  const location = useLocation();
-  const navigate = useNavigate();
-  const [errors, setErrors] = useState({});
+const UserEdit = (props) => {
   const [profileDetails, setProfileDetails] = useState({
-    username: location.state.prop.username,
-    email: location.state.prop.email,
-    firstname: location.state.prop.firstname,
-    lastname: location.state.prop.lastname,
-    profileicon: location.state.prop.profileicon,
+    username: props.username,
+    email: props.email,
+    firstname: props.firstname,
+    lastname: props.lastname,
+    profileicon: props.profileicon,
   });
 
-  const { username, email, firstname, lastname, profileicon } = profileDetails;
+  const { email, firstname, lastname, profileicon } = profileDetails;
 
   const handleChange = (event) => {
     setProfileDetails({
@@ -24,120 +21,121 @@ const UserEdit = () => {
       [event.target.name]: event.target.value,
     });
   };
+  const [show, setShow] = useState(false);
+  const queryClient = useQueryClient();
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    try {
-      // Check refresh before sending
-      const { data } = await axiosReq.put("dj-rest-auth/user/", profileDetails);
-      console.log(data.user);
+  const mutation = useMutation({
+    mutationFn: async (profileDetails) => {
+      return await axiosReq.put("dj-rest-auth/user/", profileDetails);
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["profileData"] });
+    },
+  });
 
-      navigate(`/profile`);
-    } catch (err) {
-      console.log(errors.data);
-      //   Only log errors if response is not authentication error
-      if (err.response?.status !== 401) {
-        setErrors(err.response?.data);
-      }
-    }
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    mutation.mutate(profileDetails);
   };
 
   return (
     <>
-      <h1>Edit Details for {username}</h1>
-      <Form onSubmit={handleSubmit}>
-        <Form.Group className="mb-3" controlId="email">
-          <Form.Label>Email Address</Form.Label>
-          <Form.Control
-            required
-            type="email"
-            placeholder="Email Address"
-            name="email"
-            value={email}
-            onChange={handleChange}
-          />
-        </Form.Group>
-        {errors.email?.map((message, idx) => (
-          <Alert key={idx} variant="warning">
-            {message}
-          </Alert>
-        ))}
-        <Form.Group className="mb-3" controlId="firstname">
-          <Form.Label>First Name</Form.Label>
-          <Form.Control
-            required
-            type="text"
-            placeholder="First Name"
-            name="firstname"
-            value={firstname}
-            onChange={handleChange}
-          />
-        </Form.Group>
-        {errors.firstname?.map((message, idx) => (
-          <Alert key={idx} variant="warning">
-            {message}
-          </Alert>
-        ))}
-        <Form.Group className="mb-3" controlId="lastname">
-          <Form.Label>Last Name</Form.Label>
-          <Form.Control
-            required
-            type="text"
-            placeholder="Last Name"
-            name="lastname"
-            value={lastname}
-            onChange={handleChange}
-          />
-        </Form.Group>
-        {errors.lastname?.map((message, idx) => (
-          <Alert key={idx} variant="warning">
-            {message}
-          </Alert>
-        ))}
-        <Form.Group className="mb-3" controlId="profileicon">
-          <Form.Label>Profile Icon</Form.Label>
-          <Form.Select
-            required
-            aria-label="Select Profile Icon"
-            name="profileicon"
-            value={profileicon}
-            onChange={handleChange}
+      <Button variant="info" onClick={() => setShow(!show)}>
+        {show ? "Close Editor" : "Edit Details"}
+      </Button>
+      <div>
+        {mutation.isLoading ? (
+          <Alert variant="info">'Updating details...'</Alert>
+        ) : (
+          <>
+            {mutation.isError ? (
+              <Alert variant="warning">
+                Details not saved: {mutation.error.message}
+              </Alert>
+            ) : null}
+
+            {mutation.isSuccess ? (
+              <Alert variant="success">Details updated!</Alert>
+            ) : null}
+          </>
+        )}
+      </div>
+      <Alert variant="primary" show={show}>
+        <Form onSubmit={handleSubmit}>
+          <Form.Group className="mb-3" controlId="email">
+            <Form.Label>Email Address</Form.Label>
+            <Form.Control
+              required
+              type="email"
+              placeholder="Email Address"
+              name="email"
+              value={email}
+              onChange={handleChange}
+            />
+          </Form.Group>
+
+          <Form.Group className="mb-3" controlId="firstname">
+            <Form.Label>First Name</Form.Label>
+            <Form.Control
+              required
+              type="text"
+              placeholder="First Name"
+              name="firstname"
+              value={firstname}
+              onChange={handleChange}
+            />
+          </Form.Group>
+
+          <Form.Group className="mb-3" controlId="lastname">
+            <Form.Label>Last Name</Form.Label>
+            <Form.Control
+              required
+              type="text"
+              placeholder="Last Name"
+              name="lastname"
+              value={lastname}
+              onChange={handleChange}
+            />
+          </Form.Group>
+
+          <Form.Group className="mb-3" controlId="profileicon">
+            <Form.Label>Profile Icon</Form.Label>
+            <Form.Select
+              required
+              aria-label="Select Profile Icon"
+              name="profileicon"
+              value={profileicon}
+              onChange={handleChange}
+            >
+              {/* These should match choices in User model */}
+              <option value="puzzle-piece">
+                <SolidIcon iconName="puzzle-piece" /> Puzzle Piece
+              </option>
+              <option value="dice">
+                <SolidIcon iconName="dice" /> Dice
+              </option>
+              <option value="chess">
+                <SolidIcon iconName="chess" /> Chess
+              </option>
+              <option value="hat-wizard">
+                <SolidIcon iconName="hat-wizard" /> Wizard Hat
+              </option>
+              <option value="book-skull">
+                <SolidIcon iconName="book-skull" /> Pirate
+              </option>
+            </Form.Select>
+          </Form.Group>
+
+          <Button
+            className="m-2"
+            variant="info"
+            type="submit"
+            onClick={() => setShow(!show)}
           >
-            {/* These should match choices in User model */}
-            <option value="puzzle-piece">
-              <SolidIcon iconName="puzzle-piece" /> Puzzle Piece
-            </option>
-            <option value="dice">
-              <SolidIcon iconName="dice" /> Dice
-            </option>
-            <option value="chess">
-              <SolidIcon iconName="chess" /> Chess
-            </option>
-            <option value="hat-wizard">
-              <SolidIcon iconName="hat-wizard" /> Wizard Hat
-            </option>
-            <option value="book-skull">
-              <SolidIcon iconName="book-skull" /> Pirate
-            </option>
-          </Form.Select>
-        </Form.Group>
-        {errors.profileicon?.map((message, idx) => (
-          <Alert key={idx} variant="warning">
-            {message}
-          </Alert>
-        ))}
-        <Button className="m-2" variant="info" type="submit">
-          Edit Profile
-        </Button>
-        <Button className="m-2" variant="info" onClick={() => navigate(-1)}>
-          Cancel
-        </Button>
-        {errors.non_field_errors?.map((message, idx) => (
-          <Alert key={idx} variant="warning" className="mt-3">
-            {message}
-          </Alert>
-        ))}
-      </Form>
+            Edit Profile
+          </Button>
+        </Form>
+      </Alert>
     </>
   );
 };

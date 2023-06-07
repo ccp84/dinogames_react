@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import UserDetails from "./UserDetails";
-import { Card, Col, Row } from "react-bootstrap";
+import { Col, Row } from "react-bootstrap";
 import ReviewList from "../reviews/ReviewList";
 import { useQuery } from "@tanstack/react-query";
 import { axiosReq } from "../../api/axiosDefaults";
 import UserRatings from "../../components/Ratings/UserRatings";
+import Loading from "../../components/Loading";
+import HeaderContainer from "../../components/Layout/HeaderContainer";
 
 const Profile = () => {
   const [reviews, setReviews] = useState({
@@ -17,7 +19,7 @@ const Profile = () => {
     onSuccess: (data) => setReviews({ allReviews: data }),
   });
 
-  if (isLoading) return "Loading...";
+  if (isLoading) return <Loading />;
 
   if (error) return "An error has occurred: " + error.message;
   return (
@@ -28,14 +30,15 @@ const Profile = () => {
         <UserRatings />
       </Col>
       <Col s={12} md={6} lg={8}>
-        <Card className="m-1" border="primary">
-          <Card.Body>
-            <Card.Title className="text-primary">My Reviews</Card.Title>
-          </Card.Body>
-          <ReviewList reviews={allReviews} />
-        </Card>
+        <HeaderContainer
+          titleContent={<>My Reviews</>}
+          bodyContent={
+            <>
+              <ReviewList reviews={allReviews} />
+            </>
+          }
+        />
       </Col>
-      <Col s={12} md={6} lg={4}></Col>
     </Row>
   );
 };

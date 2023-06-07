@@ -76,7 +76,7 @@ const EditReview = (props) => {
             />
           </Form.Group>
           <Stack direction="horizontal" gap={3}>
-            <Button variant="info" type="submit">
+            <Button variant="info" type="submit" onClick={() => setShow(!show)}>
               Submit
             </Button>
             <DropdownButton

@@ -3,9 +3,9 @@ import React, { useState } from "react";
 import { Alert, Button, Form } from "react-bootstrap";
 import { axiosReq } from "../../api/axiosDefaults";
 
-const CreateReview = (props) => {
+const CreateReview = ({ id }) => {
   const [review, setReview] = useState({
-    game: props.id,
+    game: id,
     content: "",
   });
   const [show, setShow] = useState(false);
@@ -19,7 +19,7 @@ const CreateReview = (props) => {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["reviewData"] });
-      setReview({ game: props.id, content: "" });
+      setReview({ game: id, content: "" });
     },
   });
 
@@ -62,7 +62,7 @@ const CreateReview = (props) => {
               value={content}
               onChange={(e) => {
                 setReview({
-                  game: props.id,
+                  game: id,
                   content: e.target.value,
                 });
               }}
