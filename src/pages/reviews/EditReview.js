@@ -24,6 +24,7 @@ const EditReview = (props) => {
       return await axiosReq.put(`reviews/${props.id}`, review);
     },
     onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["gameData"] });
       queryClient.invalidateQueries({ queryKey: ["reviewData"] });
     },
   });
