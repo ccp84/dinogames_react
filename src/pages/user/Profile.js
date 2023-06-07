@@ -6,6 +6,7 @@ import { useQuery } from "@tanstack/react-query";
 import { axiosReq } from "../../api/axiosDefaults";
 import Loading from "../../components/Loading";
 import HeaderContainer from "../../components/Layout/HeaderContainer";
+import UserRatings from "../../components/Ratings/UserRatings";
 
 const Profile = () => {
   const [reviews, setReviews] = useState({
@@ -25,6 +26,7 @@ const Profile = () => {
     <Row>
       <Col s={12} md={6} lg={4}>
         <UserDetails />
+        <UserRatings />
       </Col>
       <Col s={12} md={6} lg={8}>
         <HeaderContainer

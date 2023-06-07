@@ -18,7 +18,7 @@ const UserRatings = () => {
     queryKey: ["ratingData"],
     queryFn: () =>
       axiosReq
-        .get(`/ratings/?game=&author=${currentUser.id}`)
+        .get(`/ratings/?game=&author=${currentUser.id}&rating=true`)
         .then((res) => res.data),
     onSuccess: (data) => setRatings({ myGames: data }),
   });
@@ -49,19 +49,9 @@ const UserRatings = () => {
                 <>
                   {myGames.map((game) => {
                     return (
-                      <>
-                        {game.rating ? (
-                          //   Rating is true - thumbs up
-                          <>
-                            <ListGroupItem key={game.id}>
-                              <Link to={`/game/${game.id}`}>
-                                {game.game_title}
-                              </Link>
-                            </ListGroupItem>
-                          </>
-                        ) : // rating is false - thumbs down
-                        null}
-                      </>
+                      <ListGroupItem key={game.id}>
+                        <Link to={`/game/${game.game}`}>{game.game_title}</Link>
+                      </ListGroupItem>
                     );
                   })}
                 </>

@@ -13,7 +13,8 @@ const UserDetails = () => {
     email: "",
     firstname: "",
     lastname: "",
-    profileicon: "",
+    // initialise to logged out user to solve null error
+    profileicon: "user-slash",
   });
 
   const { username, email, firstname, lastname, profileicon } = profileDetails;
