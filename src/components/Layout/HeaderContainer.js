@@ -8,9 +8,7 @@ const HeaderContainer = ({ titleContent, bodyContent }) => {
         <Card.Header className="text-primary">
           <Card.Title className="text-primary">{titleContent}</Card.Title>
         </Card.Header>
-        <Card.Body>
-          <Card.Text>{bodyContent}</Card.Text>
-        </Card.Body>
+        <Card.Body>{bodyContent}</Card.Body>
       </Card>
     </>
   );

@@ -6,7 +6,7 @@ const PageContainer = ({ bodyContent }) => {
     <>
       <Card className="m-1" border="primary">
         <Card.Body>
-          <Card.Text>{bodyContent}</Card.Text>
+          {bodyContent}
         </Card.Body>
       </Card>
     </>
