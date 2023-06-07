@@ -93,16 +93,16 @@ const GameDetail = () => {
           <>
             <Card.Body>
               <CardGroup>
-                <Card classname="m-2" border="primary">
+                <Card border="primary">
                   <Card.Body>Min Players: {game.minplayers}</Card.Body>
                 </Card>
-                <Card classname="m-2" border="primary">
+                <Card border="primary">
                   <Card.Body>Max Players: {game.maxplayers}</Card.Body>
                 </Card>
-                <Card classname="m-2" border="primary">
+                <Card border="primary">
                   <Card.Body>Time to play: {game.playtime} minutes</Card.Body>
                 </Card>
-                <Card classname="m-2" border="primary">
+                <Card border="primary">
                   <Card.Body>Tags: {game.tags}</Card.Body>
                 </Card>
               </CardGroup>

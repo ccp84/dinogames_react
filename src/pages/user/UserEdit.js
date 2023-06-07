@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { axiosReq } from "../../api/axiosDefaults";
 import { Alert, Button, Form } from "react-bootstrap";
-import SolidIcon from "../../components/icons/SolidIcon";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 const UserEdit = (props) => {
@@ -108,21 +107,11 @@ const UserEdit = (props) => {
               onChange={handleChange}
             >
               {/* These should match choices in User model */}
-              <option value="puzzle-piece">
-                <SolidIcon iconName="puzzle-piece" /> Puzzle Piece
-              </option>
-              <option value="dice">
-                <SolidIcon iconName="dice" /> Dice
-              </option>
-              <option value="chess">
-                <SolidIcon iconName="chess" /> Chess
-              </option>
-              <option value="hat-wizard">
-                <SolidIcon iconName="hat-wizard" /> Wizard Hat
-              </option>
-              <option value="book-skull">
-                <SolidIcon iconName="book-skull" /> Pirate
-              </option>
+              <option value="puzzle-piece">Puzzle Piece</option>
+              <option value="dice">Dice</option>
+              <option value="chess">Chess</option>
+              <option value="hat-wizard">Wizard Hat</option>
+              <option value="book-skull">Pirate</option>
             </Form.Select>
           </Form.Group>
 

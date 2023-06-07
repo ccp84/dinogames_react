@@ -4,7 +4,6 @@ import { Col, Row } from "react-bootstrap";
 import ReviewList from "../reviews/ReviewList";
 import { useQuery } from "@tanstack/react-query";
 import { axiosReq } from "../../api/axiosDefaults";
-import UserRatings from "../../components/Ratings/UserRatings";
 import Loading from "../../components/Loading";
 import HeaderContainer from "../../components/Layout/HeaderContainer";
 
@@ -26,8 +25,6 @@ const Profile = () => {
     <Row>
       <Col s={12} md={6} lg={4}>
         <UserDetails />
-
-        <UserRatings />
       </Col>
       <Col s={12} md={6} lg={8}>
         <HeaderContainer

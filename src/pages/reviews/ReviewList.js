@@ -22,13 +22,11 @@ const ReviewList = ({ reviews }) => {
                   <Card.Body>
                     {/* If author give edit and delete options */}
                     {review.is_author ? (
-                      <>
-                        <EditReview
-                          id={review.id}
-                          content={review.content}
-                          game_title={review.game_title}
-                        />
-                      </>
+                      <EditReview
+                        id={review.id}
+                        content={review.content}
+                        game_title={review.game_title}
+                      />
                     ) : (
                       <>{review.content}</>
                     )}
