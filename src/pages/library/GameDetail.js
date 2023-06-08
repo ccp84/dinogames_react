@@ -100,7 +100,9 @@ const GameDetail = () => {
                   <Card.Body>Max Players: {game.maxplayers}</Card.Body>
                 </Card>
                 <Card border="primary">
-                  <Card.Body>Time to play: {game.playtime} minutes</Card.Body>
+                  <Card.Body>
+                    Time to play: {game.playtime_name} minutes
+                  </Card.Body>
                 </Card>
                 <Card border="primary">
                   <Card.Body>Tags: {game.tags}</Card.Body>

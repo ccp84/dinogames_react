@@ -31,27 +31,27 @@ const Header = () => {
   const loggedIn = (
     <>
       <Nav.Link href="/game/library">
-        <Button variant="warning">Library</Button>
+        <Button variant="dark">Library</Button>
       </Nav.Link>
       <Nav.Link href="/news">
-        <Button variant="warning">News</Button>
+        <Button variant="dark">News</Button>
       </Nav.Link>
       {staff ? (
         <>
           <Nav.Link href="/admin">
-            <Button variant="outline-warning">Admin</Button>
+            <Button variant="dark">Admin</Button>
           </Nav.Link>
         </>
       ) : (
         ""
       )}
       <Nav.Link onClick={SignOut}>
-        <Button variant="outline-warning">Logout</Button>
+        <Button variant="dark">Logout</Button>
       </Nav.Link>
       <Nav.Link href="/profile">
         Signed in as: {currentUser?.username}
         <SolidIcon
-          className="text-warning m-1"
+          className="text-dark m-1"
           iconName={currentUser?.profileicon}
         />
       </Nav.Link>
@@ -59,25 +59,25 @@ const Header = () => {
   );
   const loggedOut = (
     <>
-      <Nav.Link className="text-warning" href="/game/library">
-        <Button variant="warning">View Library</Button>
+      <Nav.Link className="text-dark" href="/game/library">
+        <Button variant="dark">View Library</Button>
       </Nav.Link>
       <Nav.Link href="/news">
-        <Button variant="warning">News</Button>
+        <Button variant="dark">News</Button>
       </Nav.Link>
       <Nav.Link href="/signin">
-        <Button variant="outline-warning">Login</Button>
+        <Button variant="dark">Login</Button>
       </Nav.Link>
       <Nav.Link href="/signup">
-        <Button variant="outline-warning">Signup</Button>
+        <Button variant="dark">Signup</Button>
       </Nav.Link>
       <Navbar.Text>
-        <SolidIcon className="text-warning m-2" iconName="user-slash" />
+        <SolidIcon className="text-dark m-2" iconName="user-slash" />
       </Navbar.Text>
     </>
   );
   return (
-    <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+    <Navbar collapseOnSelect expand="md" bg="primary" variant="dark">
       <Container>
         <Navbar.Brand href="/">
           <img src={logo} alt="logo" height="45" />

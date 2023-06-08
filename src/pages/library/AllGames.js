@@ -38,7 +38,7 @@ const AllGames = ({ games }) => {
                           <Col>
                             <Row>Min Players: {game.minplayers}</Row>
                             <Row>Max Players: {game.maxplayers}</Row>
-                            <Row>Time to play:</Row>
+                            <Row>Time to play:{game.playtime_name}</Row>
                             <Row>{game.get_playtime_display} minutes</Row>
                           </Col>
                           <Col>
