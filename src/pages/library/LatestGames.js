@@ -1,7 +1,5 @@
 import React from "react";
-import Card from "react-bootstrap/Card";
-import { Col, ListGroup, ListGroupItem, Row } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Alert, Col, Row } from "react-bootstrap";
 import PageContainer from "../../components/Layout/PageContainer";
 
 const LatestGames = ({ games }) => {
@@ -22,20 +20,16 @@ const LatestGames = ({ games }) => {
           <PageContainer
             bodyContent={
               <>
-                <ListGroup>
-                  {/* Get latest 5 games only */}
-                  {games.slice(0, 5).map((game, id) => {
-                    return (
-                      <ListGroupItem key={id}>
-                        <Link to={`/game/${game.id}`}>
-                          <Card.Header>
-                            <Card.Title>{game.title}</Card.Title>
-                          </Card.Header>
-                        </Link>
-                      </ListGroupItem>
-                    );
-                  })}
-                </ListGroup>
+                {/* Get latest 5 games only */}
+                {games.slice(0, 5).map((game) => {
+                  return (
+                    <Alert key={game.id} variant="primary">
+                      <Alert.Link href={`/game/${game.id}`}>
+                        {game.title}
+                      </Alert.Link>
+                    </Alert>
+                  );
+                })}
               </>
             }
           />

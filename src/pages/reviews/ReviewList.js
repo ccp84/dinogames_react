@@ -8,18 +8,18 @@ const ReviewList = ({ reviews }) => {
     <>
       {/* If list is empty */}
       {!reviews.length ? (
-        <ListGroup>
+        <ListGroup className="list-group-flush">
           <ListGroupItem>
             No reviews yet. Why not write the first one.
           </ListGroupItem>
         </ListGroup>
       ) : (
         <>
-          <ListGroup>
+          <ListGroup className="list-group-flush">
             {reviews.map((review) => {
               return (
                 <ListGroupItem key={review.id}>
-                  <Card.Body>
+                  <Card.Text>
                     {/* If author give edit and delete options */}
                     {review.is_author ? (
                       <EditReview
@@ -30,7 +30,7 @@ const ReviewList = ({ reviews }) => {
                     ) : (
                       <>{review.content}</>
                     )}
-                  </Card.Body>
+                  </Card.Text>
                   <Card.Footer>
                     <Stack direction="horizontal" gap={3}>
                       <>

@@ -4,6 +4,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import {
+  Alert,
   Button,
   Card,
   CardGroup,
@@ -53,69 +54,67 @@ const GameDetail = () => {
       <HeaderContainer
         titleContent={
           <>
-            <h1>
-              {game.title}
-              {currentUser?.is_staff ? (
-                // Admin user logged in - show edit and delete options
-                <>
-                  <Stack direction="horizontal" gap={3}>
-                    <Link to="/game/edit" state={{ prop: game }}>
-                      <Button className="m-1" variant="info">
-                        Edit
-                      </Button>
-                    </Link>
-                    <DropdownButton
-                      id="dropdown-basic-button"
-                      title="Delete"
-                      variant="danger"
+            {game.title}
+            {currentUser?.is_staff ? (
+              // Admin user logged in - show edit and delete options
+              <>
+                <Stack direction="horizontal" gap={3}>
+                  <Link to="/game/edit" state={{ prop: game }}>
+                    <Button className="m-1" variant="info">
+                      Edit
+                    </Button>
+                  </Link>
+                  <DropdownButton
+                    id="dropdown-basic-button"
+                    title="Delete"
+                    variant="danger"
+                  >
+                    <Dropdown.Item
+                      onClick={async () => {
+                        try {
+                          await axiosReq.delete(`/games/edit/${game.id}`);
+                          navigate("/game/library");
+                        } catch (err) {
+                          console.log(err);
+                        }
+                      }}
                     >
-                      <Dropdown.Item
-                        onClick={async () => {
-                          try {
-                            await axiosReq.delete(`/games/edit/${game.id}`);
-                            navigate("/game/library");
-                          } catch (err) {
-                            console.log(err);
-                          }
-                        }}
-                      >
-                        Confirm Delete
-                      </Dropdown.Item>
-                    </DropdownButton>
-                  </Stack>
-                </>
-              ) : //  No admin credentials - nothing else to display
-              null}
-            </h1>
+                      Confirm Delete
+                    </Dropdown.Item>
+                  </DropdownButton>
+                </Stack>
+              </>
+            ) : //  No admin credentials - nothing else to display
+            null}
           </>
         }
         bodyContent={
           <>
-            <Card.Body>
-              <CardGroup>
-                <Card border="primary">
-                  <Card.Body>Min Players: {game.minplayers}</Card.Body>
-                </Card>
-                <Card border="primary">
-                  <Card.Body>Max Players: {game.maxplayers}</Card.Body>
-                </Card>
-                <Card border="primary">
-                  <Card.Body>
-                    Time to play: {game.playtime_name} minutes
-                  </Card.Body>
-                </Card>
-                <Card border="primary">
-                  <Card.Body>Tags: {game.tags}</Card.Body>
-                </Card>
-              </CardGroup>
-            </Card.Body>
-            <Card.Body>
-              <Card.Title className="text-primary">Game Overview</Card.Title>
-              <Card.Text>{game.overview}</Card.Text>
-            </Card.Body>
-            <Card.Body>
-              <Card.Title className="text-primary">
-                Reviews
+            <CardGroup>
+              <Card border="primary">
+                <Card.Body>Min Players: {game.minplayers}</Card.Body>
+              </Card>
+              <Card border="primary">
+                <Card.Body>Max Players: {game.maxplayers}</Card.Body>
+              </Card>
+              <Card border="primary">
+                <Card.Body>
+                  Time to play: {game.playtime_name} minutes
+                </Card.Body>
+              </Card>
+              <Card border="primary">
+                <Card.Body>Tags: {game.tags}</Card.Body>
+              </Card>
+            </CardGroup>
+
+            <Alert variant="primary" className="m-2">
+              <Alert.Heading>Game Overview</Alert.Heading>
+              {game.overview}
+            </Alert>
+
+            <HeaderContainer
+              titleContent={<>Reviews</>}
+              bodyContent={
                 <>
                   {currentUser ? (
                     // There is a logged in user - give option to review
@@ -128,10 +127,10 @@ const GameDetail = () => {
                       </Button>
                     </Link>
                   )}
+                  <ReviewList reviews={allReviews} />
                 </>
-              </Card.Title>
-              <ReviewList reviews={allReviews} />
-            </Card.Body>
+              }
+            />
           </>
         }
       />

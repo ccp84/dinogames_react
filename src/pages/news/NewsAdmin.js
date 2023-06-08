@@ -39,10 +39,7 @@ const NewsAdmin = () => {
             <>
               <Stack direction="horizontal" gap={3}>
                 <>News Admin</>
-                <Button
-                  variant="outline-primary"
-                  onClick={() => setShow(!show)}
-                >
+                <Button variant="outline-light" onClick={() => setShow(!show)}>
                   {show ? "Close Editor" : "New Announcement"}
                 </Button>
               </Stack>

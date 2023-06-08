@@ -1,7 +1,15 @@
 import React from "react";
+import HeaderContainer from "../components/Layout/HeaderContainer";
 
 const NoMatch = () => {
-  return <div>This is not the side quest you are looking for </div>;
+  return (
+    <>
+      <HeaderContainer
+        titleContent={<>Error</>}
+        bodyContent={<>This is not the side quest you were looking for</>}
+      />
+    </>
+  );
 };
 
 export default NoMatch;

@@ -76,7 +76,7 @@ const GameRatings = ({
               ) : (
                 // Rating returned is false - thumbs down
 
-                <Card.Title className="text-primary">
+                <Card.Title>
                   <Stack direction="horizontal" gap={3}>
                     <Link
                       onClick={async () => {
@@ -129,7 +129,7 @@ const GameRatings = ({
           ) : (
             // User is logged in but there is no rating id returned
 
-            <Card.Title className="text-primary">
+            <Card.Title>
               <Stack direction="horizontal" gap={3}>
                 <Link
                   onClick={async () => {

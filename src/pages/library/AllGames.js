@@ -29,7 +29,9 @@ const AllGames = ({ games }) => {
                   <HeaderFooterContainer
                     titleContent={
                       <>
-                        <Link to={`/game/${game.id}`}>{game.title}</Link>
+                        <Link className="text-light" to={`/game/${game.id}`}>
+                          {game.title}
+                        </Link>
                       </>
                     }
                     bodyContent={

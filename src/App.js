@@ -1,5 +1,3 @@
-import Container from "react-bootstrap/Container";
-import "./App.css";
 import "./api/axiosDefaults";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import {
@@ -13,7 +11,6 @@ import {
   faThumbsDown as faThumbsDownSolid,
 } from "@fortawesome/free-solid-svg-icons";
 import { faThumbsUp, faThumbsDown } from "@fortawesome/free-regular-svg-icons";
-import Header from "./components/Header";
 import { Route, Routes } from "react-router-dom";
 import SignUpForm from "./pages/auth/SignUpForm";
 import SignInForm from "./pages/auth/SignInForm";
@@ -42,22 +39,19 @@ library.add(
 
 function App() {
   return (
-    <Container>
-      <Header />
-      <Routes>
-        <Route path="/" element={<LandingPage />} />
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/profile/edit" element={<UserEdit />} />
-        <Route path="/signin" element={<SignInForm />} />
-        <Route path="/signup" element={<SignUpForm />} />
-        <Route path="/game/edit" element={<OwnerEdit />} />
-        <Route path="/game/library" element={<Library />} />
-        <Route path="game/:id" element={<GameDetail />} />
-        <Route path="/admin" element={<Admin />} />
-        <Route path="/news" element={<AllNews />} />
-        <Route path="*" element={<NoMatch />} />
-      </Routes>
-    </Container>
+    <Routes>
+      <Route path="/" element={<LandingPage />} />
+      <Route path="/profile" element={<Profile />} />
+      <Route path="/profile/edit" element={<UserEdit />} />
+      <Route path="/signin" element={<SignInForm />} />
+      <Route path="/signup" element={<SignUpForm />} />
+      <Route path="/game/edit" element={<OwnerEdit />} />
+      <Route path="/game/library" element={<Library />} />
+      <Route path="game/:id" element={<GameDetail />} />
+      <Route path="/admin" element={<Admin />} />
+      <Route path="/news" element={<AllNews />} />
+      <Route path="*" element={<NoMatch />} />
+    </Routes>
   );
 }
 

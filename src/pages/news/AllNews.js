@@ -53,23 +53,21 @@ const AllNews = () => {
                         </Card.Body>
                       </Col>
                       <Col sm={12} md={6}>
-                        <Card.Body>
-                          <ListGroup>
-                            <ListGroupItem>
-                              Updated on: {item.lastupdated}
-                            </ListGroupItem>
-                            <ListGroupItem>
-                              Written by: {item.author}
-                              <SolidIcon
-                                className="text-primary m-1"
-                                iconName={item.profileicon}
-                              />
-                            </ListGroupItem>
-                            <ListGroupItem>
-                              Category: {item.category_title}
-                            </ListGroupItem>
-                          </ListGroup>
-                        </Card.Body>
+                        <ListGroup>
+                          <ListGroupItem>
+                            Updated on: {item.lastupdated}
+                          </ListGroupItem>
+                          <ListGroupItem>
+                            Written by: {item.author}
+                            <SolidIcon
+                              className="text-primary m-1"
+                              iconName={item.profileicon}
+                            />
+                          </ListGroupItem>
+                          <ListGroupItem>
+                            Category: {item.category_title}
+                          </ListGroupItem>
+                        </ListGroup>
                       </Col>
                     </Row>
                   </>

@@ -5,8 +5,8 @@ const Loading = () => {
   return (
     <>
       "Loading..."
-      <Spinner animation="grow" variant="primary" size="sm" />
-      <Spinner animation="grow" variant="primary" />
+      <Spinner animation="grow" variant="warning" size="sm" />
+      <Spinner animation="grow" variant="warning" />
     </>
   );
 };

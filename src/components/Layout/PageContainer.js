@@ -5,7 +5,7 @@ const PageContainer = ({ bodyContent }) => {
   return (
     <>
       <Card className="m-1" border="primary">
-        <Card.Body>{bodyContent}</Card.Body>
+        <Card.Body className="text-dark">{bodyContent}</Card.Body>
       </Card>
     </>
   );

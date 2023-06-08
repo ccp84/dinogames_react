@@ -7,20 +7,23 @@ import "./api/axiosDefaults";
 import { CurrentUserProvider } from "./contexts/CurrentUserContext";
 import { BrowserRouter } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import Header from "./components/Header";
+import { Container } from "react-bootstrap";
 
 const queryClient = new QueryClient();
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-	<React.StrictMode>
-		<BrowserRouter>
-			<QueryClientProvider client={queryClient}>
-				<CurrentUserProvider>
-					<App />
-				</CurrentUserProvider>
-			</QueryClientProvider>
-		</BrowserRouter>
-	</React.StrictMode>
+  <BrowserRouter>
+    <QueryClientProvider client={queryClient}>
+      <CurrentUserProvider>
+        <Container>
+          <Header />
+          <App />
+        </Container>
+      </CurrentUserProvider>
+    </QueryClientProvider>
+  </BrowserRouter>
 );
 
 // If you want to start measuring performance in your app, pass a function

@@ -31,27 +31,27 @@ const Header = () => {
   const loggedIn = (
     <>
       <Nav.Link href="/game/library">
-        <Button variant="dark">Library</Button>
+        <Button variant="outline-light">Library</Button>
       </Nav.Link>
       <Nav.Link href="/news">
-        <Button variant="dark">News</Button>
+        <Button variant="outline-light">News</Button>
       </Nav.Link>
       {staff ? (
         <>
           <Nav.Link href="/admin">
-            <Button variant="dark">Admin</Button>
+            <Button variant="outline-light">Admin</Button>
           </Nav.Link>
         </>
       ) : (
         ""
       )}
       <Nav.Link onClick={SignOut}>
-        <Button variant="dark">Logout</Button>
+        <Button variant="outline-light">Logout</Button>
       </Nav.Link>
       <Nav.Link href="/profile">
         Signed in as: {currentUser?.username}
         <SolidIcon
-          className="text-dark m-1"
+          className="text-light m-1"
           iconName={currentUser?.profileicon}
         />
       </Nav.Link>
@@ -59,20 +59,20 @@ const Header = () => {
   );
   const loggedOut = (
     <>
-      <Nav.Link className="text-dark" href="/game/library">
-        <Button variant="dark">View Library</Button>
+      <Nav.Link className="text-light" href="/game/library">
+        <Button variant="outline-light">View Library</Button>
       </Nav.Link>
       <Nav.Link href="/news">
-        <Button variant="dark">News</Button>
+        <Button variant="outline-light">News</Button>
       </Nav.Link>
       <Nav.Link href="/signin">
-        <Button variant="dark">Login</Button>
+        <Button variant="outline-light">Login</Button>
       </Nav.Link>
       <Nav.Link href="/signup">
-        <Button variant="dark">Signup</Button>
+        <Button variant="outline-light">Signup</Button>
       </Nav.Link>
       <Navbar.Text>
-        <SolidIcon className="text-dark m-2" iconName="user-slash" />
+        <SolidIcon className="text-light m-2" iconName="user-slash" />
       </Navbar.Text>
     </>
   );

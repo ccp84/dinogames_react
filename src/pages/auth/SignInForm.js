@@ -41,11 +41,7 @@ const SignInForm = () => {
   return (
     <Container>
       <HeaderFooterContainer
-        titleContent={
-          <>
-            <h1 className="text-primary">Sign In</h1>
-          </>
-        }
+        titleContent={<>Sign In</>}
         bodyContent={
           <>
             <Form onSubmit={handleSubmit}>

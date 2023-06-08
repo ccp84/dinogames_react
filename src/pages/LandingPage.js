@@ -3,23 +3,13 @@ import GameList from "./library/GameList";
 import { Col, Row } from "react-bootstrap";
 import LatestNews from "./news/LatestNews";
 import PageContainer from "../components/Layout/PageContainer";
-import HeaderContainer from "../components/Layout/HeaderContainer";
 
 const LandingPage = () => {
   return (
     <>
-      <HeaderContainer
-        titleContent={<h1>Welcome to the Dinosaur Games Library</h1>}
-        bodyContent={
-          <>
-            Please use the library search features to find your next favourite
-            game. We hope to see you at an event soon.
-          </>
-        }
-      />
       <Row>
         <Col s={12} md={6}>
-          <h2>Latest News</h2>
+          <h2 className="text-primary">Latest News</h2>
           <>
             <LatestNews />
           </>
@@ -27,7 +17,7 @@ const LandingPage = () => {
         <Col s={12} md={6}>
           <Row>
             <Col>
-              <h2>Latest Games</h2>
+              <h2 className="text-primary">Latest Games</h2>
               <>
                 <GameList list="latest" filter="?ordering=-id" />
               </>
@@ -35,7 +25,7 @@ const LandingPage = () => {
           </Row>
           <Row>
             <Col>
-              <h2>About</h2>
+              <h2 className="text-primary">About</h2>
               <>
                 <PageContainer
                   bodyContent={
