@@ -5,10 +5,10 @@ const HeaderContainer = ({ titleContent, bodyContent }) => {
   return (
     <>
       <Card className="m-1" border="primary">
-        <Card.Header variant="light">
-          <Card.Title className="text-primary">{titleContent}</Card.Title>
+        <Card.Header className="text-light bg-primary">
+          <Card.Title>{titleContent}</Card.Title>
         </Card.Header>
-        <Card.Body className="text-dark">{bodyContent}</Card.Body>
+        <Card.Body>{bodyContent}</Card.Body>
       </Card>
     </>
   );
