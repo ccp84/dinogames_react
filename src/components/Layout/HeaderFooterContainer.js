@@ -1,5 +1,5 @@
 import React from "react";
-import { Card } from "react-bootstrap";
+import { Alert, Card } from "react-bootstrap";
 
 const HeaderFooterContainer = ({
   titleContent,
@@ -9,11 +9,11 @@ const HeaderFooterContainer = ({
   return (
     <>
       <Card className="m-1" border="primary">
-        <Card.Header className="text-light bg-primary">
-          <Card.Title>{titleContent}</Card.Title>
-        </Card.Header>
+        
+          <Alert variant="primary"><Alert.Heading>{titleContent}</Alert.Heading></Alert>
+        
         <Card.Body>{bodyContent}</Card.Body>
-        <Card.Footer>{footerContent}</Card.Footer>
+        <Alert variant="primary" className="m-0">{footerContent}</Alert>
       </Card>
     </>
   );

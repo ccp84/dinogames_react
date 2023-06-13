@@ -1,6 +1,6 @@
 import React from "react";
 import GameList from "./library/GameList";
-import { Col, Row } from "react-bootstrap";
+import { Alert, Col, Row } from "react-bootstrap";
 import LatestNews from "./news/LatestNews";
 import PageContainer from "../components/Layout/PageContainer";
 
@@ -9,7 +9,7 @@ const LandingPage = () => {
     <>
       <Row>
         <Col s={12} md={6}>
-          <h2 className="text-primary">Latest News</h2>
+          <Alert variant="warning" className="m-2"><Alert.Heading>Latest News</Alert.Heading></Alert>
           <>
             <LatestNews />
           </>
@@ -17,7 +17,7 @@ const LandingPage = () => {
         <Col s={12} md={6}>
           <Row>
             <Col>
-              <h2 className="text-primary">Latest Games</h2>
+              <Alert variant="warning" className="m-2"><Alert.Heading>Latest Games</Alert.Heading></Alert>
               <>
                 <GameList list="latest" filter="?ordering=-id" />
               </>
@@ -25,7 +25,7 @@ const LandingPage = () => {
           </Row>
           <Row>
             <Col>
-              <h2 className="text-primary">About</h2>
+              <Alert variant="warning" className="m-2"><Alert.Heading>About</Alert.Heading></Alert>
               <>
                 <PageContainer
                   bodyContent={

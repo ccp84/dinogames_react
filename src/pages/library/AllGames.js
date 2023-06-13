@@ -1,6 +1,6 @@
 import React from "react";
 import Card from "react-bootstrap/Card";
-import { Col, Row } from "react-bootstrap";
+import { Alert, Col, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import GameRatings from "../../components/Ratings/GameRatings";
 import HeaderFooterContainer from "../../components/Layout/HeaderFooterContainer";
@@ -29,9 +29,9 @@ const AllGames = ({ games }) => {
                   <HeaderFooterContainer
                     titleContent={
                       <>
-                        <Link className="text-light" to={`/game/${game.id}`}>
+                        <Alert.Link href={`/game/${game.id}`}>
                           {game.title}
-                        </Link>
+                        </Alert.Link>
                       </>
                     }
                     bodyContent={

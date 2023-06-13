@@ -42,7 +42,7 @@ const UserDetails = () => {
         titleContent={
           <>
             Account Details
-            <SolidIcon className="text-light m-1" iconName={profileicon} />
+            <SolidIcon className="text-warning m-1" iconName={profileicon} />
           </>
         }
         bodyContent={

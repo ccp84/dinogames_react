@@ -36,7 +36,7 @@ const ReviewList = ({ reviews }) => {
                       <>
                         {review.author}
                         <SolidIcon
-                          className="text-primary m-1"
+                          className="text-warning m-1"
                           iconName={review.profileicon}
                         />
                       </>

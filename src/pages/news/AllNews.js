@@ -60,7 +60,7 @@ const AllNews = () => {
                           <ListGroupItem>
                             Written by: {item.author}
                             <SolidIcon
-                              className="text-primary m-1"
+                              className="text-warning m-1"
                               iconName={item.profileicon}
                             />
                           </ListGroupItem>

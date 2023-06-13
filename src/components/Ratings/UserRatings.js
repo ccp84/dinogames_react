@@ -36,7 +36,7 @@ const UserRatings = () => {
           <>
             Games I like
             <>
-              <SolidIcon className="text-light m-1" iconName="thumbs-up" />
+              <SolidIcon className="text-primary m-1" iconName="thumbs-up" />
             </>
           </>
         }
