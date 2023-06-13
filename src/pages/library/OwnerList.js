@@ -44,7 +44,7 @@ const OwnerList = () => {
                 {show ? "Close Editor" : "Add Game"}
               </Button>
             </Stack>
-            <Alert show={show}>
+            <Alert variant="light" show={show}>
               <CreateGame />
             </Alert>
           </>

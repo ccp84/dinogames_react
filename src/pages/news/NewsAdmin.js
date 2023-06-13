@@ -43,7 +43,7 @@ const NewsAdmin = () => {
                   {show ? "Close Editor" : "New Announcement"}
                 </Button>
               </Stack>
-              <Alert variant="primary" show={show}>
+              <Alert variant="light" show={show}>
                 <CreateNews />
               </Alert>
             </>

@@ -59,7 +59,7 @@ const UserEdit = (props) => {
           </>
         )}
       </div>
-      <Alert variant="primary" show={show}>
+      <Alert variant="light" show={show}>
         <Form onSubmit={handleSubmit}>
           <Form.Group className="mb-3" controlId="email">
             <Form.Label>Email Address</Form.Label>
