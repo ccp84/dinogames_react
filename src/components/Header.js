@@ -22,7 +22,7 @@ const Header = () => {
 			setCurrentUser(null);
 			navigate("/signin");
 		} catch (err) {
-			console.log(err);
+			return null
 		}
 	};
 	const currentUser = useCurrentUser();

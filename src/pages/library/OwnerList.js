@@ -77,7 +77,7 @@ const OwnerList = () => {
                                 // useQuery refetch will refresh the list on success
                                 refetch();
                               } catch (err) {
-                                console.log(err);
+                                return null;
                               }
                             }}
                           >

@@ -94,7 +94,7 @@ const EditReview = (props) => {
                       queryKey: ["reviewData"],
                     });
                   } catch (err) {
-                    console.log(err);
+                    return null;
                   }
                 }}
               >

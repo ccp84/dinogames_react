@@ -68,7 +68,7 @@ const EditNews = (props) => {
                     queryKey: ["newsAdminlist"],
                   });
                 } catch (err) {
-                  console.log(err);
+                  return null;
                 }
               }}
             >

@@ -75,7 +75,7 @@ const GameDetail = () => {
                           await axiosReq.delete(`/games/edit/${game.id}`);
                           navigate("/game/library");
                         } catch (err) {
-                          console.log(err);
+                          return null;
                         }
                       }}
                     >
@@ -85,7 +85,7 @@ const GameDetail = () => {
                 </Stack>
               </>
             ) : //  No admin credentials - nothing else to display
-            null}
+              null}
           </>
         }
         bodyContent={
