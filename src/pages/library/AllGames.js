@@ -1,7 +1,6 @@
 import React from "react";
 import Card from "react-bootstrap/Card";
 import { Alert, Col, Row } from "react-bootstrap";
-import { Link } from "react-router-dom";
 import GameRatings from "../../components/Ratings/GameRatings";
 import HeaderFooterContainer from "../../components/Layout/HeaderFooterContainer";
 
