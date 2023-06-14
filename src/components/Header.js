@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
@@ -11,10 +11,11 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { Button } from "react-bootstrap";
 import SolidIcon from "./icons/SolidIcon";
+import NotificationContainer from "./Layout/NotificationContainer";
 
 const Header = () => {
 	const navigate = useNavigate();
-
+	const [errors, setErrors] = useState({ "flag": false, "message": "" });
 	const setCurrentUser = useSetCurrentUser();
 	const SignOut = async () => {
 		try {
@@ -22,7 +23,9 @@ const Header = () => {
 			setCurrentUser(null);
 			navigate("/signin");
 		} catch (err) {
-			return null
+			setErrors(
+				{ "flag": true, "message": "Error requesting logout" }
+			);
 		}
 	};
 	const currentUser = useCurrentUser();
@@ -77,7 +80,7 @@ const Header = () => {
 		</>
 	);
 	return (
-		<Navbar collapseOnSelect expand="md" variant="light">
+		<><Navbar collapseOnSelect expand="md" variant="light">
 			<Container>
 				<Navbar.Brand href="/">
 					<img src={logo} alt="logo" height="45" width="45" />
@@ -88,6 +91,15 @@ const Header = () => {
 				</Navbar.Collapse>
 			</Container>
 		</Navbar>
+			<>
+				{errors.flag ? (
+					<NotificationContainer
+						message={errors.message}
+						variant="warning"
+					/>
+				) : (null)}
+			</>
+		</>
 	);
 };
 
