@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
-import { Badge, Button, Card, Stack, Toast } from "react-bootstrap";
+import { Alert, Badge, Button, Card, Stack } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
 import { useQueryClient } from "@tanstack/react-query";
@@ -16,8 +16,13 @@ const GameRatings = ({
 }) => {
 	const currentUser = useCurrentUser();
 	const queryClient = useQueryClient();
+	const [errors, setErrors] = useState({});
 	return (
-		<>
+		<>{errors.data?.map((message, idx) => (
+			<Alert key={idx} variant="warning">
+				{message}
+			</Alert>
+		))}
 			{currentUser ? (
 				<>
 					{ratingid ? (
@@ -36,7 +41,8 @@ const GameRatings = ({
 														queryKey: ["libraryData"],
 													});
 												} catch (err) {
-													// fix error handling;
+													setErrors(
+														err.response?.data);
 												}
 											}}
 										>
@@ -59,7 +65,8 @@ const GameRatings = ({
 														queryKey: ["libraryData"],
 													});
 												} catch (err) {
-													<Toast>{err}</Toast>;
+													setErrors(
+														err.response?.data);
 												}
 											}}
 										>
@@ -89,7 +96,8 @@ const GameRatings = ({
 														queryKey: ["libraryData"],
 													});
 												} catch (err) {
-													<Toast>{err}</Toast>;
+													setErrors(
+														err.response?.data);
 												}
 											}}
 										>
@@ -110,7 +118,8 @@ const GameRatings = ({
 														queryKey: ["libraryData"],
 													});
 												} catch (err) {
-													<Toast>{err}</Toast>;
+													setErrors(
+														err.response?.data);
 												}
 											}}
 										>
@@ -145,7 +154,7 @@ const GameRatings = ({
 												queryKey: ["libraryData"],
 											});
 										} catch (err) {
-											<Toast>{err}</Toast>;
+											setErrors(err.response?.data);
 										}
 									}}
 								>
@@ -171,7 +180,7 @@ const GameRatings = ({
 												queryKey: ["libraryData"],
 											});
 										} catch (err) {
-											<Toast>{err}</Toast>;
+											setErrors(err.response?.data);
 										}
 									}}
 								>

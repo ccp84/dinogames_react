@@ -6,6 +6,7 @@ import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import SolidIcon from "../../components/icons/SolidIcon";
 import Loading from "../../components/Loading";
 import HeaderContainer from "../Layout/HeaderContainer";
+import ErrorContainer from "../ErrorContainer"
 
 const UserRatings = () => {
 	const [ratings, setRatings] = useState({
@@ -28,7 +29,12 @@ const UserRatings = () => {
 			</>
 		);
 
-	if (error) return "An error has occurred: " + error.message;
+	if (error) return (
+		<>
+			<ErrorContainer errorContent={error.message} />
+		</>
+	);
+
 	return (
 		<>
 			<HeaderContainer
