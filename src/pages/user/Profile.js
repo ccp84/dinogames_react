@@ -7,12 +7,16 @@ import { axiosReq } from "../../api/axiosDefaults";
 import Loading from "../../components/Loading";
 import HeaderContainer from "../../components/Layout/HeaderContainer";
 import UserRatings from "../../components/Ratings/UserRatings";
+import { useCurrentMessage } from "../../contexts/CurrentMessageContext";
+import NotificationContainer from "../../components/Layout/NotificationContainer";
 
 const Profile = () => {
   const [reviews, setReviews] = useState({
     allReviews: [],
   });
   const { allReviews } = reviews;
+  const currentMessage = useCurrentMessage();
+  const { flag, message, variant } = currentMessage;
   const { isLoading, error } = useQuery({
     queryKey: ["reviewData"],
     queryFn: () => axiosReq.get(`/reviews/author`).then((res) => res.data),
@@ -23,22 +27,34 @@ const Profile = () => {
 
   if (error) return "An error has occurred: " + error.message;
   return (
-    <Row>
-      <Col s={12} md={6} lg={4}>
-        <UserDetails />
-        <UserRatings />
-      </Col>
-      <Col s={12} md={6} lg={8}>
-        <HeaderContainer
-          titleContent={<>My Reviews</>}
-          bodyContent={
-            <>
-              <ReviewList reviews={allReviews} />
-            </>
-          }
-        />
-      </Col>
-    </Row>
+    <>
+      <>
+        {flag ? (
+          <NotificationContainer
+            message={message}
+            variant={variant}
+            flag={flag}
+          />
+        ) : (null)}
+      </>
+
+      <Row>
+        <Col s={12} md={6} lg={4}>
+          <UserDetails />
+          <UserRatings />
+        </Col>
+        <Col s={12} md={6} lg={8}>
+          <HeaderContainer
+            titleContent={<>My Reviews</>}
+            bodyContent={
+              <>
+                <ReviewList reviews={allReviews} />
+              </>
+            }
+          />
+        </Col>
+      </Row>
+    </>
   );
 };
 
