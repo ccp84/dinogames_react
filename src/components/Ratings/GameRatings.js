@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
-import { Alert, Badge, Button, Card, Stack } from "react-bootstrap";
+import { Badge, Button, Card, Stack } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
 import { useQueryClient } from "@tanstack/react-query";
 import SolidIcon from "../icons/SolidIcon";
 import RegularIcon from "../icons/RegularIcon";
+import NotificationContainer from "../Layout/NotificationContainer";
 
 const GameRatings = ({
 	thumbsup,
@@ -16,13 +17,17 @@ const GameRatings = ({
 }) => {
 	const currentUser = useCurrentUser();
 	const queryClient = useQueryClient();
-	const [errors, setErrors] = useState({});
+	const [errors, setErrors] = useState({ "flag": false, "message": "" });
 	return (
-		<>{errors.data?.map((message, idx) => (
-			<Alert key={idx} variant="warning">
-				{message}
-			</Alert>
-		))}
+		<>
+			<>
+				{errors.flag ? (
+					<NotificationContainer
+						message={errors.message}
+						variant="warning"
+					/>
+				) : (null)}
+			</>
 			{currentUser ? (
 				<>
 					{ratingid ? (
@@ -42,7 +47,10 @@ const GameRatings = ({
 													});
 												} catch (err) {
 													setErrors(
-														err.response?.data);
+														{
+															"flag": true, "message": err.response?.data
+														}
+													);
 												}
 											}}
 										>
@@ -66,7 +74,10 @@ const GameRatings = ({
 													});
 												} catch (err) {
 													setErrors(
-														err.response?.data);
+														{
+															"flag": true, "message": err.response?.data
+														}
+													);
 												}
 											}}
 										>
@@ -97,7 +108,10 @@ const GameRatings = ({
 													});
 												} catch (err) {
 													setErrors(
-														err.response?.data);
+														{
+															"flag": true, "message": err.response?.data
+														}
+													);
 												}
 											}}
 										>
@@ -119,7 +133,10 @@ const GameRatings = ({
 													});
 												} catch (err) {
 													setErrors(
-														err.response?.data);
+														{
+															"flag": true, "message": err.response?.data
+														}
+													);
 												}
 											}}
 										>
@@ -154,7 +171,12 @@ const GameRatings = ({
 												queryKey: ["libraryData"],
 											});
 										} catch (err) {
-											setErrors(err.response?.data);
+											setErrors(
+												{
+													"flag": true,
+													"message": err.response?.data
+												}
+											);
 										}
 									}}
 								>
@@ -180,7 +202,12 @@ const GameRatings = ({
 												queryKey: ["libraryData"],
 											});
 										} catch (err) {
-											setErrors(err.response?.data);
+											setErrors(
+												{
+													"flag": true,
+													"message": err.response?.data
+												}
+											);
 										}
 									}}
 								>
