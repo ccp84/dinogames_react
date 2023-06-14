@@ -9,6 +9,7 @@ import { BrowserRouter } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import Header from "./components/Header";
 import { Container } from "react-bootstrap";
+import { CurrentMessageProvider } from "./contexts/CurrentMessageContext";
 
 const queryClient = new QueryClient();
 
@@ -17,10 +18,12 @@ root.render(
   <BrowserRouter>
     <QueryClientProvider client={queryClient}>
       <CurrentUserProvider>
-        <Container>
-          <Header />
-          <App />
-        </Container>
+        <CurrentMessageProvider>
+          <Container>
+            <Header />
+            <App />
+          </Container>
+        </CurrentMessageProvider>
       </CurrentUserProvider>
     </QueryClientProvider>
   </BrowserRouter>
