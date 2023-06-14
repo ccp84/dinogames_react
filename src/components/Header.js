@@ -8,7 +8,7 @@ import {
 	useSetCurrentUser,
 } from "../contexts/CurrentUserContext";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Button } from "react-bootstrap";
 import SolidIcon from "./icons/SolidIcon";
 import NotificationContainer from "./Layout/NotificationContainer";
@@ -32,18 +32,20 @@ const Header = () => {
 	const staff = currentUser?.is_staff;
 
 	const loggedIn = (
+		// Links returned when a user is logged in
 		<>
-			<Nav.Link href="/game/library">
+			<Link className="m-2" to="/game/library">
 				<Button variant="outline-primary">Library</Button>
-			</Nav.Link>
-			<Nav.Link href="/news">
+			</Link>
+			<Link className="m-2" to="/news">
 				<Button variant="outline-primary">News</Button>
-			</Nav.Link>
+			</Link>
 			{staff ? (
+				// Current user is staff
 				<>
-					<Nav.Link href="/admin">
+					<Link className="m-2" to="/admin">
 						<Button variant="outline-primary">Admin</Button>
-					</Nav.Link>
+					</Link>
 				</>
 			) : (
 				""
@@ -51,29 +53,30 @@ const Header = () => {
 			<Nav.Link onClick={SignOut}>
 				<Button variant="outline-primary">Logout</Button>
 			</Nav.Link>
-			<Nav.Link href="/profile">
+			<Link className="m-2" to="/profile">
 				Signed in as: {currentUser?.username}
 				<SolidIcon
 					className="text-warning m-1"
 					iconName={currentUser?.profileicon}
 				/>
-			</Nav.Link>
+			</Link>
 		</>
 	);
 	const loggedOut = (
+		// No user logged in
 		<>
-			<Nav.Link href="/game/library">
+			<Link className="m-2" to="/game/library">
 				<Button variant="outline-primary">View Library</Button>
-			</Nav.Link>
-			<Nav.Link href="/news">
+			</Link>
+			<Link className="m-2" to="/news">
 				<Button variant="outline-primary">News</Button>
-			</Nav.Link>
-			<Nav.Link href="/signin">
+			</Link>
+			<Link className="m-2" to="/signin">
 				<Button variant="outline-primary">Login</Button>
-			</Nav.Link>
-			<Nav.Link href="/signup">
+			</Link>
+			<Link className="m-2" to="/signup">
 				<Button variant="outline-primary">Signup</Button>
-			</Nav.Link>
+			</Link>
 			<Navbar.Text>
 				<SolidIcon className="text-warning m-2" iconName="user-slash" />
 			</Navbar.Text>
@@ -93,6 +96,7 @@ const Header = () => {
 		</Navbar>
 			<>
 				{errors.flag ? (
+					// Display if error flag changes to true
 					<NotificationContainer
 						message={errors.message}
 						variant="warning"
