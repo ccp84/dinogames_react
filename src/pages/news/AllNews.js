@@ -1,12 +1,16 @@
-import { useQuery } from '@tanstack/react-query';
 import React, { useState } from 'react';
-import { Card, Col, ListGroup, ListGroupItem, Row } from 'react-bootstrap';
+import { useQuery } from '@tanstack/react-query';
 import { axiosReq } from '../../api/axiosDefaults';
 import SolidIcon from '../../components/icons/SolidIcon';
 import Loading from '../../components/Loading';
 import PageContainer from '../../components/Layout/PageContainer';
 import HeaderContainer from '../../components/Layout/HeaderContainer';
 import ErrorContainer from '../../components/Layout/ErrorContainer';
+import Card from 'react-bootstrap/Card';
+import Col from 'react-bootstrap/Col';
+import ListGroup from 'react-bootstrap/ListGroup';
+import ListGroupItem from 'react-bootstrap/ListGroupItem';
+import Row from 'react-bootstrap/Row';
 
 const AllNews = () => {
     const [listDetails, setListDetails] = useState({

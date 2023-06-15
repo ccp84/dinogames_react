@@ -1,18 +1,18 @@
 import React from 'react';
-import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
 import logo from '../assets/logo.webp';
+import SolidIcon from './icons/SolidIcon';
+import { useSetCurrentMessage } from '../contexts/CurrentMessageContext';
+import NotificationContainer from './Layout/NotificationContainer';
 import {
     useCurrentUser,
     useSetCurrentUser
 } from '../contexts/CurrentUserContext';
+import Button from 'react-bootstrap/Button';
+import Container from 'react-bootstrap/Container';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
-import { Button } from 'react-bootstrap';
-import SolidIcon from './icons/SolidIcon';
-import { useSetCurrentMessage } from '../contexts/CurrentMessageContext';
-import NotificationContainer from './Layout/NotificationContainer';
 
 const Header = () => {
     const navigate = useNavigate();

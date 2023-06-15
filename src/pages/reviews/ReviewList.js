@@ -1,7 +1,10 @@
 import React from 'react';
-import { Card, ListGroup, ListGroupItem, Stack } from 'react-bootstrap';
 import EditReview from './EditReview';
 import SolidIcon from '../../components/icons/SolidIcon';
+import Card from 'react-bootstrap/Card';
+import ListGroup from 'react-bootstrap/ListGroup';
+import ListGroupItem from 'react-bootstrap/ListGroupItem';
+import Stack from 'react-bootstrap/Stack';
 
 const ReviewList = ({ reviews }) => {
     return (

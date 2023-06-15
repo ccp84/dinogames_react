@@ -1,6 +1,6 @@
-import { useQuery } from '@tanstack/react-query';
 import React, { useState } from 'react';
-import { Alert } from 'react-bootstrap';
+import { useQuery } from '@tanstack/react-query';
+import Alert from 'react-bootstrap/Alert';
 import { axiosReq } from '../../api/axiosDefaults';
 import Loading from '../../components/Loading';
 import PageContainer from '../../components/Layout/PageContainer';

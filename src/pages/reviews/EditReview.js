@@ -1,15 +1,13 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import React, { useState } from 'react';
-import {
-    Alert,
-    Button,
-    Dropdown,
-    DropdownButton,
-    Form,
-    Stack
-} from 'react-bootstrap';
 import { axiosReq } from '../../api/axiosDefaults';
 import { useSetCurrentMessage } from '../../contexts/CurrentMessageContext';
+import Alert from 'react-bootstrap/Alert';
+import Button from 'react-bootstrap/Button';
+import Dropdown from 'react-bootstrap/Dropdown';
+import DropdownButton from 'react-bootstrap/DropdownButton';
+import Form from 'react-bootstrap/Form';
+import Stack from 'react-bootstrap/Stack';
 
 const EditReview = (props) => {
     const [review, setReview] = useState({

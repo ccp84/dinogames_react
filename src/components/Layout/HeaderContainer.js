@@ -1,5 +1,6 @@
 import React from 'react';
-import { Alert, Card } from 'react-bootstrap';
+import Alert from 'react-bootstrap/Alert';
+import Card from 'react-bootstrap/Card';
 
 const HeaderContainer = ({ titleContent, bodyContent }) => {
     return (

@@ -1,22 +1,20 @@
-import { useQuery } from '@tanstack/react-query';
 import React, { useState } from 'react';
-import { Link, useNavigate, useParams } from 'react-router-dom';
-import { axiosReq } from '../../api/axiosDefaults';
-import { useCurrentUser } from '../../contexts/CurrentUserContext';
-import {
-    Alert,
-    Button,
-    Card,
-    CardGroup,
-    Dropdown,
-    DropdownButton,
-    Stack
-} from 'react-bootstrap';
 import Loading from '../../components/Loading';
 import HeaderContainer from '../../components/Layout/HeaderContainer';
 import { useSetCurrentMessage } from '../../contexts/CurrentMessageContext';
 import GameReviews from '../reviews/GameReviews';
 import NoMatch from '../NoMatch';
+import { axiosReq } from '../../api/axiosDefaults';
+import { useQuery } from '@tanstack/react-query';
+import { Link, useNavigate, useParams } from 'react-router-dom';
+import { useCurrentUser } from '../../contexts/CurrentUserContext';
+import Alert from 'react-bootstrap/Alert';
+import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
+import CardGroup from 'react-bootstrap/CardGroup';
+import Dropdown from 'react-bootstrap/Dropdown';
+import DropdownButton from 'react-bootstrap/DropdownButton';
+import Stack from 'react-bootstrap/Stack';
 
 const GameDetail = () => {
     const [gameDetails, setGameDetails] = useState({ game: '' });

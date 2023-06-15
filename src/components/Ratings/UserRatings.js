@@ -1,12 +1,12 @@
-import { useQuery } from '@tanstack/react-query';
 import React, { useState } from 'react';
-import { Alert } from 'react-bootstrap';
-import { axiosReq } from '../../api/axiosDefaults';
 import { useCurrentUser } from '../../contexts/CurrentUserContext';
 import SolidIcon from '../../components/icons/SolidIcon';
 import Loading from '../../components/Loading';
 import HeaderContainer from '../Layout/HeaderContainer';
 import ErrorContainer from '../Layout/ErrorContainer';
+import { axiosReq } from '../../api/axiosDefaults';
+import Alert from 'react-bootstrap/Alert';
+import { useQuery } from '@tanstack/react-query';
 
 const UserRatings = () => {
     const [ratings, setRatings] = useState({

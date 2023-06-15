@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { axiosReq } from '../../api/axiosDefaults';
-import { Alert, Button, Form } from 'react-bootstrap';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useSetCurrentMessage } from '../../contexts/CurrentMessageContext';
+import Alert from 'react-bootstrap/Alert';
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
 
 const UserEdit = (props) => {
     const [profileDetails, setProfileDetails] = useState({

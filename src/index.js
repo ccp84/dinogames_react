@@ -8,7 +8,7 @@ import { CurrentUserProvider } from './contexts/CurrentUserContext';
 import { BrowserRouter } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import Header from './components/Header';
-import { Container } from 'react-bootstrap';
+import Container from 'react-bootstrap/Container';
 import { CurrentMessageProvider } from './contexts/CurrentMessageContext';
 
 const queryClient = new QueryClient();

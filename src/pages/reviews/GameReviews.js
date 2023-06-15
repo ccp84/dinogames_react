@@ -6,9 +6,9 @@ import { axiosReq } from '../../api/axiosDefaults';
 import Loading from '../../components/Loading';
 import ErrorContainer from '../../components/Layout/ErrorContainer';
 import HeaderContainer from '../../components/Layout/HeaderContainer';
-import { Button } from 'react-bootstrap';
 import { Link, useParams } from 'react-router-dom';
 import { useCurrentUser } from '../../contexts/CurrentUserContext';
+import Button from 'react-bootstrap/Button';
 
 const GameReviews = () => {
     const [reviews, setReviews] = useState({

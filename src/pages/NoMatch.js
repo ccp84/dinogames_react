@@ -1,7 +1,7 @@
 import React from 'react';
 import HeaderContainer from '../components/Layout/HeaderContainer';
 import { Link, useNavigate } from 'react-router-dom';
-import { Button } from 'react-bootstrap';
+import Button from 'react-bootstrap/Button';
 
 const NoMatch = ({ errorContent }) => {
     const navigate = useNavigate();

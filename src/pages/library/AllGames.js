@@ -1,8 +1,10 @@
 import React from 'react';
-import { Alert, Col, Row } from 'react-bootstrap';
 import GameRatings from '../../components/Ratings/GameRatings';
 import HeaderFooterContainer from '../../components/Layout/HeaderFooterContainer';
 import PageContainer from '../../components/Layout/PageContainer';
+import Alert from 'react-bootstrap/Alert';
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
 
 const AllGames = ({ games }) => {
     return (

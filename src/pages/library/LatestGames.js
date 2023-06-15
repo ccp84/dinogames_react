@@ -1,6 +1,8 @@
 import React from 'react';
-import { Alert, Col, Row } from 'react-bootstrap';
 import PageContainer from '../../components/Layout/PageContainer';
+import Alert from 'react-bootstrap/Alert';
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
 
 const LatestGames = ({ games }) => {
     return (

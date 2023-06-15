@@ -1,13 +1,13 @@
 import React from 'react';
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
-import Container from 'react-bootstrap/Container';
-import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
-import axios from 'axios';
 import HeaderFooterContainer from '../../components/Layout/HeaderFooterContainer';
 import { useSetCurrentMessage } from '../../contexts/CurrentMessageContext';
-import { Alert } from 'react-bootstrap';
+import Alert from 'react-bootstrap/Alert';
+import Button from 'react-bootstrap/Button';
+import Container from 'react-bootstrap/Container';
+import Form from 'react-bootstrap/Form';
+import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const SignUpForm = () => {
     const [signupData, setSignupData] = useState({

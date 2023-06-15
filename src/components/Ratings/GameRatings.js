@@ -1,12 +1,15 @@
 import React from 'react';
 import { useCurrentUser } from '../../contexts/CurrentUserContext';
-import { Badge, Button, Card, Stack } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { useSetCurrentMessage } from '../../contexts/CurrentMessageContext';
 import { axiosReq } from '../../api/axiosDefaults';
-import { useQueryClient } from '@tanstack/react-query';
 import SolidIcon from '../icons/SolidIcon';
 import RegularIcon from '../icons/RegularIcon';
-import { useSetCurrentMessage } from '../../contexts/CurrentMessageContext';
+import { Link } from 'react-router-dom';
+import Badge from 'react-bootstrap/Badge';
+import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
+import Stack from 'react-bootstrap/Stack';
+import { useQueryClient } from '@tanstack/react-query';
 
 const GameRatings = ({
     thumbsup,

@@ -1,5 +1,6 @@
 import React from 'react';
-import { Alert, Card } from 'react-bootstrap';
+import Card from 'react-bootstrap/Alert';
+import Alert from 'react-bootstrap/Card';
 
 const ErrorContainer = ({ errorContent }) => {
     return (

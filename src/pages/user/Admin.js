@@ -1,9 +1,10 @@
 import React from 'react';
-import { Col, Row } from 'react-bootstrap';
 import { useCurrentUser } from '../../contexts/CurrentUserContext';
 import NewsAdmin from '../news/NewsAdmin';
 import OwnerList from '../library/OwnerList';
 import PageContainer from '../../components/Layout/PageContainer';
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
 
 const Admin = () => {
     const currentUser = useCurrentUser();
