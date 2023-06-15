@@ -22,11 +22,12 @@ const GameRatings = ({
         message: '',
         variant: 'warning'
     });
+    const { flag, message, variant } = errors;
     return (
         <>
             <>
                 <NotificationContainer
-                    message={errors.message}
+                    message={message}
                     variant={variant}
                     flag={flag}
                 />

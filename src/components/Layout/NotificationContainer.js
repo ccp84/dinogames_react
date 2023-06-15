@@ -1,12 +1,16 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Toast from 'react-bootstrap/Toast';
-import { useSetCurrentMessage } from '../../contexts/CurrentMessageContext';
+import {
+    useCurrentMessage,
+    useSetCurrentMessage
+} from '../../contexts/CurrentMessageContext';
 
-const NotificationContainer = ({ variant, message, flag }) => {
-    const [show, setShow] = useState(flag);
+const NotificationContainer = () => {
     const setCurrentMessage = useSetCurrentMessage();
+    const currentMessage = useCurrentMessage();
+    const { variant, flag, message } = currentMessage;
 
     return (
         <Row>
@@ -14,14 +18,13 @@ const NotificationContainer = ({ variant, message, flag }) => {
                 <Toast
                     bg={variant}
                     onClose={() => {
-                        setShow(false);
                         setCurrentMessage({
                             message: '',
                             variant: '',
                             flag: false
                         });
                     }}
-                    show={show}
+                    show={flag}
                     delay={5000}
                     autohide
                 >
