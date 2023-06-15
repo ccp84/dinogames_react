@@ -111,7 +111,7 @@ const GameDetail = () => {
                             </Card>
                         </CardGroup>
 
-                        <Alert variant="primary" className="m-2">
+                        <Alert variant="secondary" className="m-2">
                             <Alert.Heading>Game Overview</Alert.Heading>
                             {game.overview}
                         </Alert>
