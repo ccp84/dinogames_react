@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import logo from '../assets/logo.webp';
 import SolidIcon from './icons/SolidIcon';
 import { useSetCurrentMessage } from '../contexts/CurrentMessageContext';
@@ -17,6 +17,8 @@ import { Link, useNavigate } from 'react-router-dom';
 const Header = () => {
     const navigate = useNavigate();
     const setCurrentUser = useSetCurrentUser();
+    const [show, setShow] = useState(false);
+    const handleClick = () => setShow(!show);
     const setCurrentMessage = useSetCurrentMessage();
     const SignOut = async () => {
         try {
@@ -43,25 +45,33 @@ const Header = () => {
         // Links returned when a user is logged in
         <>
             <Link className="m-2" to="/game/library">
-                <Button variant="outline-primary">Library</Button>
+                <Button onClick={handleClick} variant="outline-primary">
+                    Library
+                </Button>
             </Link>
             <Link className="m-2" to="/news">
-                <Button variant="outline-primary">News</Button>
+                <Button onClick={handleClick} variant="outline-primary">
+                    News
+                </Button>
             </Link>
             {staff ? (
                 // Current user is staff
                 <>
                     <Link className="m-2" to="/admin">
-                        <Button variant="outline-primary">Admin</Button>
+                        <Button onClick={handleClick} variant="outline-primary">
+                            Admin
+                        </Button>
                     </Link>
                 </>
             ) : (
                 ''
             )}
             <Link className="m-2" onClick={SignOut}>
-                <Button variant="outline-primary">Logout</Button>
+                <Button onClick={handleClick} variant="outline-primary">
+                    Logout
+                </Button>
             </Link>
-            <Link className="m-2" to="/profile">
+            <Link onClick={handleClick} className="m-2" to="/profile">
                 Signed in as: {currentUser?.username}
                 <SolidIcon
                     className="text-warning m-1"
@@ -74,16 +84,24 @@ const Header = () => {
         // No user logged in
         <>
             <Link className="m-2" to="/game/library">
-                <Button variant="outline-primary">View Library</Button>
+                <Button onClick={handleClick} variant="outline-primary">
+                    View Library
+                </Button>
             </Link>
             <Link className="m-2" to="/news">
-                <Button variant="outline-primary">News</Button>
+                <Button onClick={handleClick} variant="outline-primary">
+                    News
+                </Button>
             </Link>
             <Link className="m-2" to="/signin">
-                <Button variant="outline-primary">Login</Button>
+                <Button onClick={handleClick} variant="outline-primary">
+                    Login
+                </Button>
             </Link>
             <Link className="m-2" to="/signup">
-                <Button variant="outline-primary">Signup</Button>
+                <Button onClick={handleClick} variant="outline-primary">
+                    Signup
+                </Button>
             </Link>
             <Navbar.Text>
                 <SolidIcon className="text-warning m-2" iconName="user-slash" />
@@ -92,13 +110,21 @@ const Header = () => {
     );
     return (
         <>
-            <Navbar collapseOnSelect expand="md" variant="light">
+            <Navbar
+                expanded={show}
+                collapseOnSelect
+                expand="md"
+                variant="light"
+            >
                 <Container>
-                    <Navbar.Brand href="/">
+                    <Navbar.Brand href="/" onClick={handleClick}>
                         <img src={logo} alt="logo" height="45" width="45" />
                     </Navbar.Brand>
 
-                    <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+                    <Navbar.Toggle
+                        aria-controls="responsive-navbar-nav"
+                        onClick={handleClick}
+                    />
                     <Navbar.Collapse id="responsive-navbar-nav">
                         <Nav className="ml-auto">
                             {currentUser ? loggedIn : loggedOut}
