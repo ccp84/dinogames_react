@@ -24,7 +24,8 @@ const NotificationContainer = () => {
             delay={5000}
             autohide
         >
-            <Toast.Header>{message}</Toast.Header>
+            <Toast.Header>Message</Toast.Header>
+            <Toast.Body>{message}</Toast.Body>
         </Toast>
     );
 };
