@@ -11,21 +11,25 @@ const NotificationContainer = ({ variant, message, flag }) => {
     return (
         <Row>
             <Col xs={6}>
-                <Toast bg={variant} onClose={() => {
-                    setShow(false)
-                    setCurrentMessage({
-                        "message": "",
-                        "variant": "",
-                        "flag": false
-                    })
-                }} show={show} delay={5000} autohide>
-                    <Toast.Header>
-                        {message}
-                    </Toast.Header>
+                <Toast
+                    bg={variant}
+                    onClose={() => {
+                        setShow(false);
+                        setCurrentMessage({
+                            message: '',
+                            variant: '',
+                            flag: false
+                        });
+                    }}
+                    show={show}
+                    delay={5000}
+                    autohide
+                >
+                    <Toast.Header>{message}</Toast.Header>
                 </Toast>
             </Col>
         </Row>
     );
-}
+};
 
-export default NotificationContainer
+export default NotificationContainer;
