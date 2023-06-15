@@ -6,8 +6,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import axios from 'axios';
 import HeaderFooterContainer from '../../components/Layout/HeaderFooterContainer';
-import NotificationContainer from '../../components/Layout/NotificationContainer';
 import { useSetCurrentMessage } from '../../contexts/CurrentMessageContext';
+import { Alert } from 'react-bootstrap';
 
 const SignUpForm = () => {
     const [signupData, setSignupData] = useState({
@@ -70,11 +70,9 @@ const SignUpForm = () => {
                                     />
                                 </Form.Group>
                                 {errors.username?.map((message, idx) => (
-                                    <NotificationContainer
-                                        variant="warning"
-                                        key={idx}
-                                        message={message}
-                                    />
+                                    <Alert key={idx} variant="warning">
+                                        {message}
+                                    </Alert>
                                 ))}
                                 <Form.Group className="mb-3" controlId="email">
                                     <Form.Label className="d-none">
@@ -89,11 +87,9 @@ const SignUpForm = () => {
                                     />
                                 </Form.Group>
                                 {errors.email?.map((message, idx) => (
-                                    <NotificationContainer
-                                        variant="warning"
-                                        key={idx}
-                                        message={message}
-                                    />
+                                    <Alert key={idx} variant="warning">
+                                        {message}
+                                    </Alert>
                                 ))}
                                 <Form.Group
                                     className="mb-3"
@@ -111,11 +107,9 @@ const SignUpForm = () => {
                                     />
                                 </Form.Group>
                                 {errors.firstname?.map((message, idx) => (
-                                    <NotificationContainer
-                                        variant="warning"
-                                        key={idx}
-                                        message={message}
-                                    />
+                                    <Alert key={idx} variant="warning">
+                                        {message}
+                                    </Alert>
                                 ))}
                                 <Form.Group
                                     className="mb-3"
@@ -133,11 +127,9 @@ const SignUpForm = () => {
                                     />
                                 </Form.Group>
                                 {errors.lastname?.map((message, idx) => (
-                                    <NotificationContainer
-                                        variant="warning"
-                                        key={idx}
-                                        message={message}
-                                    />
+                                    <Alert key={idx} variant="warning">
+                                        {message}
+                                    </Alert>
                                 ))}
                                 <Form.Group
                                     className="mb-3"
@@ -155,11 +147,9 @@ const SignUpForm = () => {
                                     />
                                 </Form.Group>
                                 {errors.password1?.map((message, idx) => (
-                                    <NotificationContainer
-                                        variant="warning"
-                                        key={idx}
-                                        message={message}
-                                    />
+                                    <Alert key={idx} variant="warning">
+                                        {message}
+                                    </Alert>
                                 ))}
                                 <Form.Group
                                     className="mb-3"
@@ -177,22 +167,18 @@ const SignUpForm = () => {
                                     />
                                 </Form.Group>
                                 {errors.password2?.map((message, idx) => (
-                                    <NotificationContainer
-                                        variant="warning"
-                                        key={idx}
-                                        message={message}
-                                    />
+                                    <Alert key={idx} variant="warning">
+                                        {message}
+                                    </Alert>
                                 ))}
                                 <Button variant="info" type="submit">
                                     Sign Up
                                 </Button>
                                 {errors.non_field_errors?.map(
                                     (message, idx) => (
-                                        <NotificationContainer
-                                            variant="warning"
-                                            key={idx}
-                                            message={message}
-                                        />
+                                        <Alert variant="warning" key={idx}>
+                                            {message}
+                                        </Alert>
                                     )
                                 )}
                             </Form>

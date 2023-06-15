@@ -22,6 +22,11 @@ const Header = () => {
         try {
             await axios.post('dj-rest-auth/logout/');
             setCurrentUser(null);
+            setCurrentMessage({
+                flag: true,
+                message: 'Logout successful',
+                variant: 'success'
+            });
             navigate('/signin');
         } catch (err) {
             setCurrentMessage({

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useCurrentUser } from '../../contexts/CurrentUserContext';
 import { Badge, Button, Card, Stack } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
@@ -6,7 +6,7 @@ import { axiosReq } from '../../api/axiosDefaults';
 import { useQueryClient } from '@tanstack/react-query';
 import SolidIcon from '../icons/SolidIcon';
 import RegularIcon from '../icons/RegularIcon';
-import NotificationContainer from '../Layout/NotificationContainer';
+import { useSetCurrentMessage } from '../../contexts/CurrentMessageContext';
 
 const GameRatings = ({
     thumbsup,
@@ -17,21 +17,9 @@ const GameRatings = ({
 }) => {
     const currentUser = useCurrentUser();
     const queryClient = useQueryClient();
-    const [errors, setErrors] = useState({
-        flag: false,
-        message: '',
-        variant: 'warning'
-    });
-    const { flag, message, variant } = errors;
+    const setCurrentMessage = useSetCurrentMessage();
     return (
         <>
-            <>
-                <NotificationContainer
-                    message={message}
-                    variant={variant}
-                    flag={flag}
-                />
-            </>
             {currentUser ? (
                 <>
                     {ratingid ? (
@@ -56,10 +44,11 @@ const GameRatings = ({
                                                         }
                                                     );
                                                 } catch (err) {
-                                                    setErrors({
+                                                    setCurrentMessage({
                                                         flag: true,
                                                         message:
-                                                            err.response?.data
+                                                            err.response?.data,
+                                                        variant: 'warning'
                                                     });
                                                 }
                                             }}
@@ -87,10 +76,11 @@ const GameRatings = ({
                                                         }
                                                     );
                                                 } catch (err) {
-                                                    setErrors({
+                                                    setCurrentMessage({
                                                         flag: true,
                                                         message:
-                                                            err.response?.data
+                                                            err.response?.data,
+                                                        variant: 'warning'
                                                     });
                                                 }
                                             }}
@@ -124,10 +114,11 @@ const GameRatings = ({
                                                         }
                                                     );
                                                 } catch (err) {
-                                                    setErrors({
+                                                    setCurrentMessage({
                                                         flag: true,
                                                         message:
-                                                            err.response?.data
+                                                            err.response?.data,
+                                                        variant: 'warning'
                                                     });
                                                 }
                                             }}
@@ -155,10 +146,11 @@ const GameRatings = ({
                                                         }
                                                     );
                                                 } catch (err) {
-                                                    setErrors({
+                                                    setCurrentMessage({
                                                         flag: true,
                                                         message:
-                                                            err.response?.data
+                                                            err.response?.data,
+                                                        variant: 'warning'
                                                     });
                                                 }
                                             }}
@@ -194,9 +186,10 @@ const GameRatings = ({
                                                 queryKey: ['libraryData']
                                             });
                                         } catch (err) {
-                                            setErrors({
+                                            setCurrentMessage({
                                                 flag: true,
-                                                message: err.response?.data
+                                                message: err.response?.data,
+                                                variant: 'warning'
                                             });
                                         }
                                     }}
@@ -223,9 +216,10 @@ const GameRatings = ({
                                                 queryKey: ['libraryData']
                                             });
                                         } catch (err) {
-                                            setErrors({
+                                            setCurrentMessage({
                                                 flag: true,
-                                                message: err.response?.data
+                                                message: err.response?.data,
+                                                variant: 'warning'
                                             });
                                         }
                                     }}
