@@ -80,8 +80,7 @@ const GameDetail = () => {
                                                 } catch (err) {
                                                     setCurrentMessage({
                                                         flag: true,
-                                                        message:
-                                                            'Error deleting game',
+                                                        message: `Error deleting ${game.title}`,
                                                         variant: 'warning'
                                                     });
                                                 }

@@ -4,7 +4,7 @@ import { axiosReq } from '../../api/axiosDefaults';
 import LatestGames from './LatestGames';
 import AllGames from './AllGames';
 import Loading from '../../components/Loading';
-import ErrorContainer from '../../components/Layout/ErrorContainer'
+import ErrorContainer from '../../components/Layout/ErrorContainer';
 
 const GameList = ({ list, filter }) => {
     const [listDetails, setListDetails] = useState({
