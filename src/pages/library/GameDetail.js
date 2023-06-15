@@ -14,9 +14,9 @@ import {
 } from 'react-bootstrap';
 import Loading from '../../components/Loading';
 import HeaderContainer from '../../components/Layout/HeaderContainer';
-import ErrorContainer from '../../components/Layout/ErrorContainer';
 import { useSetCurrentMessage } from '../../contexts/CurrentMessageContext';
 import GameReviews from '../reviews/GameReviews';
+import NoMatch from '../NoMatch';
 
 const GameDetail = () => {
     const [gameDetails, setGameDetails] = useState({ game: '' });
@@ -35,12 +35,7 @@ const GameDetail = () => {
 
     if (isLoading) return <Loading />;
 
-    if (error)
-        return (
-            <>
-                <ErrorContainer errorContent={error.message} />
-            </>
-        );
+    if (error) return <NoMatch errorContent={error.message} />;
 
     return (
         <>
