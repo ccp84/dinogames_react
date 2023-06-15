@@ -1,0 +1,9 @@
+{
+  "prettier.jsxSingleQuote": true,
+  "prettier.singleQuote": true,
+  "prettier.useTabs": true,
+  "prettier.vueIndentScriptAndStyle": true,
+  "prettier.tabWidth": 4,
+  "editor.formatOnSave": true,
+  "editor.formatOnPaste": true
+}
