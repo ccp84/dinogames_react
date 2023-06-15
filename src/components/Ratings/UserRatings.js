@@ -6,7 +6,7 @@ import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import SolidIcon from "../../components/icons/SolidIcon";
 import Loading from "../../components/Loading";
 import HeaderContainer from "../Layout/HeaderContainer";
-import ErrorContainer from "../ErrorContainer"
+import ErrorContainer from "../Layout/ErrorContainer"
 
 const UserRatings = () => {
 	const [ratings, setRatings] = useState({

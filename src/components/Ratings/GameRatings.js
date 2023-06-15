@@ -93,7 +93,6 @@ const GameRatings = ({
 								</Card.Title>
 							) : (
 								// Rating returned is false - thumbs down
-
 								<Card.Title>
 									<Stack direction="horizontal" gap={3}>
 										<Link
