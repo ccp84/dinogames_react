@@ -120,8 +120,7 @@ The user edit page sits inside the footer of the user details page and handles u
 * I have used the TanStack Query library to handle updates sent to the API in the form of a [mutation](https://tanstack.com/query/v4/docs/react/guides/mutations). I have chosen to use Tanstack Query as it is a dedicated React tool for data fetching that handles loading and error states gracefully. I particuarly wanted to use the function for invalidating and refetching data on mutation which is done via the query key linked to each query you make. When data has been mutated, on success the query client can invalidate already fetched data that is linked with any key and refetch those queries. The `isLoading` and `isError` states of Tanstack Query have allowed me to write code in a more logcal way to customise the user experience for those events.
 
 To make the page view cleaner the edit form is hidden by default and displayed at the click of a button, this is handled by a flag held in state. On success a message is sent to the screen, however in order to overcome an issue where the profile icon was not updated I have also included a window refresh which over writes the success message. This is something that I would have handled better if I had more time. 
-![user_edit_form](/Documentation/user_edif_form.png)
-
+![user_edit_form](/Documentation/user_edit_form.png)
 
 ### Components added this sprint
 
@@ -144,7 +143,7 @@ In terms of specifically displaying and updating profile icons, the use of these
 
 | Tasks this sprint | Overview |
 | ------------------| -------- |
-| * Create admin only page . * Add game creation form. * Add edit game form. * Button to delete games. * Design  to display latest 5 games on the home page. | ![sprint2](/Documentation/sprint2.png) |
+| * Create admin only page . * Add game creation form. * Add edit game form. * Button to delete games. * Design page to display latest 5 games on the home page. * Design full library display page. * Design page for returning individual game details. * Add search and filter to main library page | ![sprint2](/Documentation/sprint2.png) |
 
 | User Stories This Milestone | Frontend Acceptance Criteria |
 | --------------------------- | ---------------------------- |
@@ -154,27 +153,7 @@ In terms of specifically displaying and updating profile icons, the use of these
 | As a member I want to be able to see all of the games available in the library so that I can read the reviews and look for games I might like | Front end library page displays all available games |
 | As a member I want to be able to search the library by game feature so that I can pick out the games most suited to my interests | Front end library page has a keyword search feature, Front end library can be filtered |
 
-### Viewing the games library
-
-The full games library has 2 views which can be viewed by all visitors to the site. From the homepage, the latest 5 games are displayed in the center component and from the Library page the full list of games is displayed. 
-
-The `GamesList` component handles returning data from the API, this is called using React Query accessing the `/games` endpoint. Wether the latest or full list is then displayed depends on the keyword passed in via props from the parent component, if `props.list === 'latest'` is truthy then the latest games list is displayed otherwise the full list will be shown. As seen below, the games data returned from the API is then passed to the relevant component for display. 
-
-
-### Game details page
-
-
-
-### Creating a game listing
-
-
-
-### Editing games
-
-Community members are able to help maintain the library by making edits to the game listings from the game details page. The details to be edited are passed via the [location object in React Router](https://reactrouter.com/en/main/hooks/use-location) 
-
-These state variables pre populate the form available to edit the details of the game, and the updated values are then returned to the API along with authorisation headers via Axios, using the `axiosReq` instance to ensure a valid token is in place before data is sent. The game to be updated is matched by including the id from the location object, authorisation to edit this particular instance by the currently logged in user is handled by the authorisation token sent in the JWT header with the request.
-
+### Features developed this milestone
 
 ### Deleting games as an administrator
 
@@ -185,6 +164,35 @@ On success, `refetch` is called which is part of the [useQuery](https://tanstack
 ### Filtering and searching the games library
 
 https://tanstack.com/query/latest/docs/react/guides/query-keys
+
+#### Search bar
+
+#### Filter dropdown
+
+### Pages linked to this milestone
+
+* AN IMPORTANT NOTE The admin pages of games are oddly named as OwnerEdit and OwnerList rather than as they should be AdminEdit and AdminCreate this is due to a change in direction of the project early on. After starting this sprint my initial intentions didnt actually make any sense. Because I have built this project in sprints with building the backend and then frontend components for each incrementally it made it easy to rework the idea rather than having a fully completed backend and nowhere to go with the frontend. However as I had already begun developing with the initial ideas, and these pages linked in other places I have left the naming as it was which is not ideal in a larger project but for the size and scope of this made more sense to me. 
+
+#### Games Admin
+
+
+### Editing games
+
+Community members are able to help maintain the library by making edits to the game listings from the game details page. The details to be edited are passed via the [location object in React Router](https://reactrouter.com/en/main/hooks/use-location) 
+
+These state variables pre populate the form available to edit the details of the game, and the updated values are then returned to the API along with authorisation headers via Axios, using the `axiosReq` instance to ensure a valid token is in place before data is sent. The game to be updated is matched by including the id from the location object, authorisation to edit this particular instance by the currently logged in user is handled by the authorisation token sent in the JWT header with the request.
+ 
+
+
+### Components added this sprint
+
+
+
+
+
+
+
+
 
 ## Milestone 3 - Player Reviews
 
@@ -199,6 +207,12 @@ https://tanstack.com/query/latest/docs/react/guides/query-keys
 | As a library member I want to be able to delete reviews that I have made so that I can start again if there are too many edits to make or remove opinions I no longer hold. | Delete button accessible on front end from reviews written by member |
 | As a member I want to be able to see a list of reviews that I have written so that I can remember what I have already reviewed and check they are still relevant | A list of reviews is returned only for the logged in user under the user profile page |
 | As a site visitor I want to be able to read reviews of games by people that have already played them so that I can decide if I might want to play that game | Front end displays reviews filtered by game on the correct game listing |
+
+### Features developed this milestone
+
+### Pages linked to this milestone
+
+### Components added this sprint
 
 ### Viewing reviews for a game
 
@@ -222,6 +236,12 @@ https://tanstack.com/query/latest/docs/react/guides/query-keys
 | As a visitor to the site I want to be able to read all of the latest announcements so that I can find out about events that are happening in the library | Announcements are listed in reverse chronological order, The 5 latest announcements are displayed on the landing page of the React site, All announcements are displayed with all details on the news stories page |
 
 
+### Features developed this milestone
+
+### Pages linked to this milestone
+
+### Components added this sprint
+
 ## Milestone 5 - Member Ratings
 
 | Tasks this sprint | Overview |
@@ -234,6 +254,13 @@ https://tanstack.com/query/latest/docs/react/guides/query-keys
 | As a user I want to be able to edit the rating I have left so that I can update my opinion if I change my mind. | Buttons on the front end change the rating from thumbs up to thumbs down |
 | As a member I want to see the games I have rated so that I can pick out games I have already played and enjoyed to play again. | A list of ratings made by the member is visible on the profile page |
 | As a site visitor I want to be able to see ratings left by other people so that I know if I might want to play that game or not. | Numbers of thumbs up and thumbs down per game displayed in the games library frontend |
+
+
+### Features developed this milestone
+
+### Pages linked to this milestone
+
+### Components added this sprint
 
 ## Testing
 
@@ -251,6 +278,10 @@ Deployment steps are as follows, after account setup:
 
 - Select **New** in the top-right corner of your Heroku Dashboard, and select **Create new app** from the dropdown menu.
 - Your app name must be unique, and then choose a region closest to you (EU or USA), and finally, select **Create App**.
+
+Heroku needs a Procfile to deploy a production build : 
+ * In package.json add "heroku-prebuild": "npm install -g serve" to scripts
+ * In the blank Procfile add "web: serve -s build"
 
 For Heroku deployment, follow these steps to connect your own GitHub repository to the newly created app:
 
