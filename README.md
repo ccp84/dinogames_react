@@ -64,27 +64,22 @@ Using MoSCoW prioritisation these functions have been prioritised as 'must have'
 | As a member I want to be able to log into my account so that I can access the full features of the library. | Front end login form can access login end point to retrieve access token and refresh token |
 | As a member I want to be able to log out of my account to keep my data secure. | Front end form clears stored tokens preventing further usage |
 
-### Connection to the API
+### Features developed this milestone
 
-API requests and reponses are handled by Axios. To avoid repetition, an [instance](https://axios-http.com/docs/instance) with the base configuration was created to be used in all API calls. When connection is made to the API, Axios attaches any relevant access or refresh tokens in its request header which the endpoint uses to evaluate if access can be granted.
-The returned status code can be used to determine if the request was a success, or if an error occurred and either the data sent needs to be corrected or authentication credentials need to be supplied. 
+#### Connection to the API
 
-### Account Registration
+Communication requests between the frontend React app and backend API are handled by Axios. This is a useful library as it can automatically handle form data to be sent to the API which will make up a number of the requests used within this project, as well as requests already in JSON format. Axios automatically handles the returned JSON data from the API so that it can then be read by the React front end application for display to the end user. To avoid repetition and having to add the full API call every time a request is made, an [instance](https://axios-http.com/docs/instance) with the base configuration was created to be used for each Axios request.
+* After reading the Axios Instance documentation, my Axios defaults component was based on the example given in the CI Moments walkthrough.
+ 
 
-
-
-### Sign In
-
-
-
-### Current User Context
+#### Current User Context
 
 The currently logged in user is held in `CurrentUserContext`. For this I have followed the instructions from the Code Institute Moments Walkthrough project as this is robust and works without error. 
-Context is used in place of maintaining the Current User details in state in each different page and having to pass those details from one page to the next via props. These variables are exported and available to import from anywhere within the app. 
+Context is used to keep track of details that are relevant to the application universally rather than trying to pass these details from one component to the next via props, params or location variables. A custom hook is exported by the context and available to use anywhere within the application.
 
 The current user context also handles refreshing authentication when the access token has expired, via the refresh token. A call is made to the user endpoint with the current token, if a 401 unauthorised error is returned then [Axios Interceptors](https://axios-http.com/docs/interceptors) are used to try and refresh the authentication between the app and API. On success, the access token is refreshed and authentication is maintained. The logged in member sees no degredation of service. On failure, both the access and refresh tokens are rejected and the user is redirected to sign in. 
 
-### Logging Out
+#### Logging Out
 
 Logging out is a function that sits within the header component. It very simply sends an axios request to the logout endpoint. This clears both the access and refresh tokens. On success it then resets the current user context to null:
 
@@ -94,9 +89,51 @@ Logging out is a function that sits within the header component. It very simply 
 | Logout request sets tokens to empty strings    | ![logoutduring](/Documentation/logout-setcookie.png) |
 | After logout, refresh fails, tokens are not present in the request header | ![logoutafter](/Documentation/logout-after.png) |
 
-### Profile Details
+### Pages linked to this milestone
 
-profile icons - https://fontawesome.com/docs/web/use-with/react/add-icons#add-icons-globally
+#### Sign up form
+
+The sign up form allows visitors to create a new account. It sends the collected form data across to /dj-rest-auth/registration and if the request is successful redirects to sign in. Data validation is handled by using the correct field tyes, and adding a `required` lable to all fields that are mandatory for account creation. Any errors specific to the fields are displayed below the relevant text box or drop down.
+![signup_form_validation](/Documentation/signup_form_validation.png)
+If the account is successfully created, the user is notified by a success message on screen.
+![signup_form_success](/Documentation/signup_form_success.png)
+
+#### Sign in form
+
+The sign in form has similar field validation to the sign up form although only requires a username and password to be input. It provides an authentication point into the library for any features that need extra credentials. It sends the username and password across to /dj-rest-auth/login and waits for a response containing the access and refresh tokens. This action also returns an object contaning the user details to update the current user context. 
+![signin_form_returned](/Documentation/signin_form_returned)
+The user is notified of a successful login by an onscreen message and redirected to their profile page.
+![signin_form_success](/Documentation/signin_form_success)
+
+#### Profile page
+
+The profile page is the main container for details about the logged in member. Inside of this container pages for their account details, reviews they have left and games they have rated are returned. Each element is kept separate so that API calls are independent of one another, if one has an error then the remainder of the page will display correctly as long as the main API connection is still functioning. Data that is returned faster can also be displayed to the user as soon as it is returned rather than waiting for all of the requests to load before beginning to display the page. The user details, reviews and ratings pages can also function outside of the profile page as a page in their own right or be returned inside another container and reused to display this data elsewhere within the app instead of writing a separate file for this functionality. Similarly, should the API be updated or changed in the future, only one part of the front end need be rewritten. For example if the ratings were changed from thumbs up to a stars system it would not affect the rest of the profile page being returned and only a small amount of code needs to be updated. That panel could even be removed from the code temporarily while the update takes place and the rest of the app would continue to function as normal as if it were still there or never there in the first place.
+
+#### User details
+
+This page sits inside the profile page container. It displays the returned user object containing the current account information for the logged in member, also acts as container for the user edit form which has been separated into a self contained page for reusability. 
+![user_details_object](/Documentation/user_details_object)
+
+#### User edit
+
+The user edit page sits inside the footer of the user details page and handles updating account details of the logged in user. It recieves the current values via props passed from user details which are stored in state and used to prepopulate the update form. Form validation is handled by field type and the required flag so that the form cannot be submitted with invalid types or blank data. Errors on the fields retured from the API are displayed beneath each form field in necessary. 
+* I have used the TanStack Query library to handle updates sent to the API in the form of a [mutation](https://tanstack.com/query/v4/docs/react/guides/mutations). I have chosen to use Tanstack Query as it is a dedicated React tool for data fetching that handles loading and error states gracefully. I particuarly wanted to use the function for invalidating and refetching data on mutation which is done via the query key linked to each query you make. When data has been mutated, on success the query client can invalidate already fetched data that is linked with any key and refetch those queries. The `isLoading` and `isError` states of Tanstack Query have allowed me to write code in a more logcal way to customise the user experience for those events.
+To make the page view cleaner the edit form is hidden by default and displayed at the click of a button, this is handled by a flag held in state. On success, a message is sent to the screen however in order to overcome an issue where the profile icon was not updated I have also included a window refresh which over writes the success message. This is something that I would have handled better if I had more time. 
+
+
+### Components added this sprint
+
+#### Icon Components
+
+In order to neatly and consistently display profile icons, and any other icons in the project, I created icon container components that take in the last part of the Fontawesome icon name as well as the colour it should be and return the rest of the code to display any icon in the library. 
+
+I followed the instructions from Fontawesome [here](https://fontawesome.com/docs/web/use-with/react/add-icons#add-icons-globally) for building a library at the top level of my application where I import all icons used in the project. I then created components for regular and solid icons to make reusing code more efficient throughout the application, all of the code to display an icon is written within the respective component and then when an icon is needed to be displayed, all thats needed is the component with a single word prop for the icon name and a prop for the colour rather than multiple lines of code each time. As I have used icons rather than profile pictures for a more "gamey" feel, this way of displaying them cleaned up a lot of lines of repetitive code. 
+
+In terms of specifically displaying and updating profile icons, the use of these components means that the single variable needed to display each option for a profile icon can be easily stored in a database and when retrieved it is simply plugged in as a prop to the component to output the correct profile icon throughout the application. 
+
+ #### Header Component
+
+ The header component holds the navigation links and logged in status which remain consistent throughout all parts of the appliction. I added the logout button as described above to this component, as well as an element that checks the current user context and returns either their username and profile icon or if no user is logged in then an icon indicating that there is no current user. Rather than adding navigation to each page, this component is included at the top level of the application and sits above the main app container where all other pages will then be displayed. 
 
 ## Milestone 2 - Games Library
 
