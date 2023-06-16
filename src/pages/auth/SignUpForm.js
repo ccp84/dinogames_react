@@ -62,6 +62,7 @@ const SignUpForm = () => {
                                         Username
                                     </Form.Label>
                                     <Form.Control
+                                        required
                                         type="text"
                                         placeholder="Username"
                                         name="username"
@@ -79,6 +80,7 @@ const SignUpForm = () => {
                                         Email address
                                     </Form.Label>
                                     <Form.Control
+                                        required
                                         type="email"
                                         placeholder="Email"
                                         name="email"
@@ -99,6 +101,7 @@ const SignUpForm = () => {
                                         First Name
                                     </Form.Label>
                                     <Form.Control
+                                        required
                                         type="text"
                                         placeholder="First Name"
                                         name="firstname"
@@ -119,6 +122,7 @@ const SignUpForm = () => {
                                         Last Name
                                     </Form.Label>
                                     <Form.Control
+                                        required
                                         type="text"
                                         placeholder="Last Name"
                                         name="lastname"
@@ -139,6 +143,7 @@ const SignUpForm = () => {
                                         Password
                                     </Form.Label>
                                     <Form.Control
+                                        required
                                         type="password"
                                         placeholder="Password"
                                         name="password1"
@@ -159,6 +164,7 @@ const SignUpForm = () => {
                                         Confirm Password
                                     </Form.Label>
                                     <Form.Control
+                                        required
                                         type="password"
                                         placeholder="Confirm Password"
                                         name="password2"

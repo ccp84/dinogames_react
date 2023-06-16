@@ -63,6 +63,7 @@ const SignInForm = () => {
                                         Username
                                     </Form.Label>
                                     <Form.Control
+                                        required
                                         type="text"
                                         placeholder="Username"
                                         name="username"
@@ -83,6 +84,7 @@ const SignInForm = () => {
                                         Password
                                     </Form.Label>
                                     <Form.Control
+                                        required
                                         type="password"
                                         placeholder="Password"
                                         name="password"
@@ -114,8 +116,8 @@ const SignInForm = () => {
                     }
                     footerContent={
                         <>
-                            Don't have an account? Sign up{' '}
-                            <Link to="/signup">here</Link>
+                            Don't have an account? Sign up
+                            <Link to="/signup"> here </Link>
                         </>
                     }
                 />
