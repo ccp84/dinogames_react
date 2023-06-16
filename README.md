@@ -101,9 +101,9 @@ If the account is successfully created, the user is notified by a success messag
 #### Sign in form
 
 The sign in form has similar field validation to the sign up form although only requires a username and password to be input. It provides an authentication point into the library for any features that need extra credentials. It sends the username and password across to /dj-rest-auth/login and waits for a response containing the access and refresh tokens. This action also returns an object contaning the user details to update the current user context. 
-![signin_form_returned](/Documentation/signin_form_returned)
+![signin_form_returned](/Documentation/signin_form_returned.png)
 The user is notified of a successful login by an onscreen message and redirected to their profile page.
-![signin_form_success](/Documentation/signin_form_success)
+![signin_form_success](/Documentation/signin_form_success.png)
 
 #### Profile page
 
@@ -112,13 +112,15 @@ The profile page is the main container for details about the logged in member. I
 #### User details
 
 This page sits inside the profile page container. It displays the returned user object containing the current account information for the logged in member, also acts as container for the user edit form which has been separated into a self contained page for reusability. 
-![user_details_object](/Documentation/user_details_object)
+![user_details_object](/Documentation/user_details_object.png)
 
 #### User edit
 
 The user edit page sits inside the footer of the user details page and handles updating account details of the logged in user. It recieves the current values via props passed from user details which are stored in state and used to prepopulate the update form. Form validation is handled by field type and the required flag so that the form cannot be submitted with invalid types or blank data. Errors on the fields retured from the API are displayed beneath each form field in necessary. 
 * I have used the TanStack Query library to handle updates sent to the API in the form of a [mutation](https://tanstack.com/query/v4/docs/react/guides/mutations). I have chosen to use Tanstack Query as it is a dedicated React tool for data fetching that handles loading and error states gracefully. I particuarly wanted to use the function for invalidating and refetching data on mutation which is done via the query key linked to each query you make. When data has been mutated, on success the query client can invalidate already fetched data that is linked with any key and refetch those queries. The `isLoading` and `isError` states of Tanstack Query have allowed me to write code in a more logcal way to customise the user experience for those events.
-To make the page view cleaner the edit form is hidden by default and displayed at the click of a button, this is handled by a flag held in state. On success, a message is sent to the screen however in order to overcome an issue where the profile icon was not updated I have also included a window refresh which over writes the success message. This is something that I would have handled better if I had more time. 
+
+To make the page view cleaner the edit form is hidden by default and displayed at the click of a button, this is handled by a flag held in state. On success a message is sent to the screen, however in order to overcome an issue where the profile icon was not updated I have also included a window refresh which over writes the success message. This is something that I would have handled better if I had more time. 
+![user_edit_form](/Documentation/user_edif_form.png)
 
 
 ### Components added this sprint
@@ -130,10 +132,13 @@ In order to neatly and consistently display profile icons, and any other icons i
 I followed the instructions from Fontawesome [here](https://fontawesome.com/docs/web/use-with/react/add-icons#add-icons-globally) for building a library at the top level of my application where I import all icons used in the project. I then created components for regular and solid icons to make reusing code more efficient throughout the application, all of the code to display an icon is written within the respective component and then when an icon is needed to be displayed, all thats needed is the component with a single word prop for the icon name and a prop for the colour rather than multiple lines of code each time. As I have used icons rather than profile pictures for a more "gamey" feel, this way of displaying them cleaned up a lot of lines of repetitive code. 
 
 In terms of specifically displaying and updating profile icons, the use of these components means that the single variable needed to display each option for a profile icon can be easily stored in a database and when retrieved it is simply plugged in as a prop to the component to output the correct profile icon throughout the application. 
+![profile_icon](/Documentation/profile_icon.png)
 
  #### Header Component
 
  The header component holds the navigation links and logged in status which remain consistent throughout all parts of the appliction. I added the logout button as described above to this component, as well as an element that checks the current user context and returns either their username and profile icon or if no user is logged in then an icon indicating that there is no current user. Rather than adding navigation to each page, this component is included at the top level of the application and sits above the main app container where all other pages will then be displayed. 
+ ![user_display](/Documentation/user_display.png)
+ ![loggedout](/Documentation/loggedout_display.png)
 
 ## Milestone 2 - Games Library
 
