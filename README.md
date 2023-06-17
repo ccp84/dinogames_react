@@ -143,7 +143,7 @@ In terms of specifically displaying and updating profile icons, the use of these
 
 | Tasks this sprint | Overview |
 | ------------------| -------- |
-| * Create admin only page . * Add game creation form. * Add edit game form. * Button to delete games. * Design page to display latest 5 games on the home page. * Design full library display page. * Design page for returning individual game details. * Add search and filter to main library page | ![sprint2](/Documentation/sprint2.png) |
+| * Create admin only page . * Add game creation form. * Add edit game form. * Button to delete games. * Design page to display latest 5 games on the home page. * Create a home page * Design full library display page. * Design page for returning individual game details. * Add search and sort to main library page | ![sprint2](/Documentation/sprint2.png) |
 
 | User Stories This Milestone | Frontend Acceptance Criteria |
 | --------------------------- | ---------------------------- |
@@ -151,48 +151,79 @@ In terms of specifically displaying and updating profile icons, the use of these
 | As a member of staff I want to be able to edit listed games so that the details are always accurate and up to date. | Edit form is available when logged in as a member of staff |
 | As a member of staff I want to be able to delete a game from the library so that any old games no longer available are removed from the list | Delete button is available when logged in as an admin user, Game instance is successfully deleted from the library |
 | As a member I want to be able to see all of the games available in the library so that I can read the reviews and look for games I might like | Front end library page displays all available games |
-| As a member I want to be able to search the library by game feature so that I can pick out the games most suited to my interests | Front end library page has a keyword search feature, Front end library can be filtered |
+| As a member I want to be able to search the library by game feature so that I can pick out the games most suited to my interests | Front end library page has a keyword search feature, Front end library can be sorted |
 
 ### Features developed this milestone
 
-### Deleting games as an administrator
+#### Deleting games as an administrator
 
-Game owners are able to delete games from their list, this action is handled by the delete button's `onClick` attribute.
+Staff members are able to delete games from the library from a delete button located either in the header of the game details page or from the games admin page .
 The axios instance uses the request interceptor to first ensure a valid access token. The game id is then used to identify which item in the Game table is being targeted. Authority to access the delete endpoint is handled by sending the JWT in the request header. 
-On success, `refetch` is called which is part of the [useQuery](https://tanstack.com/query/latest/docs/react/reference/useQuery) hook, this handles refreshing the cached query data displayed in the games list and the deleted game is no longer displayed. 
-
-### Filtering and searching the games library
-
-https://tanstack.com/query/latest/docs/react/guides/query-keys
+On success, `refetch` is called which is part of the [useQuery](https://tanstack.com/query/latest/docs/react/reference/useQuery) hook, this handles refreshing the cached query data displayed in the games list and the deleted game is no longer displayed.
+![game_delete_refetch](/Documentation/game_delete_refetch.png)
 
 #### Search bar
 
-#### Filter dropdown
+The search feature sits within the main Library page container. It uses state to monitor what a user has typed in to search for and updates the string passed to the request URL accordingly. 
+
+#### Sort dropdown
+
+Filtering the returned library of games is linked to a pre written drop down list which matches the available sort options in the API. When a user selects a dropdown option, the query URL is updated to match the sort string and the games are then displayed in the requested order. 
+
+![library_search_sort](/Documentation/_library_search_sort.png)
 
 ### Pages linked to this milestone
 
-* AN IMPORTANT NOTE The admin pages of games are oddly named as OwnerEdit and OwnerList rather than as they should be AdminEdit and AdminCreate this is due to a change in direction of the project early on. After starting this sprint my initial intentions didnt actually make any sense. Because I have built this project in sprints with building the backend and then frontend components for each incrementally it made it easy to rework the idea rather than having a fully completed backend and nowhere to go with the frontend. However as I had already begun developing with the initial ideas, and these pages linked in other places I have left the naming as it was which is not ideal in a larger project but for the size and scope of this made more sense to me. 
+#### The library page
 
-#### Games Admin
+The library page is the main container for returning the full list of games. It has search and sort features at the top of the page and the page to return a full list from the API is displayed underneath. This modularity means that future improvements to searching and sorting can be made without major changes to the code returing the list of games. 
 
+#### All games
 
-### Editing games
+All games handles displaying the full list of games and plugs into the main library page. As it has been designed to be self contained, it could be used as a stand alone page or included elsewhere within the application with ease to return the same set of results within a different area without having to duplicate the code. 
+To separate fetching and displaying of data, the list of games is passed in via props from the GameList component which handles fetching games from the API. A check is made that this list is not empty in which case a message is displayed to the user that no games have been found,
+![empty_list](/Documentation/games_empty_list.png)
+otherwise the games are displayed using a layout container component to format the returned results and keep the page in style with the rest of the application - please see layout components at the end of this section.
 
-Community members are able to help maintain the library by making edits to the game listings from the game details page. The details to be edited are passed via the [location object in React Router](https://reactrouter.com/en/main/hooks/use-location) 
+#### Latest games
 
-These state variables pre populate the form available to edit the details of the game, and the updated values are then returned to the API along with authorisation headers via Axios, using the `axiosReq` instance to ensure a valid token is in place before data is sent. The game to be updated is matched by including the id from the location object, authorisation to edit this particular instance by the currently logged in user is handled by the authorisation token sent in the JWT header with the request.
- 
+Like All Games Latest Games uses the API call made by the GameList component to get its data sorted by the newest first. After checking there are games retured in the list, it slices the first 5 items from the list before mapping through and displaying them. Display is also handled by the layout container components for an application wide uniform style.
+![latest_games](/Documentation/latest_games.png)
 
+#### Game detail
+
+In order to view the full details of a game and later into the project add and read reviews a detailed game page has been included. This can be accessed by clicking on a game title in either of the lists of games available. This page handles fetching its own data based on the id of the game appended to the URL when navigating to the detail page and accessed via `useParams`. A check on the current user details is also made from this page for user type, as staff members are able to make edits from this page, or delete the game entirely. 
+
+#### Landing Page
+
+To display the latest games list and begin to tie the application together the landing page serves as the home route. Here there are 3 main areas to return the latest games page, a small `About` section and when added the latest announcements will be added as well. Again modularity of design allows this page to function with the missing data, or if one page's API fetch fails the the rest of the page can continue independently. 
+![landing_page](/Documentation/landing_page.png)
+
+#### Game admin
+
+Calling on the Game List API component the Game admin page collects the list of games returned from its props. It uses the current user context to check that the logged in user is allowed to access this page, and displays a warning message if they don't have authorisation to access the page. 
+![admin_access](/Documentation/admin_access.png)
+Assuming authorisation is valid, and the games list is not empty then a list is diplayed with edit and delete options for staff members. This serves as a more direct route for games management than going via the library > game detail pages. Game deletion works as described above with an API call based on the game ID passed in from the game list. Once deletion is successful then invalidation takes place and the libraryData query key is refetched to update the list of games. Editing games is a separate page and the information to be edited is [passed as state](https://reactrouter.com/en/main/hooks/use-location) to the child component.
+
+#### Create Game
+
+Adding new games to the library can be done by staff users with admin access. This form is only accessible from the main games admin page, the button to add a new game uses a flag to toggle between showing or hiding the form. Another security check is included on the logged in user having the is_staff flag or else a warning is returned on screen so this page could be slotted in to any other part of the application and still have the same level of security checking. Variables to be returned to the API for creating a new game instance are held in state while the form is being populated until the submit button is pressed, field type and required flags on the mandatory fields are included in the form for data validation before the request is sent and any field specific errors are returned underneath the relevant text box or dropdown. On success a message is displayed on screen and the user is redirected to the game detail page to review the newly created game. From this page edit and delete options are readily available. 
+
+#### Edit game
+
+Details to be edited are passed to this page via the [location object in React Router](https://reactrouter.com/en/main/hooks/use-location). These state variables pre populate the form available to edit the details of the game, the game to be updated is matched by its id which forms part of the Axios request. As editing games is an admin only function, authorisation to carry out the request is checked by the token sent over in the request header, although access to the edit page is also checked by the is_staff flag in the current user context as well. 
 
 ### Components added this sprint
 
+#### Game List
 
+To handle fetching data from the API this component gets any search or sort strings passed in via its props from the parent module. Its job is solely to retrieve the list of games and then based upon the list prop either display the `AllGames`, `GameAdmin` or the `LatestGames` page as necessary. It separates out data fetching and data display so that one can be modified without affecting the other. It also means that while there are 3 differing pages for displaying games the code for requesting the data from the API is only held in one place and has not had to be repeated. Any further need for fetching and displaying game data to the front end can be incorporated into this component so that only the display element needs to be written.
 
+#### Layout Components
 
+As I was repeating a lot of the display components while adding pages for this sprint, I have standardised the layout and display of the majority of the application into 3 reusable layout components. A component which includes a full header body and footer, one for just header and body and then one for just body. All that needs to be passed into these components is the content to be produced inside the relevant sections of the Bootstrap Card and the colour, layout and margins are are handled by these containers. For any styling changes to colour schemes or to add different elements into the main layout of the pages only the container components need to be changed and this will then update the majority of the application with a few minor adjustments left to make to pages where non standard layout is needed. Using these components makes it much quicker to add new pages and content to the project without having to remember colour schemes, margins that have been set on previous pages or which layout elements were used and the whole site then has a uniform style and feel throughout. 
 
-
-
-
+![layout_containers](/Documentation/layout_containers.png)
 
 ## Milestone 3 - Player Reviews
 
@@ -226,7 +257,7 @@ These state variables pre populate the form available to edit the details of the
 
 | Tasks this sprint | Overview |
 | ------------------| -------- |
-| *  | ![sprint4](/Documentation/sprint4.png) |
+|  | ![sprint4](/Documentation/sprint4.png) |
 
 | User Stories This Milestone | Frontend Acceptance Criteria |
 | --------------------------- | ---------------------------- |
@@ -261,6 +292,9 @@ These state variables pre populate the form available to edit the details of the
 ### Pages linked to this milestone
 
 ### Components added this sprint
+
+## Future Features
+* I started developing this project in Material UI but ran into issues each time I tried to deploy to Heroku. Having not previously had problems with the walkthrough using React Bootstrap I proceeded with Bootstrap instead. Ideally I would rebuild with MUI given more time to troubleshoot and look to deploy to somewhere like AWS Amplify instead. 
 
 ## Testing
 
