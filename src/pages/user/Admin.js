@@ -1,10 +1,10 @@
 import React from 'react';
 import { useCurrentUser } from '../../contexts/CurrentUserContext';
 import NewsAdmin from '../news/NewsAdmin';
-import OwnerList from '../library/GameAdmin';
 import PageContainer from '../../components/Layout/PageContainer';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
+import GameList from '../library/GameList';
 
 const Admin = () => {
 	const currentUser = useCurrentUser();
@@ -18,7 +18,7 @@ const Admin = () => {
 						<NewsAdmin />
 					</Col>
 					<Col sm={12} md={6}>
-						<OwnerList />
+						<GameList list="admin" />
 					</Col>
 				</Row>
 			) : (

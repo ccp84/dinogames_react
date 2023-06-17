@@ -3,6 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 import { axiosReq } from '../../api/axiosDefaults';
 import LatestGames from './LatestGames';
 import AllGames from './AllGames';
+import GameAdmin from './GameAdmin';
 import Loading from '../../components/Loading';
 import ErrorContainer from '../../components/Layout/ErrorContainer';
 
@@ -12,6 +13,8 @@ const GameList = ({ list, filter }) => {
 	});
 
 	const latest = list === 'latest';
+	const all = list === 'all';
+	const admin = list === 'admin';
 	const search = filter ? filter : '';
 
 	const { games } = listDetails;
@@ -28,13 +31,10 @@ const GameList = ({ list, filter }) => {
 
 	return (
 		<>
-			{latest ? (
-				// if latest flag in props return latest page
-				<LatestGames games={games} />
-			) : (
-				// otherwise return full games library
-				<AllGames games={games} />
-			)}
+			{/* return  page matching the relevant list flag */}
+			{latest ? <LatestGames games={games} /> : null}
+			{all ? <AllGames games={games} /> : null}
+			{admin ? <GameAdmin games={games} /> : null}
 		</>
 	);
 };

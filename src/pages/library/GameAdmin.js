@@ -1,11 +1,9 @@
 import React, { useState } from 'react';
 import HeaderContainer from '../../components/Layout/HeaderContainer';
-import ErrorContainer from '../../components/Layout/ErrorContainer';
 import CreateGame from './CreateGame';
-import Loading from '../../components/Loading';
 import { useSetCurrentMessage } from '../../contexts/CurrentMessageContext';
 import { axiosReq } from '../../api/axiosDefaults';
-import { useQuery } from '@tanstack/react-query';
+import { useQueryClient } from '@tanstack/react-query';
 import { Link } from 'react-router-dom';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Alert from 'react-bootstrap/Alert';
@@ -16,22 +14,11 @@ import DropdownButton from 'react-bootstrap/DropdownButton';
 import Row from 'react-bootstrap/Row';
 import Stack from 'react-bootstrap/Stack';
 
-const OwnerList = () => {
-	const [listDetails, setListDetails] = useState({
-		games: []
-	});
+const OwnerList = ({ games }) => {
+
 	const [show, setShow] = useState(false);
-	const { games } = listDetails;
 	const setCurrentMessage = useSetCurrentMessage();
-	const { isLoading, error, refetch } = useQuery({
-		queryKey: ['ownerData'],
-		queryFn: () => axiosReq.get('/games/').then((res) => res.data),
-		onSuccess: (data) => setListDetails({ games: data })
-	});
-
-	if (isLoading) return <Loading />;
-
-	if (error) return <ErrorContainer errorContent={error.message} />;
+	const queryClient = useQueryClient();
 
 	return (
 		<>
@@ -55,9 +42,9 @@ const OwnerList = () => {
 				bodyContent={
 					<>
 						<ListGroup className="list-group-flush">
-							{games.map((game, id) => {
+							{games.map((game) => {
 								return (
-									<ListGroup.Item key={id}>
+									<ListGroup.Item key={game.id}>
 										<Row>
 											<Col>{game.title}</Col>
 											<Col>
@@ -92,8 +79,15 @@ const OwnerList = () => {
 																			'success'
 																	}
 																);
-																// useQuery refetch will refresh the list on success
-																refetch();
+																// refetch linked data
+																queryClient.invalidateQueries(
+																	{
+																		queryKey:
+																			[
+																				'libraryData'
+																			]
+																	}
+																);
 															} catch (err) {
 																setCurrentMessage(
 																	{
