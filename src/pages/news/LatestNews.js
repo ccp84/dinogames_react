@@ -15,7 +15,7 @@ const LatestNews = () => {
 
     const { isLoading, error } = useQuery({
         queryKey: ['newsData'],
-        queryFn: () => axiosReq.get('/announcement').then((res) => res.data),
+        queryFn: () => axiosReq.get('/announcement/').then((res) => res.data),
         onSuccess: (data) => setListDetails({ news: data })
     });
 

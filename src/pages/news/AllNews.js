@@ -13,84 +13,84 @@ import ListGroupItem from 'react-bootstrap/ListGroupItem';
 import Row from 'react-bootstrap/Row';
 
 const AllNews = () => {
-    const [listDetails, setListDetails] = useState({
-        news: []
-    });
+	const [listDetails, setListDetails] = useState({
+		news: []
+	});
 
-    const { news } = listDetails;
+	const { news } = listDetails;
 
-    const { isLoading, error } = useQuery({
-        queryKey: ['newsData'],
-        queryFn: () => axiosReq.get('/announcement').then((res) => res.data),
-        onSuccess: (data) => setListDetails({ news: data })
-    });
+	const { isLoading, error } = useQuery({
+		queryKey: ['newsData'],
+		queryFn: () => axiosReq.get('/announcement/').then((res) => res.data),
+		onSuccess: (data) => setListDetails({ news: data })
+	});
 
-    if (isLoading) return <Loading />;
+	if (isLoading) return <Loading />;
 
-    if (error) return <ErrorContainer errorContent={error.message} />;
-    return (
-        <>
-            {!news.length ? (
-                // returned list has no length - display message
-                <PageContainer bodyContent={<>No news items found</>} />
-            ) : (
-                // Returned list length greater than 0 - map over objects
-                <>
-                    {news.map((item, id) => {
-                        return (
-                            <HeaderContainer
-                                key={id}
-                                titleContent={
-                                    <>
-                                        <Row>
-                                            <Col sm={12} md={12}>
-                                                {item.title}
-                                            </Col>
-                                        </Row>
-                                    </>
-                                }
-                                bodyContent={
-                                    <>
-                                        <Row>
-                                            <Col sm={12} md={6}>
-                                                <Card.Body>
-                                                    <Card.Text>
-                                                        {item.content}
-                                                    </Card.Text>
-                                                </Card.Body>
-                                            </Col>
-                                            <Col sm={12} md={6}>
-                                                <ListGroup>
-                                                    <ListGroupItem>
-                                                        Updated on:
-                                                        {item.lastupdated}
-                                                    </ListGroupItem>
-                                                    <ListGroupItem>
-                                                        Written by:
-                                                        {item.author}
-                                                        <SolidIcon
-                                                            className="text-warning m-1"
-                                                            iconName={
-                                                                item.profileicon
-                                                            }
-                                                        />
-                                                    </ListGroupItem>
-                                                    <ListGroupItem>
-                                                        Category:
-                                                        {item.category_title}
-                                                    </ListGroupItem>
-                                                </ListGroup>
-                                            </Col>
-                                        </Row>
-                                    </>
-                                }
-                            />
-                        );
-                    })}
-                </>
-            )}
-        </>
-    );
+	if (error) return <ErrorContainer errorContent={error.message} />;
+	return (
+		<>
+			{!news.length ? (
+				// returned list has no length - display message
+				<PageContainer bodyContent={<>No news items found</>} />
+			) : (
+				// Returned list length greater than 0 - map over objects
+				<>
+					{news.map((item, id) => {
+						return (
+							<HeaderContainer
+								key={id}
+								titleContent={
+									<>
+										<Row>
+											<Col sm={12} md={12}>
+												{item.title}
+											</Col>
+										</Row>
+									</>
+								}
+								bodyContent={
+									<>
+										<Row>
+											<Col sm={12} md={6}>
+												<Card.Body>
+													<Card.Text>
+														{item.content}
+													</Card.Text>
+												</Card.Body>
+											</Col>
+											<Col sm={12} md={6}>
+												<ListGroup>
+													<ListGroupItem>
+														Updated on:
+														{item.lastupdated}
+													</ListGroupItem>
+													<ListGroupItem>
+														Written by:
+														{item.author}
+														<SolidIcon
+															className="text-warning m-1"
+															iconName={
+																item.profileicon
+															}
+														/>
+													</ListGroupItem>
+													<ListGroupItem>
+														Category:
+														{item.category_title}
+													</ListGroupItem>
+												</ListGroup>
+											</Col>
+										</Row>
+									</>
+								}
+							/>
+						);
+					})}
+				</>
+			)}
+		</>
+	);
 };
 
 export default AllNews;
