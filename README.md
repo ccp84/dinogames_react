@@ -170,7 +170,7 @@ The search feature sits within the main Library page container. It uses state to
 
 Filtering the returned library of games is linked to a pre written drop down list which matches the available sort options in the API. When a user selects a dropdown option, the query URL is updated to match the sort string and the games are then displayed in the requested order. 
 
-![library_search_sort](/Documentation/_library_search_sort.png)
+![library_search_sort](/Documentation/library_search_sort.png)
 
 ### Pages linked to this milestone
 
@@ -196,7 +196,7 @@ In order to view the full details of a game and later into the project add and r
 
 #### Landing Page
 
-To display the latest games list and begin to tie the application together the landing page serves as the home route. Here there are 3 main areas to return the latest games page, a small `About` section and when added the latest announcements will be added as well. Again modularity of design allows this page to function with the missing data, or if one page's API fetch fails the the rest of the page can continue independently. 
+To display the latest games list and begin to tie the application together the landing page serves as the home route. Here there are 3 main areas to return the latest games page, a small about section and when added the latest announcements will be added as well. Again modularity of design allows this page to function with the missing data, or if one page's API fetch fails the the rest of the page can continue independently. 
 ![landing_page](/Documentation/landing_page.png)
 
 #### Game admin
@@ -229,7 +229,7 @@ As I was repeating a lot of the display components while adding pages for this s
 
 | Tasks this sprint | Overview |
 | ------------------| -------- |
-| * Library members can create reviews for games. * Review owners can edit and delete their reviews. * Members can see a list of reviews they have written. * All visitors can read reviews for any game in the library | ![sprint3](/Documentation/sprint3.png) |
+| * Add review creation form for members * Add edit and delete buttons on reviews visible to review author * Display all reviews linked to a game on game detail pages. * Display member specific reviews in the profile page | ![sprint3](/Documentation/sprint3.png) |
 
 | User Stories This Milestone | Frontend Acceptance Criteria |
 | --------------------------- | ---------------------------- |
@@ -239,19 +239,42 @@ As I was repeating a lot of the display components while adding pages for this s
 | As a member I want to be able to see a list of reviews that I have written so that I can remember what I have already reviewed and check they are still relevant | A list of reviews is returned only for the logged in user under the user profile page |
 | As a site visitor I want to be able to read reviews of games by people that have already played them so that I can decide if I might want to play that game | Front end displays reviews filtered by game on the correct game listing |
 
-### Features developed this milestone
-
 ### Pages linked to this milestone
+
+#### Create review form
+
+The page for creating a review uses a button with a toggle to show or hide the review editor so that it can be included inside another page as well as being used as a stand alone page, it just needs a game id to be passed in as a prop so that the mutation knows which game is being reviewed when creating a new review instance. The author id is taken from the currently logged in user sent in the access token. When a mutation successfully saves a new review or an error occurs on saving, the user is notified by an on screen message. After saving, the review list query key is invalidated and refreshed so that the new instance is included in the list of reviews displayed on the game page instantly.
+
+#### Edit review form
+
+Editing reviews uses a form that is prepoulated by passing in the review content to the form component as props, this content is held in state while the user is updating their content. Once the update is complete a mutation handles sending the update to the API feedback is given to the user on screen that their review update was sucessful or an error has occurred, query key invalidation handles updating the returned review list data. Also included in the edit form is the ability to delete a review instance, axios sends across the review id from the review object held in state and the author id in the access token so that the API can check the user has authorisation to delete the review instance. Feedback is again given to the user on screen and query key invalidation handles refreshing the review list data to remove the dislayed list of reviews instantly. 
+
+As this page functions independently, the same edit form is included on both the game detail page list of reviews and the profile page list of reviews eliminating the need to duplicate any code.
+
+![edit_reviews](/Documentation/edit_reviews.png)
+
+#### Game reviews page
+
+The game reviews page is a container to hold all of the elements of the review function together underneath the game detail page container. It handles fetching a filtered list of reviews where the game id is the current id of the game being displayed and then calls review list for all site visitors to see the relevant reviews that have been left for the game. A check is run to see if there is a currently logged in user, if so then the option to create a new review is shown by including the create review form. 
+![game_reviews](/Documentation/game_reviews.png)
 
 ### Components added this sprint
 
-### Viewing reviews for a game
+#### Review list
 
-### Creating a review as a member
+Review list is a reusable display component that takes in a list of reviews from its parent and after checking the list is not empty, renders the reviews by mapping through the passed in list. For each review, checking if the logged in user is the author is handled by the API and a flag is returned true or false. For any reviews where the is_author flag is true additional edit and delete options are provided by adding the toggle button for the edit review form in while displaying that particular item in the list. 
+![is_author](/Documentation/is_author.png)
+As this component just focuses on display it is used for both displaying the list of game reviews as well as the list of reviews on the profile page, as long as it is passed in a list of reviews it doesn't bother itself with the fetching of that list data. With a few modifications this could have been an even more versatile list display component for all lists not just reviews now that I have a better understanding of the modularity of React architecture and I will certainly use this approach better in future. 
 
-### Viewing reviews for a member
+#### Loading container
 
-### Editing and deleting reviews
+Building upon the layout containers developed in the last sprint, I added a loading component this time so that rather than having to import and style spinners every time I wanted to use them I have a single container to add and the Bootstrap is all handlded within this container. 
+![loading](/Documentation/loading.png)
+
+#### Error container
+
+Similarly to the loading container, I also added an error container that accepts error text as a prop and returns a styled error message to display to the user. 
+![error_container](/Documentation/error_container.png)
 
 ## Milestone 4 - Admin Announcements
 

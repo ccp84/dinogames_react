@@ -27,7 +27,8 @@ const GameList = ({ list, filter }) => {
 
 	if (isLoading) return <Loading />;
 
-	if (error) return <ErrorContainer errorContent={error.message} />;
+	if (error)
+		return <ErrorContainer errorContent="Error while fetching game list" />;
 
 	return (
 		<>
