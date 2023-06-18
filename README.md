@@ -280,7 +280,7 @@ Similarly to the loading container, I also added an error container that accepts
 
 | Tasks this sprint | Overview |
 | ------------------| -------- |
-|  | ![sprint4](/Documentation/sprint4.png) |
+| * Add latest announcements to landing page. * Create a news page for all announcements. * Add news admin section to admin page. * Create new announcement and edit announcement forms. * Add delete button to admin list of announcements | ![sprint4](/Documentation/sprint4.png) |
 
 | User Stories This Milestone | Frontend Acceptance Criteria |
 | --------------------------- | ---------------------------- |
@@ -289,12 +289,38 @@ Similarly to the loading container, I also added an error container that accepts
 | As an admin user I want to be able to delete announcements so that events and updates that are no longer relevant can be removed | Delete button available in admin area of React site, Instances are removed from the database when delete sent from front end |
 | As a visitor to the site I want to be able to read all of the latest announcements so that I can find out about events that are happening in the library | Announcements are listed in reverse chronological order, The 5 latest announcements are displayed on the landing page of the React site, All announcements are displayed with all details on the news stories page |
 
+## Features added this sprint
 
-### Features developed this milestone
+So that the news and game administration features are contained within one page. I have created a main admin page that news admin and game admin sits inside. The two functions are separate so that if one fails it does not affect the working of the other. This layout also makes updates easier as there are no dependencies of code between the different functional areas of the application and for any further features added then it is easy to add admin for those features by simply plugging them into the layout. 
+![admin_area](/Documentation/admin_area.png)
 
 ### Pages linked to this milestone
 
+#### Latest news
+
+Latest news makes an API call and stores the returned list. Checking that the list is not empty first it then slices the first 5 elements from the list before mapping through them to display basic news information within the landing page of the application. 
+
+#### All news
+
+All news uses the returned list from the API and after checking that the returned list is not empty, displays the full details of each news announcement. Announcements are viewable by all site visitors and do not require login credentials. 
+
+![news_announcement](/Documentation/news_announcement.png)
+
+#### News admin
+
+The admin page for announcements makes a request to an admin only API endpoint. Checking for authorisation to access the endpoint is done by verifying the user details in the access token sent over in the Axios request header. A toggle button hides or shows the page for creating a new announcement at the top with a list group mapping through all announcements displaying an edit component for each one. 
+
+#### Create announcement
+
+Creating new news announcements is accessible to admin users only through the admin page. This function sits at the top of the news admin section and is hidden by default. The show hide toggle is held in state and triggered by the edit buttons onClick attribute. A mutation adds the new announcement to the Announcement table and query invalidation then refetches the data for both news data and news admin query keys to instantly refresh both lists. 
+![create_announcements](/Documentation/create_announcement.png)
+
 ### Components added this sprint
+
+#### Edit announcement
+
+The announcement editing component is displayed with each announcement in the returned list. It holds the details of the announcement in state to pre populate a form for the user to update any details that need to be changed and then a mutate function handles the PUT request to update the announcement at the API. Query invalidation ensures the relevant query keys are refreshed on success so that the details are updated instantly in any lists displayed and a success message is displayed to the user on screen. The delete button for each announcement is included inside the edit component but does not trigger the full edit form to be opened when selected. 
+![edit_announcement](/Documentation/edit_announcement.png)
 
 ## Milestone 5 - Member Ratings
 
@@ -311,6 +337,8 @@ Similarly to the loading container, I also added an error container that accepts
 
 
 ### Features developed this milestone
+
+#### Notification system
 
 ### Pages linked to this milestone
 

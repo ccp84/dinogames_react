@@ -27,7 +27,10 @@ const AllNews = () => {
 
 	if (isLoading) return <Loading />;
 
-	if (error) return <ErrorContainer errorContent={error.message} />;
+	if (error)
+		return (
+			<ErrorContainer errorContent="Error fetching news announcements" />
+		);
 	return (
 		<>
 			{!news.length ? (

@@ -19,7 +19,7 @@ root.render(
 		<QueryClientProvider client={queryClient}>
 			<CurrentUserProvider>
 				<CurrentMessageProvider>
-					<Container>
+					<Container className="my-4">
 						<Header />
 						<App />
 					</Container>

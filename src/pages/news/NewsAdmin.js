@@ -15,75 +15,78 @@ import ListGroupItem from 'react-bootstrap/ListGroupItem';
 import Stack from 'react-bootstrap/Stack';
 
 const NewsAdmin = () => {
-    const [listDetails, setListDetails] = useState({
-        news: []
-    });
-    const [show, setShow] = useState(false);
+	const [listDetails, setListDetails] = useState({
+		news: []
+	});
+	const [show, setShow] = useState(false);
 
-    const currentUser = useCurrentUser();
+	const currentUser = useCurrentUser();
 
-    const { news } = listDetails;
+	const { news } = listDetails;
 
-    const { isLoading, error } = useQuery({
-        queryKey: ['newsAdminlist'],
-        queryFn: async () =>
-            await axiosReq.get('/announcement/admin').then((res) => res.data),
-        onSuccess: (data) => setListDetails({ news: data })
-    });
+	const { isLoading, error } = useQuery({
+		queryKey: ['newsAdminlist'],
+		queryFn: async () =>
+			await axiosReq.get('/announcement/admin').then((res) => res.data),
+		onSuccess: (data) => setListDetails({ news: data })
+	});
 
-    if (isLoading) return <Loading />;
+	if (isLoading) return <Loading />;
 
-    if (error) return <ErrorContainer errorContent={error.message} />;
+	if (error)
+		return (
+			<ErrorContainer errorContent="Error fetching news announcements" />
+		);
 
-    return (
-        <>
-            {currentUser?.is_staff ? (
-                // Admin user logged in ? display page
-                <HeaderContainer
-                    titleContent={
-                        <>
-                            <Stack direction="horizontal" gap={3}>
-                                <>News Admin</>
-                                <Button
-                                    variant="light"
-                                    onClick={() => setShow(!show)}
-                                >
-                                    {show ? 'Close Editor' : 'New Announcement'}
-                                </Button>
-                            </Stack>
-                            <Alert variant="light" show={show}>
-                                <CreateNews />
-                            </Alert>
-                        </>
-                    }
-                    bodyContent={
-                        <>
-                            <ListGroup className="list-group-flush">
-                                {news.map((item) => {
-                                    return (
-                                        <ListGroupItem key={item.id}>
-                                            <EditNews
-                                                id={item.id}
-                                                title={item.title}
-                                                content={item.content}
-                                                category={item.category}
-                                            />
-                                        </ListGroupItem>
-                                    );
-                                })}
-                            </ListGroup>
-                        </>
-                    }
-                />
-            ) : (
-                <PageContainer
-                    bodyContent={
-                        <>You must be an administrator to access this page</>
-                    }
-                />
-            )}
-        </>
-    );
+	return (
+		<>
+			{currentUser?.is_staff ? (
+				// Admin user logged in ? display page
+				<HeaderContainer
+					titleContent={
+						<>
+							<Stack direction="horizontal" gap={3}>
+								<>News Admin</>
+								<Button
+									variant="light"
+									onClick={() => setShow(!show)}
+								>
+									{show ? 'Close Editor' : 'New Announcement'}
+								</Button>
+							</Stack>
+							<Alert variant="light" show={show}>
+								<CreateNews />
+							</Alert>
+						</>
+					}
+					bodyContent={
+						<>
+							<ListGroup className="list-group-flush">
+								{news.map((item) => {
+									return (
+										<ListGroupItem key={item.id}>
+											<EditNews
+												id={item.id}
+												title={item.title}
+												content={item.content}
+												category={item.category}
+											/>
+										</ListGroupItem>
+									);
+								})}
+							</ListGroup>
+						</>
+					}
+				/>
+			) : (
+				<PageContainer
+					bodyContent={
+						<>You must be an administrator to access this page</>
+					}
+				/>
+			)}
+		</>
+	);
 };
 
 export default NewsAdmin;
