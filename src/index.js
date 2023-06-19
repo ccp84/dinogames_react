@@ -7,8 +7,6 @@ import './api/axiosDefaults';
 import { CurrentUserProvider } from './contexts/CurrentUserContext';
 import { BrowserRouter } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import Header from './components/Header';
-import Container from 'react-bootstrap/Container';
 import { CurrentMessageProvider } from './contexts/CurrentMessageContext';
 
 const queryClient = new QueryClient();
@@ -19,10 +17,7 @@ root.render(
 		<QueryClientProvider client={queryClient}>
 			<CurrentUserProvider>
 				<CurrentMessageProvider>
-					<Container className="my-4">
-						<Header />
-						<App />
-					</Container>
+					<App />
 				</CurrentMessageProvider>
 			</CurrentUserProvider>
 		</QueryClientProvider>

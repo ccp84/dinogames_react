@@ -23,6 +23,8 @@ import GameDetail from './pages/library/GameDetail';
 import Library from './pages/library/Library';
 import AllNews from './pages/news/AllNews';
 import Admin from './pages/user/Admin';
+import { Container } from 'react-bootstrap';
+import Header from './components/Header';
 
 library.add(
 	faHatWizard,
@@ -39,19 +41,21 @@ library.add(
 
 function App() {
 	return (
-		<Routes>
-			<Route path="/" element={<LandingPage />} />
-			<Route path="/profile" element={<Profile />} />
-			<Route path="/profile/edit" element={<UserEdit />} />
-			<Route path="/signin" element={<SignInForm />} />
-			<Route path="/signup" element={<SignUpForm />} />
-			<Route path="/game/edit" element={<GameEdit />} />
-			<Route path="/game/library" element={<Library />} />
-			<Route path="game/:id" element={<GameDetail />} />
-			<Route path="/admin" element={<Admin />} />
-			<Route path="/news" element={<AllNews />} />
-			<Route path="*" element={<NoMatch />} />
-		</Routes>
+		<><Header /><Container className="my-4">
+			<Routes>
+				<Route path="/" element={<LandingPage />} />
+				<Route path="/profile" element={<Profile />} />
+				<Route path="/profile/edit" element={<UserEdit />} />
+				<Route path="/signin" element={<SignInForm />} />
+				<Route path="/signup" element={<SignUpForm />} />
+				<Route path="/game/edit" element={<GameEdit />} />
+				<Route path="/game/library" element={<Library />} />
+				<Route path="game/:id" element={<GameDetail />} />
+				<Route path="/admin" element={<Admin />} />
+				<Route path="/news" element={<AllNews />} />
+				<Route path="*" element={<NoMatch />} />
+			</Routes>
+		</Container></>
 	);
 }
 
