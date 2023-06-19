@@ -326,7 +326,7 @@ The announcement editing component is displayed with each announcement in the re
 
 | Tasks this sprint | Overview |
 | ------------------| -------- |
-| * | ![sprint5](/Documentation/sprint5.png) |
+| * Add thumbs up and down buttons to each game in the game list. * Add numbers of positive and negative ratings next to each button. * Add create rating function. * Add edit function for existing ratings. * Create delete option for ratings. * Add list display of liked games in profile area. | ![sprint5](/Documentation/sprint5.png) |
 
 | User Stories This Milestone | Frontend Acceptance Criteria |
 | --------------------------- | ---------------------------- |
@@ -335,17 +335,27 @@ The announcement editing component is displayed with each announcement in the re
 | As a member I want to see the games I have rated so that I can pick out games I have already played and enjoyed to play again. | A list of ratings made by the member is visible on the profile page |
 | As a site visitor I want to be able to see ratings left by other people so that I know if I might want to play that game or not. | Numbers of thumbs up and thumbs down per game displayed in the games library frontend |
 
-
-### Features developed this milestone
-
-#### Notification system
-
-### Pages linked to this milestone
-
 ### Components added this sprint
+
+#### Thumbs up and thumbs down buttons
+
+The main function of the ratings feature are the thumbs up and thumbs down buttons added onto each game listing in the library. These are added when the games are being displayed and follow a series of checks to decide which version of the button to display dependent on firstly if there is a logged in user or not, then if the user has already given a rating for that game. If a rating is found for the game then the relevant coloured icon is shown with the onClick attribute being set to send a request to delete the instance if the same button is clicked again or to update the rating if the other button is clicked changing the value to the opposite and changing the coloured icon that is returned. Query key invalidation handles the refreshing of data each time a button is clicked so that the correct value is always shown on screen. 
+* The code for this component is based on the likes component of the CI Moments walkthrough and adapted to handle true or false ratings rather than just present or not present. 
+![ratings](/Documentation/ratings.png)
+
+#### User ratings list
+
+The Games I Like list in the user profile area is a filtered list giving the user quick access to the page for each game they have given a thumbs up rating to. The query makes a filtered request for ratings that match the current user id with a value of true for thumbs up. This component is entirely self contained with no dependencies for data to be passed in so it can easily be moved or reused anywhere else within the application to produce the same results. 
+
+## Application notifications - Current Message Context
+
+To display feedback to users throughout the application I added a Current Message Context that sits around the whole application. Any part of the application can use the `useCurrentMessage` or `useSetCurrentMessage` hooks to send feedback, usually success or failure, into the messaging system. To compliment this I added another layout component which produces a Bootstrap Toast element any time it sees the flag change for the Current Message Context, a timer auto clears the toast after 5 seconds and resets the context to await another message into the system. This container sits inside the header component so that messages are prominent on screen. 
+![notification_system](/Documentation/notification_system.png)
 
 ## Future Features
 * I started developing this project in Material UI but ran into issues each time I tried to deploy to Heroku. Having not previously had problems with the walkthrough using React Bootstrap I proceeded with Bootstrap instead. Ideally I would rebuild with MUI given more time to troubleshoot and look to deploy to somewhere like AWS Amplify instead. 
+* Social events - I had intended to add an extra feature for social events in the library where members could vote for which games they would like to see available for social nights. This feature has been moved to won't have, in production it would be added to the next release. 
+* Requests - I would have liked to add an area for game requests to be added to the library so that when a search is made and the game a member is looking for wasn't found there was an option to add it to the list of requests for new games. THe thumbs up component could have been reused for this so that other members could upvote the games they also wanted to see added making sure the most popular games were added first. 
 
 ## Testing
 
@@ -423,36 +433,27 @@ You can fork this repository by using the following steps:
 
 ## Technologies Used
 
-This project is built using the following languages and frameworks:
+### This project is built using the following languages and frameworks:
 * HTML
 * CSS
 * JavaScript
 * React
 
-I have used tools to assist me as a developer:
+### Tools to assist me as a developer:
 * Git - Version control and project flow management
 * [GitHub](https://github.com/) - Cloud hosting of project files
 * [Heroku](https://www.heroku.com/home) - Cloud hosting of deployed project
 * Balsamiq - Used to create wireframes
 * paint.net - Used for image manipulation
 * [Font Awesome](https://fontawesome.com/) - Icons used throughout the project
+* Prettier - Used for code formatting and compliance
+* Eslint - Used as an installed dev depencency to check for code compliance throughout development
 
-## Credits
-
-## Tools Used
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-[React Bootstrap](https://react-bootstrap.netlify.app/docs/getting-started/introduction)
-[React Router](https://reactrouter.com/en/main/start/tutorial)
-[Axios](https://axios-http.com/docs/intro)
-[reactQuery from Tanstack](https://tanstack.com/query/latest/docs/react/reference/useQuery)
-Prettier: `npm install -D prettier`
-eslint:
-```
-npm install -D eslint eslint-config-prettier
-npm install -D eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-react
-npm install -D eslint-plugin-react-hooks
-```
-
+## Libraries included in this project:
+* [React Bootstrap](https://react-bootstrap.netlify.app/docs/getting-started/introduction) - Font end library that builds on Bootstrap, a well documented and widely used tool for developing responsive front end design that meets the mobile first development goal.
+* [React Router](https://reactrouter.com/en/main/start/tutorial) - For handling client side routing in React applications, React Router allows movement between pages without needing a full window refresh which enhances the user experience while using the application.
+* [Axios](https://axios-http.com/docs/intro) - Axios handles requests made between front and back end applications, in particular it includes the ability to intercept requests which this project has used for maintaining authentication with the API rather than having to provide login credentials on a more frequent basis which gives a much better user experience. Axios can also handle XSRF protection whereas the inbuilt Fetch does not. Although cross site is set to none, login and registration with dj-rest-auth at the API does include cross site variables which I have been unable to make changes to. 
+* [reactQuery from Tanstack](https://tanstack.com/query/latest/docs/react/reference/useQuery) - Tanstack Query comes with a whole host of features, I have only realy scratched the surface of its capability in this project. I opted to use this instead of useEffect due to it being a dedicated query management tool with clear handling of loading and error states. Beyond the standard useQuery hook, I opted to use the useMutation hook for updating data as this includes the option for query invalidation following mutation. Query invalidation uses the query provider at app level and then 
 
 ## Credits
 
@@ -460,12 +461,12 @@ npm install -D eslint-plugin-react-hooks
 * For setting up routing as I have used the latest version of React and React Router, I followed the tutorial available in the documentation [here](https://reactrouter.com/en/main/start/tutorial)
 
 ### Code from other sources
+* This project has been developed following on from the Code Institute Moments Walkthrough project. Most notably the Current user context component and handling token refreshing with Axios interceptors, and the Likes component on which I have built my Ratings component. 
 
 ### Media and images
 
 * Site logo and favicon from [istock photo](https://www.istockphoto.com/vector/house-dice-icon-flat-gm1483672185-510210038)
 
 ### Honourable mentions
-
-
-
+* Support and guidance from my mentor Lauren Popich
+* June '22 slack community for continued support and help with troubleshooting and user testing
