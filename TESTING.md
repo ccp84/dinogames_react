@@ -7,12 +7,49 @@ Return to the [README.md](README.md) file.
 For JavaScript and JSX code compliance I installed eslint as a dev dependency at the start of the project so that any warnings or errors were solved as each file was written. The configuration I used for eslint can be found in the eslintrc.json file for this project. I have also used prettier throughout to ensure formatting is compliant, the config file file for this is prettierrc. I have pushed both configuration files to GitHub for completeness, normally I would include these in gitignore. By running eslint at the end of the project, no errors or warnings remain
 ![eslint](/Documentation/Testing/eslint.png)
 
+For this project all styling is handled by standard Bootstrap classes there is no additional CSS to validate.
+
 ## Defensive Programming
 
 Defensive programming was manually tested with the below user acceptance testing:
 
 | Page | User Action | Expected Result | Pass/Fail | Comments |
 | --- | --- | --- | --- | --- |
+| Home |  |  |  |  |
+| 1 | User clicks home button | Redirection to home page | Pass |  |
+| 2 | User clicks a link in latest games list | Game detail page for that game loads | Pass |  |
+| Library |  |  |  |  |
+| 3 | User clicks Library button | Redirection to library page, full game list loads | Pass |  |
+| 4 | Key word typed in search bar | Filtered game list returned | Pass | ![defensive3](/Documentation/Testing/defensive_3.png) |
+| 5 | Sort option selected | Sorted list returned | Pass | ![defensive4](/Documentation/Testing/defensive_4.png) |
+| 5 | User clicks a game title link | Redirected to game detail page for that game | Pass |  |
+| 7 | Logged in user selects rating - no rating yet | Rating created | Pass | ![defensive6](/Documentation/Testing/defensive_6.png) |
+| 8 | Logged in user selects a different rating to the one already logged | Rating value changes | Pass | ![defensive7](/Documentation/Testing/defensive_7.png) | 
+| 9 | Logged in user selects the same rating again | Rating is deleted | Pass | ![defensive8](/Documentation/Testing/defensive_8.png) |
+| 10 | Logged out user clicks on ratings button | Redirect to login page | Pass | ![defensive9](/Documentation/Testing/defensive_9.png) |
+| Game detail page |  |  |  |  |
+| 11 | Admin user clicks on page | Edit and delete buttons are available | Pass | ![defensive10](/Documentation/Testing/defensive_10.png) |
+| 12 | Admin user clicks edit button | Redirected to edit page for the correct game | Pass |  |
+| 13 | Admin user clicks delete button | Redirected to the library page | Pass |  |
+| 14 | Logged in user clicks on page | No admin buttons are visible | Pass | ![defensive13](/Documentation/Testing/defensive_13.png) |
+| 15 | Logged in user clicks add review | Review editor is displayed | Pass | ![defensive14](/Documentation/Testing/defensive_14.png) | 
+| 16 | Logged in user submits a review | Review is saved, editor is closed, review is displayed in the list | Pass | ![defensive15](/Documentation/Testing/defensive_15.png) |
+| 17 | Logged in user clicks edit on a review written by them | Review editor is displayed | Pass | ![defensive16](/Documentation/Testing/defensive_16.png) | 
+| 18 | Logged in user saves an edited review | Review is saved, editor is closed, review list is updated | Pass | ![defensive17](/Documentation/Testing/defensive_17.png) | 
+| 19 | Logged in user selects delete on a review they own | Review is deleted, review list is updated | Pass | ![defensive18](/Documentation/Testing/defensive_18.png) |
+| 20 | Logged out user clicks to add a review | Redirected to login | Pass | ![defensive19](/Documentation/Testing/defensive_19.png) |
+| 21 | Any user changes the URL for a game page to a non existent game id | Error page displayed | Pass | ![defensive20](/Documentation/Testing/defensive_20.png) |
+| Error page |  |  |  |  |
+| 22 | User clicks back button | Redirected to last page they were on | Pass |  |
+| News Page |  |  |  |  |
+| 23 | User clicks News button | Redirected to news page, full news list loads | Pass |  |
+| Signup |  |  |  |  |
+| 24 | Logged out user clicks Sign up button | Sign up form is displayed | Pass |  |
+| 25 | Logged out user enters incorrect sign up data | On screen feedback given | Pass | ![defensive25](/Documentation/Testing/defensive_25.png) |
+| 26 | Logged out user enters valid sign up data | Account is created, redirect to sign in page | Pass | ![defensive26](/Documentation/Testing/defensive_26.png) |
+| 27 | Logged out user clicks sign in link on form | Redirect to sign in page | Pass |  |
+| 
+
 
 
 ## Browser Compatibilty
