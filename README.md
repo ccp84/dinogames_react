@@ -461,6 +461,9 @@ You can fork this repository by using the following steps:
 
 ### Documentation and additional tutorials
 * For setting up routing as I have used the latest version of React and React Router, I followed the tutorial available in the documentation [here](https://reactrouter.com/en/main/start/tutorial)
+* I have used the [Tanstack documentation](https://tanstack.com/query/latest/docs/react/overview) extensively for gudiance on making effective queries in React
+* I have used the [React bootstrap documentation](https://react-bootstrap.github.io/docs/getting-started/introduction/) extensively throughout the project
+* [Bootstrap documentation](https://getbootstrap.com/docs/5.0/layout/utilities/#margin-and-padding) for classnames to set margins and padding on React Bootstrap components
 
 ### Code from other sources
 * This project has been developed following on from the Code Institute Moments Walkthrough project. Most notably the Current user context component and handling token refreshing with Axios interceptors, and the Likes component on which I have built my Ratings component. 
@@ -468,7 +471,9 @@ You can fork this repository by using the following steps:
 ### Media and images
 
 * Site logo and favicon from [istock photo](https://www.istockphoto.com/vector/house-dice-icon-flat-gm1483672185-510210038)
+* All icons are from [Font awesome](https://fontawesome.com/)
 
 ### Honourable mentions
 * Support and guidance from my mentor Lauren Popich
 * June '22 slack community for continued support and help with troubleshooting and user testing
+* Brian Holt's course Intro to React on Frontend Masters for the in depth introduction on up to date React technologies
