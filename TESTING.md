@@ -1,3 +1,64 @@
+# Testing
+
+Return to the [README.md](README.md) file.
+
+## Code Validation
+
+For JavaScript and JSX code compliance I installed eslint as a dev dependency at the start of the project so that any warnings or errors were solved as each file was written. The configuration I used for eslint can be found in the eslintrc.json file for this project. I have also used prettier throughout to ensure formatting is compliant, the config file file for this is prettierrc. I have pushed both configuration files to GitHub for completeness, normally I would include these in gitignore. By running eslint at the end of the project, no errors or warnings remain
+![eslint](/Documentation/Testing/eslint.png)
+
+## Defensive Programming
+
+Defensive programming was manually tested with the below user acceptance testing:
+
+| Page | User Action | Expected Result | Pass/Fail | Comments |
+| --- | --- | --- | --- | --- |
+
+
+## Browser Compatibilty
+
+I've tested my deployed project on multiple browsers to check for compatibility issues.
+
+| Browser | Screenshot | Notes |
+| --- | --- | --- |
+| Chrome | ![chrome](/Documentation/Testing/chrome.png) | Works as expected |
+| Firefox Developer | ![firefox](/Documentation/Testing/firefox.png) | Works as expected |
+| Edge | ![edge](/Documentation/Testing/edge.png) | Works as expected |
+| Safari | ![safari](/Documentation/Testing/safari.jpg) | Works as expected |
+
+## Responsiveness
+
+I've tested my deployed project on multiple devices to check for responsiveness issues.
+
+### Mobile (DevTools)
+
+| View | Screenshot | Notes |
+| --- | --- | --- |
+
+### Tablet (DevTools)
+
+| View | Screenshot | Notes |
+| --- | --- | --- |
+
+### Desktop
+
+| View | Screenshot | Notes |
+| --- | --- | --- |
+
+### Other views tested
+
+| View | Screenshot | Notes |
+| --- | --- | --- |
+
+## Lighthouse Audit
+
+I've tested my deployed project using the Lighthouse Audit tool to check for any major issues.
+
+| Page | Size | Screenshot | Notes |
+| --- | --- | --- | --- |
+
+## User Story Testing
+
 | User story | Outcome |
 | ---------- | ------- |
 | As a visitor to the site I want to be able to create an account so that I can access the full membership features |  |
@@ -21,3 +82,13 @@
 | As a user I want to be able to edit the rating I have left so that I can update my opinion if I change my mind. |  |
 | As a member I want to see the games I have rated so that I can pick out games I have already played and enjoyed to play again. |  |
 | As a site visitor I want to be able to see ratings left by other people so that I know if I might want to play that game or not. |  |
+
+## Bugs
+
+| Page | Issues Remaining | Considerations | Screenshots |
+| --- | --- | --- | --- |
+
+Fixes have been tracked as issues through the project board you can see a filtered view [here](https://github.com/users/ccp84/projects/5/views/1?filterQuery=bug)
+![bugs](/Documentation/Testing/bugs.png)
+
+Return to the [README.md](README.md) file.

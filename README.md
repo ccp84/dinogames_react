@@ -1,5 +1,7 @@
 # React App for Dinosaur Games Library
 
+![responsive](/Documentation/responsive.png)
+
 ## Concept
 
 The Dinosaur Games Library operates to provide social events where members can come along and play library games with other members. The online library portal provides staff the ability to maintain an up to date list of the games available to be played at social nights, and keep members informed of the latest news and events for the group. Members are able to view and search the library, and review the games they have played providing a resource for other members and site visitors to look up new games they might want to play. All members and site visitors can also see the latest admin announcements for social events and news items about the library. 
