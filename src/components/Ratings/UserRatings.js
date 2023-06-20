@@ -57,7 +57,10 @@ const UserRatings = () => {
 							<>
 								{myGames.map((game) => {
 									return (
-										<Alert key={game.id} variant="primary">
+										<Alert
+											key={game.id}
+											variant="secondary"
+										>
 											<Alert.Link
 												href={`/game/${game.game}`}
 											>

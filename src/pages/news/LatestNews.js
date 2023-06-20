@@ -32,7 +32,9 @@ const LatestNews = () => {
 				<PageContainer
 					bodyContent={
 						<>
-							<Alert variant="primary">No news items found</Alert>
+							<Alert variant="secondary">
+								No news items found
+							</Alert>
 						</>
 					}
 				/>
@@ -44,7 +46,10 @@ const LatestNews = () => {
 							<>
 								{news.slice(0, 5).map((item) => {
 									return (
-										<Alert key={item.id} variant="primary">
+										<Alert
+											key={item.id}
+											variant="secondary"
+										>
 											<Alert.Heading>
 												{item.title}
 											</Alert.Heading>

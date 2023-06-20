@@ -48,7 +48,7 @@ const NewsAdmin = () => {
 							<Stack direction="horizontal" gap={3}>
 								<>News Admin</>
 								<Button
-									variant="light"
+									variant="info"
 									onClick={() => setShow(!show)}
 								>
 									{show ? 'Close Editor' : 'New Announcement'}

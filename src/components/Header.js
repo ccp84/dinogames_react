@@ -46,12 +46,12 @@ const Header = () => {
 		// Links returned when a user is logged in
 		<>
 			<Link className="m-2" to="/game/library">
-				<Button onClick={handleClick} variant="outline-primary">
+				<Button onClick={handleClick} variant="info">
 					Library
 				</Button>
 			</Link>
 			<Link className="m-2" to="/news">
-				<Button onClick={handleClick} variant="outline-primary">
+				<Button onClick={handleClick} variant="info">
 					News
 				</Button>
 			</Link>
@@ -59,7 +59,7 @@ const Header = () => {
 				// Current user is staff
 				<>
 					<Link className="m-2" to="/admin">
-						<Button onClick={handleClick} variant="outline-primary">
+						<Button onClick={handleClick} variant="info">
 							Admin
 						</Button>
 					</Link>
@@ -68,7 +68,7 @@ const Header = () => {
 				''
 			)}
 			<Link className="m-2" onClick={SignOut}>
-				<Button onClick={handleClick} variant="outline-primary">
+				<Button onClick={handleClick} variant="info">
 					Logout
 				</Button>
 			</Link>
@@ -85,22 +85,22 @@ const Header = () => {
 		// No user logged in
 		<>
 			<Link className="m-2" to="/game/library">
-				<Button onClick={handleClick} variant="outline-primary">
+				<Button onClick={handleClick} variant="info">
 					View Library
 				</Button>
 			</Link>
 			<Link className="m-2" to="/news">
-				<Button onClick={handleClick} variant="outline-primary">
+				<Button onClick={handleClick} variant="info">
 					News
 				</Button>
 			</Link>
 			<Link className="m-2" to="/signin">
-				<Button onClick={handleClick} variant="outline-primary">
+				<Button onClick={handleClick} variant="info">
 					Login
 				</Button>
 			</Link>
 			<Link className="m-2" to="/signup">
-				<Button onClick={handleClick} variant="outline-primary">
+				<Button onClick={handleClick} variant="info">
 					Signup
 				</Button>
 			</Link>

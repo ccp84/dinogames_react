@@ -15,7 +15,6 @@ import Row from 'react-bootstrap/Row';
 import Stack from 'react-bootstrap/Stack';
 
 const OwnerList = ({ games }) => {
-
 	const [show, setShow] = useState(false);
 	const setCurrentMessage = useSetCurrentMessage();
 	const queryClient = useQueryClient();
@@ -28,7 +27,7 @@ const OwnerList = ({ games }) => {
 						<Stack direction="horizontal" gap={3}>
 							<>Games Admin</>
 							<Button
-								variant="light"
+								variant="info"
 								onClick={() => setShow(!show)}
 							>
 								{show ? 'Close Editor' : 'Add Game'}

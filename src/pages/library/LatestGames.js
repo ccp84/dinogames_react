@@ -29,7 +29,7 @@ const LatestGames = ({ games }) => {
                                 {/* Get latest 5 games only */}
                                 {games.slice(0, 5).map((game) => {
                                     return (
-                                        <Alert key={game.id} variant="primary">
+                                        <Alert key={game.id} variant="secondary">
                                             <Alert.Link
                                                 href={`/game/${game.id}`}
                                             >
