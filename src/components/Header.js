@@ -111,29 +111,31 @@ const Header = () => {
 	);
 	return (
 		<>
-			<Navbar
-				expanded={show}
-				collapseOnSelect
-				expand="md"
-				variant="light"
-			>
-				<Container>
-					<Navbar.Brand href="/" onClick={handleClick}>
-						<img src={logo} alt="logo" height="45" width="45" />
-					</Navbar.Brand>
+			<Container>
+				<Navbar
+					expanded={show}
+					collapseOnSelect
+					expand="md"
+					variant="light"
+				>
+					<Container>
+						<Navbar.Brand href="/" onClick={handleClick}>
+							<img src={logo} alt="logo" height="45" width="45" />
+						</Navbar.Brand>
 
-					<Navbar.Toggle
-						aria-controls="responsive-navbar-nav"
-						onClick={expand}
-					/>
-					<Navbar.Collapse id="responsive-navbar-nav">
-						<Nav className="ml-auto">
-							{currentUser ? loggedIn : loggedOut}
-						</Nav>
-					</Navbar.Collapse>
-				</Container>
-				<NotificationContainer />
-			</Navbar>
+						<Navbar.Toggle
+							aria-controls="responsive-navbar-nav"
+							onClick={expand}
+						/>
+						<Navbar.Collapse id="responsive-navbar-nav">
+							<Nav className="ml-auto">
+								{currentUser ? loggedIn : loggedOut}
+							</Nav>
+						</Navbar.Collapse>
+					</Container>
+					<NotificationContainer />
+				</Navbar>
+			</Container>
 		</>
 	);
 };

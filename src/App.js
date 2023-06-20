@@ -41,7 +41,8 @@ library.add(
 
 function App() {
 	return (
-		<><Header /><Container className="my-4">
+		<><Header />
+		<Container className="my-4">
 			<Routes>
 				<Route path="/" element={<LandingPage />} />
 				<Route path="/profile" element={<Profile />} />
