@@ -219,11 +219,7 @@ const OwnerEdit = ({
 							{message}
 						</Alert>
 					))}
-					<Button
-						variant="info"
-						type="submit"
-						onClick={() => setShow(!show)}
-					>
+					<Button variant="info" type="submit">
 						Update
 					</Button>
 
