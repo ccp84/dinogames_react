@@ -11,39 +11,42 @@ import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 
 const Profile = () => {
-    const [reviews, setReviews] = useState({
-        allReviews: []
-    });
-    const { allReviews } = reviews;
-    const { isLoading, error } = useQuery({
-        queryKey: ['reviewData'],
-        queryFn: () => axiosReq.get(`/reviews/author`).then((res) => res.data),
-        onSuccess: (data) => setReviews({ allReviews: data })
-    });
+	const [reviews, setReviews] = useState({
+		allReviews: []
+	});
+	const { allReviews } = reviews;
+	const { isLoading, error } = useQuery({
+		queryKey: ['reviewData'],
+		queryFn: () => axiosReq.get(`/reviews/author`).then((res) => res.data),
+		onSuccess: (data) => setReviews({ allReviews: data })
+	});
 
-    if (isLoading) return <Loading />;
+	if (isLoading) return <Loading />;
 
-    if (error) return <ErrorContainer errorContent={error.message} />;
-    return (
-        <>
-            <Row>
-                <Col s={12} md={6} lg={4}>
-                    <UserDetails />
-                    <UserRatings />
-                </Col>
-                <Col s={12} md={6} lg={8}>
-                    <HeaderContainer
-                        titleContent={<>My Reviews</>}
-                        bodyContent={
-                            <>
-                                <ReviewList reviews={allReviews} />
-                            </>
-                        }
-                    />
-                </Col>
-            </Row>
-        </>
-    );
+	if (error)
+		return (
+			<ErrorContainer errorContent="Error fetching page detail check that you are logged in" />
+		);
+	return (
+		<>
+			<Row>
+				<Col s={12} md={6} lg={4}>
+					<UserDetails />
+					<UserRatings />
+				</Col>
+				<Col s={12} md={6} lg={8}>
+					<HeaderContainer
+						titleContent={<>My Reviews</>}
+						bodyContent={
+							<>
+								<ReviewList reviews={allReviews} />
+							</>
+						}
+					/>
+				</Col>
+			</Row>
+		</>
+	);
 };
 
 export default Profile;
