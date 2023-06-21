@@ -104,7 +104,7 @@ I've tested my deployed project on multiple devices to check for responsiveness 
 | View | Screenshot | Notes |
 | --- | --- | --- |
 | Home | ![home](/Documentation/Testing/responsive_mobile_home.png) | As expected |
-| Library | ![library](/Documentation/Testing/responsive_mobile_library/png) | As expected |
+| Library | ![library](/Documentation/Testing/responsive_mobile_library.png) | As expected |
 | Game detail | ![gamedetail](/Documentation/Testing/responsive_mobile_gamedetail.png) | As expected | 
 | News | ![news](/Documentation/Testing/responsive_mobile_news.png) | As expected |
 | Admin | ![admin](/Documentation/Testing/responsive_mobile_admin.png) | Buttons out of alignment although they still work and display at lowest breakpoint 320px, this resolves at 370px which is fine for iPhone 6 and above | 
@@ -117,7 +117,7 @@ I've tested my deployed project on multiple devices to check for responsiveness 
 | View | Screenshot | Notes |
 | --- | --- | --- |
 | Home | ![home](/Documentation/Testing/responsive_tablet_home.png) | As expected |
-| Library | ![library](/Documentation/Testing/responsive_tablet_library/png) | As expected |
+| Library | ![library](/Documentation/Testing/responsive_tablet_library.png) | As expected |
 | Game detail | ![gamedetail](/Documentation/Testing/responsive_tablet_gamedetail.png) | As expected | 
 | News | ![news](/Documentation/Testing/responsive_tablet_news.png) | As expected |
 | Admin | ![admin](/Documentation/Testing/responsive_tablet_admin.png) | As expected | 
@@ -130,7 +130,7 @@ I've tested my deployed project on multiple devices to check for responsiveness 
 | View | Screenshot | Notes |
 | --- | --- | --- |
 | Home | ![home](/Documentation/Testing/responsive_desktop_home.png) | As expected |
-| Library | ![library](/Documentation/Testing/responsive_desktop_library/png) | As expected |
+| Library | ![library](/Documentation/Testing/responsive_desktop_library.png) | As expected |
 | Game detail | ![gamedetail](/Documentation/Testing/responsive_desktop_gamedetail.png) | As expected | 
 | News | ![news](/Documentation/Testing/responsive_desktop_news.png) | As expected |
 | Admin | ![admin](/Documentation/Testing/responsive_desktop_admin.png) | As expected | 
