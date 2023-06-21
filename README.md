@@ -213,7 +213,7 @@ Adding new games to the library can be done by staff users with admin access. Th
 
 #### Edit game
 
-Details to be edited are passed to this page via the [location object in React Router](https://reactrouter.com/en/main/hooks/use-location). These state variables pre populate the form available to edit the details of the game, the game to be updated is matched by its id which forms part of the Axios request. As editing games is an admin only function, authorisation to carry out the request is checked by the token sent over in the request header, although access to the edit page is also checked by the is_staff flag in the current user context as well. 
+Details to be edited are passed to this page via props. These state variables pre populate the form available to edit the details of the game, the game to be updated is matched by its id which forms part of the Axios request. As editing games is an admin only function, authorisation to carry out the request is checked by the token sent over in the request header, although access to the edit page is also protected by the checks made on accessing the admin page as well. 
 
 ### Components added this sprint
 

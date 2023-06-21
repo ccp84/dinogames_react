@@ -28,29 +28,61 @@ Defensive programming was manually tested with the below user acceptance testing
 | 9 | Logged in user selects the same rating again | Rating is deleted | Pass | ![defensive8](/Documentation/Testing/defensive_8.png) |
 | 10 | Logged out user clicks on ratings button | Redirect to login page | Pass | ![defensive9](/Documentation/Testing/defensive_9.png) |
 | Game detail page |  |  |  |  |
-| 11 | Admin user clicks on page | Edit and delete buttons are available | Pass | ![defensive10](/Documentation/Testing/defensive_10.png) |
-| 12 | Admin user clicks edit button | Redirected to edit page for the correct game | Pass |  |
-| 13 | Admin user clicks delete button | Redirected to the library page | Pass |  |
-| 14 | Logged in user clicks on page | No admin buttons are visible | Pass | ![defensive13](/Documentation/Testing/defensive_13.png) |
-| 15 | Logged in user clicks add review | Review editor is displayed | Pass | ![defensive14](/Documentation/Testing/defensive_14.png) | 
-| 16 | Logged in user submits a review | Review is saved, editor is closed, review is displayed in the list | Pass | ![defensive15](/Documentation/Testing/defensive_15.png) |
-| 17 | Logged in user clicks edit on a review written by them | Review editor is displayed | Pass | ![defensive16](/Documentation/Testing/defensive_16.png) | 
-| 18 | Logged in user saves an edited review | Review is saved, editor is closed, review list is updated | Pass | ![defensive17](/Documentation/Testing/defensive_17.png) | 
-| 19 | Logged in user selects delete on a review they own | Review is deleted, review list is updated | Pass | ![defensive18](/Documentation/Testing/defensive_18.png) |
-| 20 | Logged out user clicks to add a review | Redirected to login | Pass | ![defensive19](/Documentation/Testing/defensive_19.png) |
-| 21 | Any user changes the URL for a game page to a non existent game id | Error page displayed | Pass | ![defensive20](/Documentation/Testing/defensive_20.png) |
+| 11 | User follows a link to game detail page | Redirected to relevant game information | Pass | ![defensive13](/Documentation/Testing/defensive_13.png) |
+| 12 | Logged in user clicks add review | Review editor is displayed | Pass | ![defensive14](/Documentation/Testing/defensive_14.png) | 
+| 13 | Logged in user submits a review | Review is saved, editor is closed, review is displayed in the list | Pass | ![defensive15](/Documentation/Testing/defensive_15.png) |
+| 14 | Logged in user clicks edit on a review written by them | Review editor is displayed | Pass | ![defensive16](/Documentation/Testing/defensive_16.png) | 
+| 15 | Logged in user saves an edited review | Review is saved, editor is closed, review list is updated | Pass | ![defensive17](/Documentation/Testing/defensive_17.png) | 
+| 16 | Logged in user selects delete on a review they own | Review is deleted, review list is updated | Pass | ![defensive18](/Documentation/Testing/defensive_18.png) |
+| 17 | Logged out user clicks to add a review | Redirected to login | Pass | ![defensive19](/Documentation/Testing/defensive_19.png) |
+| 18 | Any user changes the URL for a game page to a non existent game id | Error page displayed | Pass | ![defensive20](/Documentation/Testing/defensive_20.png) |
 | Error page |  |  |  |  |
-| 22 | User clicks back button | Redirected to last page they were on | Pass |  |
+| 19 | User clicks back button | Redirected to last page they were on | Pass |  |
 | News Page |  |  |  |  |
-| 23 | User clicks News button | Redirected to news page, full news list loads | Pass |  |
+| 20 | User clicks News button | Redirected to news page, full news list loads | Pass |  |
 | Signup |  |  |  |  |
-| 24 | Logged out user clicks Sign up button | Sign up form is displayed | Pass |  |
-| 25 | Logged out user enters incorrect sign up data | On screen feedback given | Pass | ![defensive25](/Documentation/Testing/defensive_25.png) |
-| 26 | Logged out user enters valid sign up data | Account is created, redirect to sign in page | Pass | ![defensive26](/Documentation/Testing/defensive_26.png) |
-| 27 | Logged out user clicks sign in link on form | Redirect to sign in page | Pass |  |
-| 
-
-
+| 21 | Logged out user clicks Sign up button | Sign up form is displayed | Pass |  |
+| 22 | Logged out user enters incorrect sign up data | On screen feedback given | Pass | ![defensive25](/Documentation/Testing/defensive_25.png) |
+| 23 | Logged out user enters valid sign up data | Account is created, redirect to sign in page | Pass | ![defensive26](/Documentation/Testing/defensive_26.png) |
+| 24 | Logged out user clicks sign in link on form | Redirect to sign in page | Pass |  |
+| 25 | Logged in user navigates to sign up form | Redirects to profile page | Pass |  |
+| Login |  |  |  |  |
+| 26 | Logged out user clicks Signin link | Login form is displayed | Pass |  |
+| 27 | Logged out user enters invalid login data | On screen feedback given | Pass | ![defensive30](/Documentation/Testing/defensive_30.png) |
+| 28 | Logged out user enters valid login data | User is logged in, redirect to profile page | Pass | ![defensive31](/Documentation/Testing/defensive_31.png) |
+| 29 | Logged out user clicks sign up link on form | Redirects to sign up page | Pass |  |
+| 30 | Logged in user navigates to sign in page | Regirects to profile page | Pass |  |
+| Profile Page |  |  |  |  |
+| 31 | Logged out user navigates to profile page | Error returned | Pass | ![defensive34](/Documentation/Testing/defensive_34.png) |
+| 32 | Logged in user clicks on profile link | Profile details returned | Pass |  |
+| 33 | Logged in user clicks edit details button | Profile edit form is displayed | Pass | ![defensive36](/Documentation/Testing/defensive_36.png) |
+| 34 | Logged in user saves profile details | Editor closes, details are saved | Pass | ![defensive37](/Documentation/Testing/defensive_37.png) |
+| 35 | Logged in user clicks a game link from their liked games list | Redirects to game details page | Pass |  |
+| 36 | Logged in user clicks edit button in their reviews list | Review editor opens | Pass | ![defensive39](/Documentation/Testing/defensive_39.png) |
+| 37 | Logged in user saved edited review | Editor closes, review is saved, review list is updated | Pass | ![defensive40](/Documentation/Testing/defensive_40.png) |
+| 38 | Logged in user clicks delete review button | Review is deleted, review list is updated | Pass | ![defensive41](/Documentation/Testing/defensive_41.png) |
+| Admin page |  |  |  |  |
+| 39 | Logged out user navigates to admin page | Error returned | Pass | ![defensive42](/Documentation/Testing/defensive_42.png) |
+| 40 | Logged in user navigates to admin page | Error returned | Pass | ![defensive43](/Documentation/Testing/defensive_43.png) |
+| 41 | Admin user clicks on admin button | Redirect to admin page | Pass |  |
+| 42 | Admin user clicks new announcement editor | Announcement editor opens | Pass | ![defensive45](/Documentation/Testing/defensive_45.png) |
+| 43 | Admin user enters invalid announcement data | On screen feedback given | Pass | ![defensive46](/Documentation/Testing/defensive_46.png) |
+| 44 | Admin user saves valid new announcement | Announcement saved, redirect to news page | Pass | ![defensive47](/Documentation/Testing/defensive_47.png) | 
+| 45 | Admin user clicks edit announcement | Announcement editor opens | Pass | ![defensive48](/Documentation/Testing/defensive_48.png) |
+| 46 | Admin user saves updated announcement | Editor closes, announcement details saved, announcements list refreshes | Pass | ![defensive49](/Documentation/Testing/defensive_49.png) |
+| 47 | Admin user clicks delete announcement button | Announcement is deleted, announcement list refreshes | Pass | ![defensive50](/Documentation/Testing/defensive_50.png) |
+| 48 | Admin user clicks add game button | Game editor opens | Pass | ![defensive51](/Documentation/Testing/defensive_51.png) |
+| 49 | Admin user enters invalid game details | Feedback shown on screen | Pass | ![defensive52](/Documentation/Testing/defensive_52.png) |
+| 50 | Admin user saves a new game | New game saved, redirected to game detail page | Pass | ![defensive53](/Documentation/Testing/defensive_53.png) |
+| 51 | Admin user clicks on edit game button | Game editor is displayed | Pass | ![defensive54](/Documentation/Testing/defensive_54.png) |
+| 52 | Admin user enters invalid details in game edit page | On screen message displayed | Pass | ![defensive55](/Documentation/Testing/defensive_55.png) |
+| 53 | Admin user saves updated game details | Game details saved, redirect to game detail page | Pass |  |
+| 54 | Admin user clicks delete game button | Game is deleted, game list refreshes | Pass | ![defensive56](/Documentation/Testing/defensive_56.png) |
+| Navigation |  |  |  |  |
+| 55 | Logged in user clicks on logout button | Current user is cleared, logged out icons shown, logged out status displayed | Pass | ![defensive57](/Documentation/Testing/defensive_57.png) |
+| 56 | User is logged out | Correct set of buttons and icon are displayed | Pass |  |
+| 57 | User is logged in | Standard set of buttons, username and profile icon are displayed | Pass | ![defensive58](/Documentation/Testing/defensive_58.png) |
+| 58 | Admin user is logged in | Admin button is accessible from nav bar | Pass | ![defensive59](/Documentation/Testing/defensive_59.png) |
 
 ## Browser Compatibilty
 
