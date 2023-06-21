@@ -103,40 +103,40 @@ I've tested my deployed project on multiple devices to check for responsiveness 
 
 | View | Screenshot | Notes |
 | --- | --- | --- |
-| Home | ![home](/Documentation/Testing/responsive_mobile/home.png) | As expected |
+| Home | ![home](/Documentation/Testing/responsive_mobile_home.png) | As expected |
 | Library | ![library](/Documentation/Testing/responsive_mobile_library/png) | As expected |
 | Game detail | ![gamedetail](/Documentation/Testing/responsive_mobile_gamedetail.png) | As expected | 
 | News | ![news](/Documentation/Testing/responsive_mobile_news.png) | As expected |
 | Admin | ![admin](/Documentation/Testing/responsive_mobile_admin.png) | Buttons out of alignment although they still work and display at lowest breakpoint 320px, this resolves at 370px which is fine for iPhone 6 and above | 
 | Profile | ![profile](/Documentation/Testing/responsive_mobile_profile.png) | As expected |
 | Sign in | ![signin](/Documentation/Testing/responsive_mobile_signin.png) | As expected |
-| Sign up | ![signup](/Documentation/Testing/responsive_mobile_signup/png) | As expected |
+| Sign up | ![signup](/Documentation/Testing/responsive_mobile_signup.png) | As expected |
 
 ### Tablet (DevTools)
 
 | View | Screenshot | Notes |
 | --- | --- | --- |
-| Home | ![home](/Documentation/Testing/responsive_tablet/home.png) | As expected |
+| Home | ![home](/Documentation/Testing/responsive_tablet_home.png) | As expected |
 | Library | ![library](/Documentation/Testing/responsive_tablet_library/png) | As expected |
 | Game detail | ![gamedetail](/Documentation/Testing/responsive_tablet_gamedetail.png) | As expected | 
 | News | ![news](/Documentation/Testing/responsive_tablet_news.png) | As expected |
 | Admin | ![admin](/Documentation/Testing/responsive_tablet_admin.png) | As expected | 
 | Profile | ![profile](/Documentation/Testing/responsive_tablet_profile.png) | As expected |
 | Sign in | ![signin](/Documentation/Testing/responsive_tablet_signin.png) | As expected |
-| Sign up | ![signup](/Documentation/Testing/responsive_tablet_signup/png) | As expected |
+| Sign up | ![signup](/Documentation/Testing/responsive_tablet_signup.png) | As expected |
 
 ### Desktop
 
 | View | Screenshot | Notes |
 | --- | --- | --- |
-| Home | ![home](/Documentation/Testing/responsive_desktop/home.png) | As expected |
+| Home | ![home](/Documentation/Testing/responsive_desktop_home.png) | As expected |
 | Library | ![library](/Documentation/Testing/responsive_desktop_library/png) | As expected |
 | Game detail | ![gamedetail](/Documentation/Testing/responsive_desktop_gamedetail.png) | As expected | 
 | News | ![news](/Documentation/Testing/responsive_desktop_news.png) | As expected |
 | Admin | ![admin](/Documentation/Testing/responsive_desktop_admin.png) | As expected | 
 | Profile | ![profile](/Documentation/Testing/responsive_desktop_profile.png) | As expected |
 | Sign in | ![signin](/Documentation/Testing/responsive_desktop_signin.png) | As expected |
-| Sign up | ![signup](/Documentation/Testing/responsive_desktop_signup/png) | As expected |
+| Sign up | ![signup](/Documentation/Testing/responsive_desktop_signup.png) | As expected |
 
 ### Other views tested
 
