@@ -1,36 +1,42 @@
 import React, { useState } from 'react';
-import { useCurrentUser } from '../../contexts/CurrentUserContext';
-import NoMatch from '../NoMatch';
-import HeaderContainer from '../../components/Layout/HeaderContainer';
-import PageContainer from '../../components/Layout/PageContainer';
 import { useSetCurrentMessage } from '../../contexts/CurrentMessageContext';
 import { axiosReq } from '../../api/axiosDefaults';
-import { useLocation } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import Alert from 'react-bootstrap/Alert';
+import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
+import DropdownButton from 'react-bootstrap/DropdownButton';
+import Dropdown from 'react-bootstrap/Dropdown';
 import Form from 'react-bootstrap/Form';
+import Row from 'react-bootstrap/Row';
+import { useQueryClient } from '@tanstack/react-query';
 
-const OwnerEdit = () => {
-	const location = useLocation();
-	const currentUser = useCurrentUser();
-
+const OwnerEdit = ({
+	gameID,
+	gameTitle,
+	gameTags,
+	gameMin,
+	gameMax,
+	gameTime,
+	gameOver
+}) => {
+	const [show, setShow] = useState(false);
 	const [gameData, setGameData] = useState({
-		id: '',
-		title: '',
-		tags: '',
-		minplayers: 1,
-		maxplayers: 4,
-		playtime: 0,
-		overview: ''
+		id: gameID,
+		title: gameTitle,
+		tags: gameTags,
+		minplayers: gameMin,
+		maxplayers: gameMax,
+		playtime: gameTime,
+		overview: gameOver
 	});
 
 	const navigate = useNavigate();
 	const [errors, setErrors] = useState({});
 	const setCurrentMessage = useSetCurrentMessage();
-	const { title, tags, minplayers, maxplayers, playtime, overview } =
+	const { id, title, tags, minplayers, maxplayers, playtime, overview } =
 		gameData;
-
+	const queryClient = useQueryClient();
 	const handleChange = (event) => {
 		setGameData({
 			...gameData,
@@ -67,249 +73,167 @@ const OwnerEdit = () => {
 
 	return (
 		<>
-			{title == '' ? (
-				<NoMatch />
-			) : (
-				<>
-					{currentUser?.is_staff ? (
-						<>
-							<>
-								{setGameData({
-									id: location.state.prop.id,
-									title: location.state.prop.title,
-									tags: location.state.prop.tags,
-									minplayers: location.state.prop.minplayers,
-									maxplayers: location.state.prop.maxplayers,
-									playtime: location.state.prop.playtime,
-									overview: location.state.prop.overview
-								})}
-							</>
-							{/* Admin user logged in - display edit options */}
-							<HeaderContainer
-								titleContent={<>Edit Game</>}
-								bodyContent={
-									<>
-										<Form onSubmit={handleSubmit}>
-											<Form.Group
-												className="mb-3"
-												controlId="title"
-											>
-												<Form.Label>
-													Game Title
-												</Form.Label>
-												<Form.Control
-													required
-													type="text"
-													placeholder="Game Title"
-													name="title"
-													value={title}
-													onChange={handleChange}
-												/>
-											</Form.Group>
-											{errors.title?.map(
-												(message, idx) => (
-													<Alert
-														key={idx}
-														variant="warning"
-													>
-														{message}
-													</Alert>
-												)
-											)}
-											<Form.Group
-												className="mb-3"
-												controlId="tags"
-											>
-												<Form.Label>
-													Game Categories
-												</Form.Label>
-												<Form.Control
-													as="textarea"
-													rows={1}
-													placeholder="Categories"
-													name="tags"
-													value={tags}
-													onChange={handleChange}
-												/>
-												<Form.Text className="text-muted">
-													Example: card, party,
-													strategy
-												</Form.Text>
-											</Form.Group>
-											{errors.tags?.map(
-												(message, idx) => (
-													<Alert
-														key={idx}
-														variant="warning"
-													>
-														{message}
-													</Alert>
-												)
-											)}
-											<Form.Group
-												className="mb-3"
-												controlId="minplayers"
-											>
-												<Form.Label>
-													Minimum Players
-												</Form.Label>
-												<Form.Control
-													required
-													type="number"
-													name="minplayers"
-													value={minplayers}
-													onChange={handleChange}
-												/>
-											</Form.Group>
-											{errors.minplayers?.map(
-												(message, idx) => (
-													<Alert
-														key={idx}
-														variant="warning"
-													>
-														{message}
-													</Alert>
-												)
-											)}
-											<Form.Group
-												className="mb-3"
-												controlId="maxplayers"
-											>
-												<Form.Label>
-													Maximum Players
-												</Form.Label>
-												<Form.Control
-													required
-													type="number"
-													name="maxplayers"
-													value={maxplayers}
-													onChange={handleChange}
-												/>
-											</Form.Group>
-											{errors.maxplayers?.map(
-												(message, idx) => (
-													<Alert
-														key={idx}
-														variant="warning"
-													>
-														{message}
-													</Alert>
-												)
-											)}
-											<Form.Group
-												className="mb-3"
-												controlId="playtime"
-											>
-												<Form.Label>
-													Time to play
-												</Form.Label>
-												<Form.Select
-													required
-													aria-label="Select Game Play Time"
-													name="playtime"
-													value={playtime}
-													onChange={handleChange}
-												>
-													{/* These should match choices in Game model */}
-													<option value="0">
-														0-5 minutes
-													</option>
-													<option value="5">
-														5-10 minutes
-													</option>
-													<option value="10">
-														10-20 minutes
-													</option>
-													<option value="20">
-														20-40 minutes
-													</option>
-													<option value="40">
-														40-90 minutes
-													</option>
-													<option value="90">
-														90 + minutes
-													</option>
-												</Form.Select>
-											</Form.Group>
-											{errors.playtime?.map(
-												(message, idx) => (
-													<Alert
-														key={idx}
-														variant="warning"
-													>
-														{message}
-													</Alert>
-												)
-											)}
-											<Form.Group
-												className="mb-3"
-												controlId="overview"
-											>
-												<Form.Label>
-													Overview
-												</Form.Label>
-												<Form.Control
-													as="textarea"
-													rows={3}
-													placeholder="Overview"
-													name="overview"
-													value={overview}
-													onChange={handleChange}
-												/>
-											</Form.Group>
-											{errors.overview?.map(
-												(message, idx) => (
-													<Alert
-														key={idx}
-														variant="warning"
-													>
-														{message}
-													</Alert>
-												)
-											)}
-											<Button
-												className="m-2"
-												variant="info"
-												type="submit"
-											>
-												Edit Game
-											</Button>
-											<Button
-												className="m-2"
-												variant="info"
-												onClick={() => navigate(-1)}
-											>
-												Cancel
-											</Button>
-											{errors.non_field_errors?.map(
-												(message, idx) => (
-													<Alert
-														key={idx}
-														variant="warning"
-														className="mt-3"
-													>
-														{message}
-													</Alert>
-												)
-											)}
-										</Form>
-									</>
+			<Row>
+				<Col>{title}</Col>
+				<Col>
+					<Button variant="info" onClick={() => setShow(!show)}>
+						Edit
+					</Button>
+				</Col>
+				<Col>
+					<DropdownButton
+						id="dropdown-basic-button"
+						title="Delete"
+						variant="danger"
+					>
+						<Dropdown.Item
+							onClick={async () => {
+								try {
+									await axiosReq.delete(`/games/edit/${id}`);
+									setCurrentMessage({
+										flag: true,
+										message: `${title} deleted`,
+										variant: 'success'
+									});
+									// refetch linked data
+									queryClient.invalidateQueries({
+										queryKey: ['libraryData']
+									});
+								} catch (err) {
+									setCurrentMessage({
+										flag: true,
+										message: `Error deleting ${title}`,
+										variant: 'warning'
+									});
 								}
-							/>
-						</>
-					) : (
-						// No admin credentials - display warning
-						<PageContainer
-							bodyContent={
-								<>
-									You must be an administrator to edit game
-									details
-								</>
-							}
+							}}
+						>
+							Confirm Delete
+						</Dropdown.Item>
+					</DropdownButton>
+				</Col>
+			</Row>
+			<Alert variant="primary" show={show}>
+				<Form onSubmit={handleSubmit}>
+					<Form.Group className="mb-3" controlId="title">
+						<Form.Label>Game Title</Form.Label>
+						<Form.Control
+							required
+							type="text"
+							placeholder="Game Title"
+							name="title"
+							value={title}
+							onChange={handleChange}
 						/>
-					)}
-				</>
-			)}
+					</Form.Group>
+					{errors.title?.map((message, idx) => (
+						<Alert key={idx} variant="warning">
+							{message}
+						</Alert>
+					))}
+					<Form.Group className="mb-3" controlId="tags">
+						<Form.Label>Game Categories</Form.Label>
+						<Form.Control
+							as="textarea"
+							rows={1}
+							placeholder="Categories"
+							name="tags"
+							value={tags}
+							onChange={handleChange}
+						/>
+						<Form.Text className="text-muted">
+							Example: card, party, strategy
+						</Form.Text>
+					</Form.Group>
+					{errors.tags?.map((message, idx) => (
+						<Alert key={idx} variant="warning">
+							{message}
+						</Alert>
+					))}
+					<Form.Group className="mb-3" controlId="minplayers">
+						<Form.Label>Minimum Players</Form.Label>
+						<Form.Control
+							required
+							type="number"
+							name="minplayers"
+							value={minplayers}
+							onChange={handleChange}
+						/>
+					</Form.Group>
+					{errors.minplayers?.map((message, idx) => (
+						<Alert key={idx} variant="warning">
+							{message}
+						</Alert>
+					))}
+					<Form.Group className="mb-3" controlId="maxplayers">
+						<Form.Label>Maximum Players</Form.Label>
+						<Form.Control
+							required
+							type="number"
+							name="maxplayers"
+							value={maxplayers}
+							onChange={handleChange}
+						/>
+					</Form.Group>
+					{errors.maxplayers?.map((message, idx) => (
+						<Alert key={idx} variant="warning">
+							{message}
+						</Alert>
+					))}
+					<Form.Group className="mb-3" controlId="playtime">
+						<Form.Label>Time to play</Form.Label>
+						<Form.Select
+							required
+							aria-label="Select Game Play Time"
+							name="playtime"
+							value={playtime}
+							onChange={handleChange}
+						>
+							{/* These should match choices in Game model */}
+							<option value="0">0-5 minutes</option>
+							<option value="5">5-10 minutes</option>
+							<option value="10">10-20 minutes</option>
+							<option value="20">20-40 minutes</option>
+							<option value="40">40-90 minutes</option>
+							<option value="90">90 + minutes</option>
+						</Form.Select>
+					</Form.Group>
+					{errors.playtime?.map((message, idx) => (
+						<Alert key={idx} variant="warning">
+							{message}
+						</Alert>
+					))}
+					<Form.Group className="mb-3" controlId="overview">
+						<Form.Label>Overview</Form.Label>
+						<Form.Control
+							as="textarea"
+							rows={3}
+							placeholder="Overview"
+							name="overview"
+							value={overview}
+							onChange={handleChange}
+						/>
+					</Form.Group>
+					{errors.overview?.map((message, idx) => (
+						<Alert key={idx} variant="warning">
+							{message}
+						</Alert>
+					))}
+					<Button
+						variant="info"
+						type="submit"
+						onClick={() => setShow(!show)}
+					>
+						Update
+					</Button>
+
+					{errors.non_field_errors?.map((message, idx) => (
+						<Alert key={idx} variant="warning" className="mt-3">
+							{message}
+						</Alert>
+					))}
+				</Form>
+			</Alert>
 		</>
 	);
 };

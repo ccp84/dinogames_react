@@ -16,7 +16,6 @@ import SignUpForm from './pages/auth/SignUpForm';
 import SignInForm from './pages/auth/SignInForm';
 import Profile from './pages/user/Profile';
 import LandingPage from './pages/LandingPage';
-import GameEdit from './pages/library/GameEdit';
 import NoMatch from './pages/NoMatch';
 import UserEdit from './pages/user/UserEdit';
 import GameDetail from './pages/library/GameDetail';
@@ -41,22 +40,23 @@ library.add(
 
 function App() {
 	return (
-		<><Header />
-		<Container className="my-4">
-			<Routes>
-				<Route path="/" element={<LandingPage />} />
-				<Route path="/profile" element={<Profile />} />
-				<Route path="/profile/edit" element={<UserEdit />} />
-				<Route path="/signin" element={<SignInForm />} />
-				<Route path="/signup" element={<SignUpForm />} />
-				<Route path="/game/edit" element={<GameEdit />} />
-				<Route path="/game/library" element={<Library />} />
-				<Route path="game/:id" element={<GameDetail />} />
-				<Route path="/admin" element={<Admin />} />
-				<Route path="/news" element={<AllNews />} />
-				<Route path="*" element={<NoMatch />} />
-			</Routes>
-		</Container></>
+		<>
+			<Header />
+			<Container className="my-4">
+				<Routes>
+					<Route path="/" element={<LandingPage />} />
+					<Route path="/profile" element={<Profile />} />
+					<Route path="/profile/edit" element={<UserEdit />} />
+					<Route path="/signin" element={<SignInForm />} />
+					<Route path="/signup" element={<SignUpForm />} />
+					<Route path="/game/library" element={<Library />} />
+					<Route path="game/:id" element={<GameDetail />} />
+					<Route path="/admin" element={<Admin />} />
+					<Route path="/news" element={<AllNews />} />
+					<Route path="*" element={<NoMatch />} />
+				</Routes>
+			</Container>
+		</>
 	);
 }
 

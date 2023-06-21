@@ -1,127 +1,69 @@
 import React, { useState } from 'react';
 import Loading from '../../components/Loading';
 import HeaderContainer from '../../components/Layout/HeaderContainer';
-import { useSetCurrentMessage } from '../../contexts/CurrentMessageContext';
 import GameReviews from '../reviews/GameReviews';
 import NoMatch from '../NoMatch';
 import { axiosReq } from '../../api/axiosDefaults';
 import { useQuery } from '@tanstack/react-query';
-import { Link, useNavigate, useParams } from 'react-router-dom';
-import { useCurrentUser } from '../../contexts/CurrentUserContext';
+import { useParams } from 'react-router-dom';
 import Alert from 'react-bootstrap/Alert';
-import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import CardGroup from 'react-bootstrap/CardGroup';
-import Dropdown from 'react-bootstrap/Dropdown';
-import DropdownButton from 'react-bootstrap/DropdownButton';
-import Stack from 'react-bootstrap/Stack';
 
 const GameDetail = () => {
-    const [gameDetails, setGameDetails] = useState({ game: '' });
-    const setCurrentMessage = useSetCurrentMessage();
-    const { id } = useParams();
-    const currentUser = useCurrentUser();
-    const navigate = useNavigate();
+	const [gameDetails, setGameDetails] = useState({ game: '' });
+	const { id } = useParams();
 
-    const { game } = gameDetails;
+	const { game } = gameDetails;
 
-    const { isLoading, error } = useQuery({
-        queryKey: ['gameData'],
-        queryFn: () => axiosReq.get(`/games/${id}`).then((res) => res.data),
-        onSuccess: (data) => setGameDetails({ game: data })
-    });
+	const { isLoading, error } = useQuery({
+		queryKey: ['gameData'],
+		queryFn: () => axiosReq.get(`/games/${id}`).then((res) => res.data),
+		onSuccess: (data) => setGameDetails({ game: data })
+	});
 
-    if (isLoading) return <Loading />;
+	if (isLoading) return <Loading />;
 
-    if (error) return <NoMatch errorContent={error.message} />;
+	if (error) return <NoMatch errorContent={error.message} />;
 
-    return (
-        <>
-            <HeaderContainer
-                titleContent={
-                    <>
-                        {game.title}
-                        {currentUser?.is_staff ? (
-                            // Admin user logged in - show edit and delete options
-                            <>
-                                <Stack direction="horizontal" gap={3}>
-                                    <Link
-                                        to="/game/edit"
-                                        state={{ prop: game }}
-                                    >
-                                        <Button className="m-1" variant="info">
-                                            Edit
-                                        </Button>
-                                    </Link>
-                                    <DropdownButton
-                                        id="dropdown-basic-button"
-                                        title="Delete"
-                                        variant="danger"
-                                    >
-                                        <Dropdown.Item
-                                            onClick={async () => {
-                                                try {
-                                                    await axiosReq.delete(
-                                                        `/games/edit/${game.id}`
-                                                    );
-                                                    setCurrentMessage({
-                                                        flag: true,
-                                                        message: `${game.title} deleted`,
-                                                        variant: 'success'
-                                                    });
-                                                    navigate('/game/library');
-                                                } catch (err) {
-                                                    setCurrentMessage({
-                                                        flag: true,
-                                                        message: `Error deleting ${game.title}`,
-                                                        variant: 'warning'
-                                                    });
-                                                }
-                                            }}
-                                        >
-                                            Confirm Delete
-                                        </Dropdown.Item>
-                                    </DropdownButton>
-                                </Stack>
-                            </>
-                        ) : //  No admin credentials - nothing else to display
-                        null}
-                    </>
-                }
-                bodyContent={
-                    <>
-                        <CardGroup>
-                            <Card border="primary">
-                                <Card.Body>
-                                    Min Players: {game.minplayers}
-                                </Card.Body>
-                            </Card>
-                            <Card border="primary">
-                                <Card.Body>
-                                    Max Players: {game.maxplayers}
-                                </Card.Body>
-                            </Card>
-                            <Card border="primary">
-                                <Card.Body>
-                                    Time to play: {game.playtime_name} minutes
-                                </Card.Body>
-                            </Card>
-                            <Card border="primary">
-                                <Card.Body>Tags: {game.tags}</Card.Body>
-                            </Card>
-                        </CardGroup>
+	return (
+		<>
+			<HeaderContainer
+				titleContent={<>{game.title}</>}
+				bodyContent={
+					<>
+						<CardGroup>
+							<Card border="primary">
+								<Card.Body>
+									Min Players: {game.minplayers}
+								</Card.Body>
+							</Card>
+							<Card border="primary">
+								<Card.Body>
+									Max Players: {game.maxplayers}
+								</Card.Body>
+							</Card>
+							<Card border="primary">
+								<Card.Body>
+									Time to play: {game.playtime_name} minutes
+								</Card.Body>
+							</Card>
+							<Card border="primary">
+								<Card.Body>Tags: {game.tags}</Card.Body>
+							</Card>
+						</CardGroup>
 
-                        <Alert variant="secondary" className="m-2">
-                            <Alert.Heading>Game Overview</Alert.Heading>
-                            {game.overview}
-                        </Alert>
+						<Alert variant="secondary" className="m-2">
+							<Alert.Heading>Game Overview</Alert.Heading>
+							{game.overview}
+						</Alert>
 
-                        <GameReviews />
-                    </>
-                }
-            />
-        </>
-    );
+						<GameReviews />
+					</>
+				}
+			/>
+		</>
+	);
 };
 
 export default GameDetail;
