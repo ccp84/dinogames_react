@@ -80,7 +80,7 @@ Defensive programming was manually tested with the below user acceptance testing
 | 54 | Admin user clicks delete game button | Game is deleted, game list refreshes | Pass | ![defensive56](/Documentation/Testing/defensive_56.png) |
 | Navigation |  |  |  |  |
 | 55 | Logged in user clicks on logout button | Current user is cleared, logged out icons shown, logged out status displayed | Pass | ![defensive57](/Documentation/Testing/defensive_57.png) |
-| 56 | User is logged out | Correct set of buttons and icon are displayed | Pass |  |
+| 56 | User is logged out | Correct set of buttons and icon are displayed | Pass | Note that when a user is logged out errors for token refreshing are logged to the console. These are inherent to the system and are to be expected rather than a coding error to be resolved. |
 | 57 | User is logged in | Standard set of buttons, username and profile icon are displayed | Pass | ![defensive58](/Documentation/Testing/defensive_58.png) |
 | 58 | Admin user is logged in | Admin button is accessible from nav bar | Pass | ![defensive59](/Documentation/Testing/defensive_59.png) |
 
@@ -103,16 +103,40 @@ I've tested my deployed project on multiple devices to check for responsiveness 
 
 | View | Screenshot | Notes |
 | --- | --- | --- |
+| Home | ![home](/Documentation/Testing/responsive_mobile/home.png) | As expected |
+| Library | ![library](/Documentation/Testing/responsive_mobile_library/png) | As expected |
+| Game detail | ![gamedetail](/Documentation/Testing/responsive_mobile_gamedetail.png) | As expected | 
+| News | ![news](/Documentation/Testing/responsive_mobile_news.png) | As expected |
+| Admin | ![admin](/Documentation/Testing/responsive_mobile_admin.png) | Buttons out of alignment although they still work and display at lowest breakpoint 320px, this resolves at 370px which is fine for iPhone 6 and above | 
+| Profile | ![profile](/Documentation/Testing/responsive_mobile_profile.png) | As expected |
+| Sign in | ![signin](/Documentation/Testing/responsive_mobile_signin.png) | As expected |
+| Sign up | ![signup](/Documentation/Testing/responsive_mobile_signup/png) | As expected |
 
 ### Tablet (DevTools)
 
 | View | Screenshot | Notes |
 | --- | --- | --- |
+| Home | ![home](/Documentation/Testing/responsive_tablet/home.png) | As expected |
+| Library | ![library](/Documentation/Testing/responsive_tablet_library/png) | As expected |
+| Game detail | ![gamedetail](/Documentation/Testing/responsive_tablet_gamedetail.png) | As expected | 
+| News | ![news](/Documentation/Testing/responsive_tablet_news.png) | As expected |
+| Admin | ![admin](/Documentation/Testing/responsive_tablet_admin.png) | As expected | 
+| Profile | ![profile](/Documentation/Testing/responsive_tablet_profile.png) | As expected |
+| Sign in | ![signin](/Documentation/Testing/responsive_tablet_signin.png) | As expected |
+| Sign up | ![signup](/Documentation/Testing/responsive_tablet_signup/png) | As expected |
 
 ### Desktop
 
 | View | Screenshot | Notes |
 | --- | --- | --- |
+| Home | ![home](/Documentation/Testing/responsive_desktop/home.png) | As expected |
+| Library | ![library](/Documentation/Testing/responsive_desktop_library/png) | As expected |
+| Game detail | ![gamedetail](/Documentation/Testing/responsive_desktop_gamedetail.png) | As expected | 
+| News | ![news](/Documentation/Testing/responsive_desktop_news.png) | As expected |
+| Admin | ![admin](/Documentation/Testing/responsive_desktop_admin.png) | As expected | 
+| Profile | ![profile](/Documentation/Testing/responsive_desktop_profile.png) | As expected |
+| Sign in | ![signin](/Documentation/Testing/responsive_desktop_signin.png) | As expected |
+| Sign up | ![signup](/Documentation/Testing/responsive_desktop_signup/png) | As expected |
 
 ### Other views tested
 
