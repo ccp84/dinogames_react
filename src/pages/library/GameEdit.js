@@ -83,7 +83,7 @@ const OwnerEdit = ({
 				<Col>
 					<DropdownButton
 						id="dropdown-button"
-						key={title}
+						key={id}
 						title="Delete"
 						variant="danger"
 					>

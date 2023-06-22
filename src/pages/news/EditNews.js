@@ -76,7 +76,7 @@ const EditNews = (props) => {
 				<Col>
 					<DropdownButton
 						id="dropdown-button"
-						key={title}
+						key={props.id}
 						title="Delete"
 						variant="danger"
 					>
