@@ -231,8 +231,12 @@ const SignUpForm = () => {
 							}
 							footerContent={
 								<>
-									Already have an account? Sign in{' '}
-									<Link to="/signin">here</Link>
+									Already have an account?
+									<Link to="/signin">
+										<Button variant="info" className="m-2">
+											Sign in here
+										</Button>
+									</Link>
 								</>
 							}
 						/>
