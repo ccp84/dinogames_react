@@ -81,11 +81,7 @@ const OwnerEdit = ({
 					</Button>
 				</Col>
 				<Col>
-					<DropdownButton
-						id="dropdown-basic-button"
-						title="Delete"
-						variant="danger"
-					>
+					<DropdownButton id={title} title="Delete" variant="danger">
 						<Dropdown.Item
 							onClick={async () => {
 								try {
