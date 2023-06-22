@@ -142,6 +142,8 @@ I've tested my deployed project on multiple devices to check for responsiveness 
 
 | View | Screenshot | Notes |
 | --- | --- | --- |
+| iPhone | ![iphone](/Documentation/Testing/safari.jpg) | As expected |
+| 
 
 ## Lighthouse Audit
 
@@ -149,7 +151,22 @@ I've tested my deployed project using the Lighthouse Audit tool to check for any
 
 | Page | Size | Screenshot | Notes |
 | --- | --- | --- | --- |
-
+| Home | Mobile | ![home](/Documentation/Testing/lighthouse_mobile_home.png) | Mobile pages have lower performance throughout, there are no warnings remaining that I can make adjustments to to imcrease performance in my own code |
+| Home | Desktop | ![home](/Documentation/Testing/lighthouse_desktop_home.png) |  |
+| Library | Mobile | ![library](/Documentation/Testing/lighthouse_mobile_library.png) |  |
+| Library | Desktop | ![library](/Documentation/Testing/lighthouse_desktop_library.png) |  |
+| Game detail | Mobile | ![gamedetail](/Documentation/Testing/lighthouse_mobile_gamedetail.png) |  |
+| Game detail | Desktop | ![gamedetail](/Documentation/Testing/lighthouse_desktop_gamedetail.png) |  |
+| News | Mobile | ![news](/Documentation/Testing/lighthouse_mobile_news.png) |  |
+| News | Desktop | ![news](/Documentation/Testing/lighthouse_desktop_news.png) |  |
+| Admin | Mobile | ![admin](/Documentation/Testing/lighthouse_mobile_admin.png) |  |
+| Admin | Desktop | ![admin](/Documentation/Testing/lighthouse_desktop_admin.png) |  |
+| Profile | Mobile | ![profile](/Documentation/Testing/lighthouse_mobile_profile.png) |  |
+| Profile | Desktop | ![profile](/Documentation/Testing/lighthouse_desktop_profile.png) |  |
+| Sign in | Mobile | ![signin](/Documentation/Testing/lighthouse_mobile_signin.png) | Warning for console log messages when there is no user logged in. This is to be expected and is a feature of the system that I cannot change |
+| Sign in | Desktop | ![signin](/Documentation/Testing/lighthouse_desktop_signin.png) |  |
+| Sign  up | Mobile | ![signup](/Documentation/Testing/lighthouse_mobile_signup.png) |  |
+| Sign up | Desktop | ![signup](/Documentation/Testing/lighthouse_desktop_signup.png) |  |
 ## User Story Testing
 
 | User story | Outcome |
