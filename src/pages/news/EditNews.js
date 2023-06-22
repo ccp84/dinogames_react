@@ -74,7 +74,12 @@ const EditNews = (props) => {
 					</Button>
 				</Col>
 				<Col>
-					<DropdownButton id={title} title="Delete" variant="danger">
+					<DropdownButton
+						id="dropdown-button"
+						key={title}
+						title="Delete"
+						variant="danger"
+					>
 						<Dropdown.Item
 							onClick={async () => {
 								try {
