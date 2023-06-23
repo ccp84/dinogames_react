@@ -4,8 +4,28 @@ Return to the [README.md](README.md) file.
 
 ## Code Validation
 
+### JavaScript and JSX
+
 For JavaScript and JSX code compliance I installed eslint as a dev dependency at the start of the project so that any warnings or errors were solved as each file was written. The configuration I used for eslint can be found in the [eslintrc.json](https://github.com/ccp84/dinogames_react/blob/main/.eslintrc.json) file for this project. I have also used prettier throughout to ensure formatting is compliant, the config file for this is [prettierrc](https://github.com/ccp84/dinogames_react/blob/main/.prettierrc). I have pushed both configuration files to GitHub for assessment purposes, normally I would include these in gitignore. By running eslint at the end of the project, no errors or warnings remain.
 ![eslint](/Documentation/Testing/eslint.png)
+
+### HTML
+
+I have used the recommended [HTML W3C Validator](https://validator.w3.org) to validate the HTML files produced. The base HTML template is created when Create React App is run initially with the script tag within that page using the written JSX code to render what you see on screen. However to ensure thorough testing, I have run each instance of a HTML endpoint through the validator to check for unforseen errors as well.
+
+| Page | W3C URL | Screenshot | Notes |
+| --- | --- | --- | --- |
+| Home | [W3C](https://validator.w3.org/nu/?doc=https%3A%2F%2Fdinogames-react.herokuapp.com%2F) | ![home](/Documentation/Testing/html_home.png) | None |
+| Library | [W3C](https://validator.w3.org/nu/?doc=https%3A%2F%2Fdinogames-react.herokuapp.com%2Fgame%2Flibrary) | ![library](/Documentation/Testing/html_library.png) | None |
+| Game detail | [W3C](https://validator.w3.org/nu/?doc=https%3A%2F%2Fdinogames-react.herokuapp.com%2Fgame%2F41) | ![gamedetail](/Documentation/Testing/html_gamedetail.png) | None |
+| News | [W3C](https://validator.w3.org/nu/?doc=https%3A%2F%2Fdinogames-react.herokuapp.com%2Fnews) | ![news](/Documentation/Testing/html_news.png) | None |
+| Admin | [W3C](https://validator.w3.org/nu/?doc=https%3A%2F%2Fdinogames-react.herokuapp.com%2Fadmin) | ![admin](/Documentation/Testing/html_admin.png) | None |
+| Profile | [W3C](https://validator.w3.org/nu/?doc=https%3A%2F%2Fdinogames-react.herokuapp.com%2Fprofile) | ![profile](/Documentation/Testing/html_profile.png) | None |
+| Login | [W3C](https://validator.w3.org/nu/?doc=https%3A%2F%2Fdinogames-react.herokuapp.com%2Fsignin) | ![login](/Documentation/Testing/html_login.png) | None |
+| Sign up | [W3C](https://validator.w3.org/nu/?doc=https%3A%2F%2Fdinogames-react.herokuapp.com%2Fsignup) | ![signup](/Documentation/Testing/html_signup.png) | None |
+| 404 | [W3C](https://validator.w3.org/nu/?doc=https%3A%2F%2Fdinogames-react.herokuapp.com%2F404) | ![404](/Documentation/Testing/html_404.png) | None |
+
+### CSS
 
 For this project all styling is handled by standard Bootstrap classes there is no additional CSS to validate.
 
