@@ -4,7 +4,7 @@ Return to the [README.md](README.md) file.
 
 ## Code Validation
 
-For JavaScript and JSX code compliance I installed eslint as a dev dependency at the start of the project so that any warnings or errors were solved as each file was written. The configuration I used for eslint can be found in the eslintrc.json file for this project. I have also used prettier throughout to ensure formatting is compliant, the config file file for this is prettierrc. I have pushed both configuration files to GitHub for completeness, normally I would include these in gitignore. By running eslint at the end of the project, no errors or warnings remain
+For JavaScript and JSX code compliance I installed eslint as a dev dependency at the start of the project so that any warnings or errors were solved as each file was written. The configuration I used for eslint can be found in the [eslintrc.json](https://github.com/ccp84/dinogames_react/blob/main/.eslintrc.json) file for this project. I have also used prettier throughout to ensure formatting is compliant, the config file for this is [prettierrc](https://github.com/ccp84/dinogames_react/blob/main/.prettierrc). I have pushed both configuration files to GitHub for assessment purposes, normally I would include these in gitignore. By running eslint at the end of the project, no errors or warnings remain.
 ![eslint](/Documentation/Testing/eslint.png)
 
 For this project all styling is handled by standard Bootstrap classes there is no additional CSS to validate.
@@ -143,7 +143,8 @@ I've tested my deployed project on multiple devices to check for responsiveness 
 | View | Screenshot | Notes |
 | --- | --- | --- |
 | iPhone | ![iphone](/Documentation/Testing/safari.jpg) | As expected |
-| 
+| Samsung phone | ![samsung](/Documentation/Testing/samsung.png) | As expected |
+| Phone with accessibility options turned on | ![accessible](/Documentation/Testing/accessible.png) | A visually impaired friend has tested the site for me who uses accessibility features on her phone. She uses zoom and text to speech options to navigate as she can see shapes and colour contrast in 1 eye only. She was able to access each page and its content. |
 
 ## Lighthouse Audit
 
@@ -193,10 +194,9 @@ I've tested my deployed project using the Lighthouse Audit tool to check for any
 | As a member I want to see the games I have rated so that I can pick out games I have already played and enjoyed to play again. |  |
 | As a site visitor I want to be able to see ratings left by other people so that I know if I might want to play that game or not. |  |
 
-## Bugs
+## Bugs and fixes
 
-| Page | Issues Remaining | Considerations | Screenshots |
-| --- | --- | --- | --- |
+To the best of my knowledge following testing there are no remaining bug fixes to resolve. 
 
 Fixes have been tracked as issues through the project board you can see a filtered view [here](https://github.com/users/ccp84/projects/5/views/1?filterQuery=bug)
 ![bugs](/Documentation/Testing/bugs.png)
