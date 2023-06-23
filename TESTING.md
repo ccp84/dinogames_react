@@ -6,12 +6,12 @@ Return to the [README.md](README.md) file.
 
 ### JavaScript and JSX
 
-For JavaScript and JSX code compliance I installed eslint as a dev dependency at the start of the project so that any warnings or errors were solved as each file was written. The configuration I used for eslint can be found in the [eslintrc.json](https://github.com/ccp84/dinogames_react/blob/main/.eslintrc.json) file for this project. I have also used prettier throughout to ensure formatting is compliant, the config file for this is [prettierrc](https://github.com/ccp84/dinogames_react/blob/main/.prettierrc). I have pushed both configuration files to GitHub for assessment purposes, normally I would include these in gitignore. By running eslint at the end of the project, no errors or warnings remain.
+For JavaScript and JSX code compliance, I installed eslint as a dev dependency at the start of the project so that any warnings or errors were solved as each file was written. The configuration I used for eslint can be found in the [eslintrc.json](https://github.com/ccp84/dinogames_react/blob/main/.eslintrc.json) file for this project. I have also used prettier throughout to ensure formatting is compliant, the config file for this is [prettierrc](https://github.com/ccp84/dinogames_react/blob/main/.prettierrc). I have pushed both configuration files to GitHub for assessment purposes, normally I would include these in gitignore. By running eslint at the end of the project, no errors or warnings remain.
 ![eslint](/Documentation/Testing/eslint.png)
 
 ### HTML
 
-I have used the recommended [HTML W3C Validator](https://validator.w3.org) to validate the HTML files produced. The base HTML template is created when Create React App is run initially with the script tag within that page using the written JSX code to render what you see on screen. However to ensure thorough testing, I have run each instance of a HTML endpoint through the validator to check for unforseen errors as well.
+I have used the recommended [HTML W3C Validator](https://validator.w3.org) to validate the HTML files produced. The base HTML template is created when Create React App is run initially with the script tag within that page using the written JSX code to render what you see on screen. However, to ensure thorough testing, I have run each instance of an HTML endpoint through the validator to check for unforeseen errors as well.
 
 | Page | W3C URL | Screenshot | Notes |
 | --- | --- | --- | --- |
@@ -44,18 +44,18 @@ Defensive programming was manually tested with the below user acceptance testing
 | 5 | Sort option selected | Sorted list returned | Pass | ![defensive4](/Documentation/Testing/defensive_4.png) |
 | 5 | User clicks a game title link | Redirected to game detail page for that game | Pass |  |
 | 7 | Logged in user selects rating - no rating yet | Rating created | Pass | ![defensive6](/Documentation/Testing/defensive_6.png) |
-| 8 | Logged in user selects a different rating to the one already logged | Rating value changes | Pass | ![defensive7](/Documentation/Testing/defensive_7.png) | 
+| 8 | Logged-in user selects a different rating to the one already logged | Rating value changes | Pass | ![defensive7](/Documentation/Testing/defensive_7.png) | 
 | 9 | Logged in user selects the same rating again | Rating is deleted | Pass | ![defensive8](/Documentation/Testing/defensive_8.png) |
 | 10 | Logged out user clicks on ratings button | Redirect to login page | Pass | ![defensive9](/Documentation/Testing/defensive_9.png) |
 | Game detail page |  |  |  |  |
 | 11 | User follows a link to game detail page | Redirected to relevant game information | Pass | ![defensive13](/Documentation/Testing/defensive_13.png) |
 | 12 | Logged in user clicks add review | Review editor is displayed | Pass | ![defensive14](/Documentation/Testing/defensive_14.png) | 
-| 13 | Logged in user submits a review | Review is saved, editor is closed, review is displayed in the list | Pass | ![defensive15](/Documentation/Testing/defensive_15.png) |
-| 14 | Logged in user clicks edit on a review written by them | Review editor is displayed | Pass | ![defensive16](/Documentation/Testing/defensive_16.png) | 
-| 15 | Logged in user saves an edited review | Review is saved, editor is closed, review list is updated | Pass | ![defensive17](/Documentation/Testing/defensive_17.png) | 
+| 13 | Logged-in user submits a review | Review is saved, the editor is closed, and the review is displayed in the list | Pass | ![defensive15](/Documentation/Testing/defensive_15.png) |
+| 14 | Logged-in user clicks edit on a review written by them | Review editor is displayed | Pass | ![defensive16](/Documentation/Testing/defensive_16.png) | 
+| 15 | Logged-in user saves an edited review | Review is saved, the editor is closed, review list is updated | Pass | ![defensive17](/Documentation/Testing/defensive_17.png) | 
 | 16 | Logged in user selects delete on a review they own | Review is deleted, review list is updated | Pass | ![defensive18](/Documentation/Testing/defensive_18.png) |
 | 17 | Logged out user clicks to add a review | Redirected to login | Pass | ![defensive19](/Documentation/Testing/defensive_19.png) |
-| 18 | Any user changes the URL for a game page to a non existent game id | Error page displayed | Pass | ![defensive20](/Documentation/Testing/defensive_20.png) |
+| 18 | Any user changes the URL for a game page to a non-existent game id | Error page displayed | Pass | ![defensive20](/Documentation/Testing/defensive_20.png) |
 | Error page |  |  |  |  |
 | 19 | User clicks back button | Redirected to last page they were on | Pass |  |
 | News Page |  |  |  |  |
@@ -71,15 +71,15 @@ Defensive programming was manually tested with the below user acceptance testing
 | 27 | Logged out user enters invalid login data | On screen feedback given | Pass | ![defensive30](/Documentation/Testing/defensive_30.png) |
 | 28 | Logged out user enters valid login data | User is logged in, redirect to profile page | Pass | ![defensive31](/Documentation/Testing/defensive_31.png) |
 | 29 | Logged out user clicks sign up link on form | Redirects to sign up page | Pass |  |
-| 30 | Logged in user navigates to sign in page | Regirects to profile page | Pass |  |
+| 30 | Logged in user navigates to sign in page | Redirects to profile page | Pass |  |
 | Profile Page |  |  |  |  |
 | 31 | Logged out user navigates to profile page | Error returned | Pass | ![defensive34](/Documentation/Testing/defensive_34.png) |
 | 32 | Logged in user clicks on profile link | Profile details returned | Pass |  |
 | 33 | Logged in user clicks edit details button | Profile edit form is displayed | Pass | ![defensive36](/Documentation/Testing/defensive_36.png) |
 | 34 | Logged in user saves profile details | Editor closes, details are saved | Pass | ![defensive37](/Documentation/Testing/defensive_37.png) |
-| 35 | Logged in user clicks a game link from their liked games list | Redirects to game details page | Pass |  |
+| 35 | Logged-in user clicks a game link from their liked games list | Redirects to game details page | Pass |  |
 | 36 | Logged in user clicks edit button in their reviews list | Review editor opens | Pass | ![defensive39](/Documentation/Testing/defensive_39.png) |
-| 37 | Logged in user saved edited review | Editor closes, review is saved, review list is updated | Pass | ![defensive40](/Documentation/Testing/defensive_40.png) |
+| 37 | Logged in user saved edited review | Editor closes, the review is saved, review list is updated | Pass | ![defensive40](/Documentation/Testing/defensive_40.png) |
 | 38 | Logged in user clicks delete review button | Review is deleted, review list is updated | Pass | ![defensive41](/Documentation/Testing/defensive_41.png) |
 | Admin page |  |  |  |  |
 | 39 | Logged out user navigates to admin page | Error returned | Pass | ![defensive42](/Documentation/Testing/defensive_42.png) |
@@ -99,12 +99,12 @@ Defensive programming was manually tested with the below user acceptance testing
 | 53 | Admin user saves updated game details | Game details saved, redirect to game detail page | Pass |  |
 | 54 | Admin user clicks delete game button | Game is deleted, game list refreshes | Pass | ![defensive56](/Documentation/Testing/defensive_56.png) |
 | Navigation |  |  |  |  |
-| 55 | Logged in user clicks on logout button | Current user is cleared, logged out icons shown, logged out status displayed | Pass | ![defensive57](/Documentation/Testing/defensive_57.png) |
+| 55 | Logged-in user clicks on logout button | Current user is cleared, logged out icons shown, logged out status displayed | Pass | ![defensive57](/Documentation/Testing/defensive_57.png) |
 | 56 | User is logged out | Correct set of buttons and icon are displayed | Pass | Note that when a user is logged out errors for token refreshing are logged to the console. These are inherent to the system and are to be expected rather than a coding error to be resolved. |
 | 57 | User is logged in | Standard set of buttons, username and profile icon are displayed | Pass | ![defensive58](/Documentation/Testing/defensive_58.png) |
 | 58 | Admin user is logged in | Admin button is accessible from nav bar | Pass | ![defensive59](/Documentation/Testing/defensive_59.png) |
 
-## Browser Compatibilty
+## Browser Compatibility
 
 I've tested my deployed project on multiple browsers to check for compatibility issues.
 
@@ -127,7 +127,7 @@ I've tested my deployed project on multiple devices to check for responsiveness 
 | Library | ![library](/Documentation/Testing/responsive_mobile_library.png) | As expected |
 | Game detail | ![gamedetail](/Documentation/Testing/responsive_mobile_gamedetail.png) | As expected | 
 | News | ![news](/Documentation/Testing/responsive_mobile_news.png) | As expected |
-| Admin | ![admin](/Documentation/Testing/responsive_mobile_admin.png) | Buttons out of alignment although they still work and display at lowest breakpoint 320px, this resolves at 370px which is fine for iPhone 6 and above | 
+| Admin | ![admin](/Documentation/Testing/responsive_mobile_admin.png) | Buttons out of alignment although they still work and display at the lowest breakpoint 320px, this resolves at 370px which is fine for iPhone 6 and above | 
 | Profile | ![profile](/Documentation/Testing/responsive_mobile_profile.png) | As expected |
 | Sign in | ![signin](/Documentation/Testing/responsive_mobile_signin.png) | As expected |
 | Sign up | ![signup](/Documentation/Testing/responsive_mobile_signup.png) | As expected |
@@ -164,7 +164,7 @@ I've tested my deployed project on multiple devices to check for responsiveness 
 | --- | --- | --- |
 | iPhone | ![iphone](/Documentation/Testing/safari.jpg) | As expected |
 | Samsung phone | ![samsung](/Documentation/Testing/samsung.png) | As expected |
-| Phone with accessibility options turned on | ![accessible](/Documentation/Testing/accessible.png) | A visually impaired friend has tested the site for me who uses accessibility features on her phone. She uses zoom and text to speech options to navigate as she can see shapes and colour contrast in 1 eye only. She was able to access each page and its content. |
+| Phone with accessibility options turned on | ![accessible](/Documentation/Testing/accessible.png) | A visually impaired friend has tested the site for me who uses accessibility features on her phone. She uses zoom and text-to-speech options to navigate as she can see shapes and colour contrast in 1 eye only. She was able to access each page and its content. |
 
 ## Lighthouse Audit
 
@@ -172,7 +172,7 @@ I've tested my deployed project using the Lighthouse Audit tool to check for any
 
 | Page | Size | Screenshot | Notes |
 | --- | --- | --- | --- |
-| Home | Mobile | ![home](/Documentation/Testing/lighthouse_mobile_home.png) | Mobile pages have lower performance throughout, there are no warnings remaining that I can make adjustments to to imcrease performance in my own code |
+| Home | Mobile | ![home](/Documentation/Testing/lighthouse_mobile_home.png) | Mobile pages have lower performance throughout, no warnings are remaining that I can make adjustments to increase performance in my code |
 | Home | Desktop | ![home](/Documentation/Testing/lighthouse_desktop_home.png) |  |
 | Library | Mobile | ![library](/Documentation/Testing/lighthouse_mobile_library.png) |  |
 | Library | Desktop | ![library](/Documentation/Testing/lighthouse_desktop_library.png) |  |
@@ -211,12 +211,12 @@ I've tested my deployed project using the Lighthouse Audit tool to check for any
 | As a visitor to the site I want to be able to read all of the latest announcements so that I can find out about events that are happening in the library |  |
 | As a member I want to be able to add a thumbs up or thumbs down rating so that other users can see if they might want to play the game. |  |
 | As a user I want to be able to edit the rating I have left so that I can update my opinion if I change my mind. |  |
-| As a member I want to see the games I have rated so that I can pick out games I have already played and enjoyed to play again. |  |
+| As a member I want to see the games I have rated so that I can pick out games I have already enjoyed playing to play again. |  |
 | As a site visitor I want to be able to see ratings left by other people so that I know if I might want to play that game or not. |  |
 
 ## Bugs and fixes
 
-To the best of my knowledge following testing there are no remaining bug fixes to resolve. 
+To the best of my knowledge following testing, there are no remaining bug fixes to resolve. 
 
 Fixes have been tracked as issues through the project board you can see a filtered view [here](https://github.com/users/ccp84/projects/5/views/1?filterQuery=bug)
 ![bugs](/Documentation/Testing/bugs.png)
