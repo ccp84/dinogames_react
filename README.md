@@ -6,7 +6,9 @@
 
 The Dinosaur Games Library operates to provide social events where members can come along and play library games with other members. The online library portal provides staff the ability to maintain an up to date list of the games available to be played at social nights, and keep members informed of the latest news and events for the group. Members are able to view and search the library, and review the games they have played providing a resource for other members and site visitors to look up new games they might want to play. All members and site visitors can also see the latest admin announcements for social events and news items about the library. 
 
-This app will provide a user interface for members to create an online account, view the available library games and view details of social events that they may wish to participate in. It will also give admin users the facility to maintain stock details, highlight group announcements and details of upcoming events. Any site visitors will be able to find out information about the group before registering for membership.
+This app will provide a user interface for members to create an online account, view the available library games and view details of social events that they may wish to participate in. It will also give admin users the facility to maintain stock details, highlight group announcements and details of upcoming events. Any site visitors will be able to find out information about the group before registering for membership. For the backend API repositiory please see [here](https://github.com/ccp84/dinogames_api).
+
+The live deployed site can be viewed [here](https://dinogames-react.herokuapp.com/)
 
 ## Scope
 
@@ -24,7 +26,11 @@ This app will provide a user interface for members to create an online account, 
 * It could allow staff members to post detailed social event invitations
 * It could allow registered members to list the games they would like to be available to play at social events
 
-Using MoSCoW prioritisation these functions have been prioritised as 'must have', 'should have', 'could have' and have been turned into user stories to create the [project board](https://github.com/users/ccp84/projects/5/views/1?reload=true). Any remaining features outside of this project's timeframe will be moved to 'won't have', and in production would become part of the next release or future features.
+Using MoSCoW prioritisation these functions have been prioritised as 'must have', 'should have', 'could have' and have been turned into user stories to create the [project board](https://github.com/users/ccp84/projects/5/views/1). 
+
+Estimated story points have been added to each User Story and Task as [Xsp] to aid time considerations in each sprint.
+
+Any remaining features outside of this project's timeframe will be moved to 'won't have', and in production would become part of the next release or future features.
 
 ## Initial Wireframes
 
@@ -66,7 +72,7 @@ Using MoSCoW prioritisation these functions have been prioritised as 'must have'
 | As a member I want to be able to log into my account so that I can access the full features of the library. | Front end login form can access login end point to retrieve access token and refresh token |
 | As a member I want to be able to log out of my account to keep my data secure. | Front end form clears stored tokens preventing further usage |
 
-### Features developed this milestone
+### Features developed this sprint
 
 #### Connection to the API
 
@@ -155,7 +161,7 @@ In terms of specifically displaying and updating profile icons, the use of these
 | As a member I want to be able to see all of the games available in the library so that I can read the reviews and look for games I might like | Front end library page displays all available games |
 | As a member I want to be able to search the library by game feature so that I can pick out the games most suited to my interests | Front end library page has a keyword search feature, Front end library can be sorted |
 
-### Features developed this milestone
+### Features developed this sprint
 
 #### Deleting games as an administrator
 
@@ -355,7 +361,7 @@ To display feedback to users throughout the application I added a Current Messag
 ![notification_system](/Documentation/notification_system.png)
 
 ## Future Features
-* I started developing this project in Material UI but ran into issues each time I tried to deploy to Heroku. Having not previously had problems with the walkthrough using React Bootstrap I proceeded with Bootstrap instead. Ideally I would rebuild with MUI given more time to troubleshoot and look to deploy to somewhere like AWS Amplify instead. 
+* I started developing this project in Material UI but ran into issues each time I tried to deploy to Heroku. Having not previously had problems following examples using React Bootstrap I proceeded with Bootstrap instead. Ideally I would rebuild with MUI given more time to troubleshoot and look to deploy to somewhere like AWS Amplify instead. 
 * Social events - I had intended to add an extra feature for social events in the library where members could vote for which games they would like to see available for social nights. This feature has been moved to won't have, in production it would be added to the next release. 
 * Requests - I would have liked to add an area for game requests to be added to the library so that when a search is made and the game a member is looking for wasn't found there was an option to add it to the list of requests for new games. THe thumbs up component could have been reused for this so that other members could upvote the games they also wanted to see added making sure the most popular games were added first. 
 
@@ -436,8 +442,7 @@ You can fork this repository by using the following steps:
 ## Technologies Used
 
 ### This project is built using the following languages and frameworks:
-* HTML
-* CSS
+* JSX
 * JavaScript
 * React
 
@@ -460,6 +465,7 @@ You can fork this repository by using the following steps:
 ## Credits
 
 ### Documentation and additional tutorials
+* I completed Brian Holt's [Intro To React](https://frontendmasters.com/courses/complete-react-v8/) prior to starting this project which introduced me to React 18, ESLint, React Router, and React Query. 
 * For setting up routing as I have used the latest version of React and React Router, I followed the tutorial available in the documentation [here](https://reactrouter.com/en/main/start/tutorial)
 * I have used the [Tanstack documentation](https://tanstack.com/query/latest/docs/react/overview) extensively for gudiance on making effective queries in React
 * I have used the [React bootstrap documentation](https://react-bootstrap.github.io/docs/getting-started/introduction/) extensively throughout the project
@@ -476,4 +482,3 @@ You can fork this repository by using the following steps:
 ### Honourable mentions
 * Support and guidance from my mentor Lauren Popich
 * June '22 slack community for continued support and help with troubleshooting and user testing
-* Brian Holt's course Intro to React on Frontend Masters for the in depth introduction on up to date React technologies
