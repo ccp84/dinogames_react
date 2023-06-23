@@ -17,7 +17,6 @@ import SignInForm from './pages/auth/SignInForm';
 import Profile from './pages/user/Profile';
 import LandingPage from './pages/LandingPage';
 import NoMatch from './pages/NoMatch';
-import UserEdit from './pages/user/UserEdit';
 import GameDetail from './pages/library/GameDetail';
 import Library from './pages/library/Library';
 import AllNews from './pages/news/AllNews';
@@ -46,7 +45,6 @@ function App() {
 				<Routes>
 					<Route path="/" element={<LandingPage />} />
 					<Route path="/profile" element={<Profile />} />
-					<Route path="/profile/edit" element={<UserEdit />} />
 					<Route path="/signin" element={<SignInForm />} />
 					<Route path="/signup" element={<SignUpForm />} />
 					<Route path="/game/library" element={<Library />} />
