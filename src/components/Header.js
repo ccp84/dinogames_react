@@ -25,6 +25,7 @@ const Header = () => {
 		try {
 			await axios.post('dj-rest-auth/logout/');
 			setCurrentUser(null);
+			setShow(!show);
 			setCurrentMessage({
 				flag: true,
 				message: 'Logout successful',
@@ -45,23 +46,17 @@ const Header = () => {
 	const loggedIn = (
 		// Links returned when a user is logged in
 		<>
-			<Link className="m-2" to="/game/library">
-				<Button onClick={handleClick} variant="info">
-					Library
-				</Button>
+			<Link onClick={handleClick} className="m-2" to="/game/library">
+				<Button variant="info">Library</Button>
 			</Link>
-			<Link className="m-2" to="/news">
-				<Button onClick={handleClick} variant="info">
-					News
-				</Button>
+			<Link onClick={handleClick} className="m-2" to="/news">
+				<Button variant="info">News</Button>
 			</Link>
 			{staff ? (
 				// Current user is staff
 				<>
-					<Link className="m-2" to="/admin">
-						<Button onClick={handleClick} variant="info">
-							Admin
-						</Button>
+					<Link onClick={handleClick} className="m-2" to="/admin">
+						<Button variant="info">Admin</Button>
 					</Link>
 				</>
 			) : (
@@ -84,25 +79,17 @@ const Header = () => {
 	const loggedOut = (
 		// No user logged in
 		<>
-			<Link className="m-2" to="/game/library">
-				<Button onClick={handleClick} variant="info">
-					View Library
-				</Button>
+			<Link onClick={handleClick} className="m-2" to="/game/library">
+				<Button variant="info">View Library</Button>
 			</Link>
-			<Link className="m-2" to="/news">
-				<Button onClick={handleClick} variant="info">
-					News
-				</Button>
+			<Link onClick={handleClick} className="m-2" to="/news">
+				<Button variant="info">News</Button>
 			</Link>
-			<Link className="m-2" to="/signin">
-				<Button onClick={handleClick} variant="info">
-					Login
-				</Button>
+			<Link onClick={handleClick} className="m-2" to="/signin">
+				<Button variant="info">Login</Button>
 			</Link>
-			<Link className="m-2" to="/signup">
-				<Button onClick={handleClick} variant="info">
-					Signup
-				</Button>
+			<Link onClick={handleClick} className="m-2" to="/signup">
+				<Button variant="info">Signup</Button>
 			</Link>
 			<Navbar.Text>
 				<SolidIcon className="text-warning m-2" iconName="user-slash" />
