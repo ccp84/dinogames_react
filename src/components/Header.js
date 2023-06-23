@@ -19,7 +19,7 @@ const Header = () => {
 	const setCurrentUser = useSetCurrentUser();
 	const [show, setShow] = useState(false);
 	const handleClick = () => setShow(false);
-	const expand = () => setShow(true);
+	const expand = () => setShow(!show);
 	const setCurrentMessage = useSetCurrentMessage();
 	const SignOut = async () => {
 		try {
